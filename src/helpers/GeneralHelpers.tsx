@@ -3,18 +3,16 @@
 //  ╚═╝ ┴ ┴└─┴┘└┘└─┘
 
 // String case insensitive equals method
-String.prototype.ciEquals = function (a) {
-  return typeof a === "string"
-    ? a.localeCompare(this, undefined, { sensitivity: "accent" }) === 0
-    : a === this;
-};
+export function caseInsensitiveEquals(str1: string, str2: string): boolean {
+  return str1.toLowerCase() === str2.toLowerCase();
+}
 
 //  ╔╦╗┌─┐┌┬┐┌─┐
 //   ║║├─┤ │ ├┤
 //  ═╩╝┴ ┴ ┴ └─┘
 
 // Returns the ISO week of the date.
-export function getWeek(date_input){
+export function getWeek(date_input: any){
   var date = new Date(date_input);
   date.setHours(0, 0, 0, 0);
   // Thursday in current week decides the year.
@@ -34,8 +32,8 @@ export function getWeek(date_input){
 };
 
 // Returns the four-digit year corresponding to the ISO week of the date.
-export function getWeekYear(){
-  var date = new Date(this.getTime());
+export function getWeekYear(date_input: Date){
+  var date = new Date(date_input.getTime());
   date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
   return date.getFullYear();
 };

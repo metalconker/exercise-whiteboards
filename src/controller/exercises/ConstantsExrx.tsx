@@ -1,3 +1,6 @@
+// If duplicates are present, a 2 is set after the name
+// TODO: fix this, but not entirely important.
+
 export const metadata = {
     NeckLVNeckFlexionH: {
       id: "LVNeckFlexionH",
@@ -605,7 +608,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/UpperArms/Triceps/suspended/STTricepsExtension.mp4"),
     },
   
-    UpperArmsBWSuspendedTricepsExtension: {
+    UpperArmsBWSuspendedTricepsExtension2: {
       id: "BWSuspendedTricepsExtension",
       details: require("../../assets/exercises/exrx/UpperArms/Triceps/suspended/details.json"),
       media: require("../../assets/exercises/exrx/UpperArms/Triceps/suspended/BWSuspendedTricepsExtension.mp4"),
@@ -1091,7 +1094,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/lever(selectorized)/LV45CalfRaise.mp4"),
     },
   
-    CalvesLVSeatedCalfExtension: {
+    CalvesLVSeatedCalfExtension2: {
       id: "LVSeatedCalfExtension",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/lever(selectorized)/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/lever(selectorized)/LVSeatedCalfExtension.mp4"),
@@ -1211,43 +1214,43 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/sled/SLVerticalCalfPress.mp4"),
     },
   
-    CalvesFloorBoard: {
+    CalvesFloorBoard2: {
       id: "FloorBoard",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/FloorBoard.jpg"),
     },
   
-    CalvesLunging: {
+    CalvesLunging2: {
       id: "Lunging",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/Lunging.jpg"),
     },
   
-    CalvesBentover: {
+    CalvesBentover2: {
       id: "Bentover",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/Bentover.jpg"),
     },
   
-    CalvesSingleLegBentover: {
+    CalvesSingleLegBentover2: {
       id: "SingleLegBentover",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/SingleLegBentover.jpg"),
     },
   
-    CalvesStep: {
+    CalvesStep2: {
       id: "Step",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/Step.jpg"),
     },
   
-    CalvesTowel: {
+    CalvesTowel2: {
       id: "Towel",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/Towel.jpg"),
     },
   
-    CalvesWall: {
+    CalvesWall2: {
       id: "Wall",
       details: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/Gastrocnemius/stretch/Wall.jpg"),
@@ -1487,7 +1490,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Calves/TibialisAnterior/sled/SLSeatedReverseCalfPress.mp4"),
     },
   
-    CalvesKneeling: {
+    CalvesKneeling2: {
       id: "Kneeling",
       details: require("../../assets/exercises/exrx/Calves/TibialisAnterior/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/TibialisAnterior/stretch/Kneeling.jpg"),
@@ -1499,7 +1502,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Calves/TibialisAnterior/stretch/Lying.jpg"),
     },
   
-    CalvesSeated: {
+    CalvesSeated2: {
       id: "Seated",
       details: require("../../assets/exercises/exrx/Calves/TibialisAnterior/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Calves/TibialisAnterior/stretch/Seated.jpg"),
@@ -1745,13 +1748,13 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Forearms/WristFlexors/stretch/Seated.jpg"),
     },
   
-    ForearmsSingle: {
+    ForearmsSingle2: {
       id: "Single",
       details: require("../../assets/exercises/exrx/Forearms/WristFlexors/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Forearms/WristFlexors/stretch/Single.jpg"),
     },
   
-    ForearmsKneeling: {
+    ForearmsKneeling2: {
       id: "Kneeling",
       details: require("../../assets/exercises/exrx/Forearms/WristFlexors/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Forearms/WristFlexors/stretch/Kneeling.jpg"),
@@ -3509,25 +3512,25 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(gluteusmedius&minimus)/SidePretzel.jpg"),
     },
   
-    HipsLyingIliotibial: {
+    HipsLyingIliotibial2: {
       id: "LyingIliotibial",
       details: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/details.json"),
       media: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/LyingIliotibial.jpg"),
     },
   
-    HipsSquattingIliotibial: {
+    HipsSquattingIliotibial2: {
       id: "SquattingIliotibial",
       details: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/details.json"),
       media: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/SquattingIliotibial.jpg"),
     },
   
-    HipsStandingIliotibial: {
+    HipsStandingIliotibial2: {
       id: "StandingIliotibial",
       details: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/details.json"),
       media: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/StandingIliotibial.jpg"),
     },
   
-    HipsWallIliotibial: {
+    HipsWallIliotibial2: {
       id: "WallIliotibial",
       details: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/details.json"),
       media: require("../../assets/exercises/exrx/Hips/HipAbductors/stretch(tensorfasciaelatae)/WallIliotibial.jpg"),
@@ -4265,7 +4268,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Back/Infraspinatus/stretch/Broomstick.jpg"),
     },
   
-    BackBentover: {
+    BackBentover2: {
       id: "Bentover",
       details: require("../../assets/exercises/exrx/Back/Infraspinatus/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Back/Infraspinatus/stretch/Bentover.jpg"),
@@ -4343,7 +4346,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Back/Subscapularis/lever(selectorized)/LVUprightInternalRotation.mp4"),
     },
   
-    BackBroomstick: {
+    BackBroomstick2: {
       id: "Broomstick",
       details: require("../../assets/exercises/exrx/Back/Subscapularis/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Back/Subscapularis/stretch/Broomstick.jpg"),
@@ -4583,7 +4586,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Back/BackGeneral/lever(selectorized)/LVAlternatingSeatedUnderhandRow.mp4"),
     },
   
-    BackFixedBar: {
+    BackFixedBar2: {
       id: "FixedBar",
       details: require("../../assets/exercises/exrx/Back/BackGeneral/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Back/BackGeneral/stretch/FixedBar.jpg"),
@@ -5843,7 +5846,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Waist/RectusAbdominis/isometric/BWBallRollout.mp4"),
     },
   
-    WaistSTPullThrough: {
+    WaistSTPullThrough2: {
       id: "STPullThrough",
       details: require("../../assets/exercises/exrx/Waist/RectusAbdominis/suspended/details.json"),
       media: require("../../assets/exercises/exrx/Waist/RectusAbdominis/suspended/STPullThrough.mp4"),
@@ -5903,7 +5906,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Waist/RectusAbdominis/bodyweight/BWHangingStraightLegHipRaise.mp4"),
     },
   
-    WaistBWBallRollout: {
+    WaistBWBallRollout2: {
       id: "BWBallRollout",
       details: require("../../assets/exercises/exrx/Waist/RectusAbdominis/bodyweight/details.json"),
       media: require("../../assets/exercises/exrx/Waist/RectusAbdominis/bodyweight/BWBallRollout.mp4"),
@@ -6791,7 +6794,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Chest/PectoralSternal/cable/CBChestDip.gif"),
     },
   
-    ChestDoorway: {
+    ChestDoorway2: {
       id: "Doorway",
       details: require("../../assets/exercises/exrx/Chest/PectoralisMinor/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Chest/PectoralisMinor/stretch/Doorway.jpg"),
@@ -7457,7 +7460,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Shoulders/DeltoidPosterior/lever(selectorized)/LVReverseFlyPronated.mp4"),
     },
   
-    ShouldersFixedBar: {
+    ShouldersFixedBar2: {
       id: "FixedBar",
       details: require("../../assets/exercises/exrx/Shoulders/DeltoidPosterior/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Shoulders/DeltoidPosterior/stretch/FixedBar.jpg"),
@@ -8063,7 +8066,7 @@ export const metadata = {
       media: require("../../assets/exercises/exrx/Thighs/Quadriceps/stretch/SideLying.jpg"),
     },
   
-    ThighsStanding: {
+    ThighsStanding2: {
       id: "Standing",
       details: require("../../assets/exercises/exrx/Thighs/Quadriceps/stretch/details.json"),
       media: require("../../assets/exercises/exrx/Thighs/Quadriceps/stretch/Standing.jpg"),

@@ -3,27 +3,27 @@ export const MEDIATYPES = {
   IMAGE: "image",
 };
 
-export const IMAGE_EXTENSIONS = {
+export const IMAGE_EXTENSIONS: { [key: string]: any } = {
   GIF: "gif",
   JPEG: "jpeg",
   JPG: "jpg",
 };
 
-export const VIDEO_EXTENSIONS = {
+export const VIDEO_EXTENSIONS: { [key: string]: any } = {
   MP4: "mp4",
 };
 
-export const DAYS = {
+export const DAYS: { [key: string]: any } = {
+  SUNDAY: "Sunday",
   MONDAY: "Monday",
   TUESDAY: "Tuesday",
   WEDNESDAY: "Wednesday",
   THURSDAY: "Thursday",
   FRIDAY: "Friday",
   SATURDAY: "Saturday",
-  SUNDAY: "Sunday",
 };
 
-export const JSON_DETAILS = {
+export const JSON_DETAILS: { [key: string]: any } = {
   ID: "id",
   EXERCISEID: "exerciseid",
   MUSCLEGROUP: "musclegroup",
@@ -39,7 +39,7 @@ export const JSON_DETAILS = {
   COMMENTS: "comments",
 };
 
-export const MUSCLE_GROUPS = {
+export const MUSCLE_GROUPS: { [key: string]: any } = {
   BACK: "Back",
   CALVES: "Calves",
   CHEST: "Chest",
@@ -52,7 +52,7 @@ export const MUSCLE_GROUPS = {
   WAIST: "Waist",
 };
 
-export const MUSCLE_TYPES = {
+export const MUSCLE_TYPES: { [key: string]: any } = {
   ANTAGONISTSTABILIZERS: "antagonist stabilizers",
   DYNAMICSTABILIZERS: "dynamic stabilizers",
   OTHER: "other",
@@ -61,7 +61,7 @@ export const MUSCLE_TYPES = {
   TARGET: "target",
 };
 
-export const MUSCLES = {
+export const MUSCLES: { [key: string]: any } = {
   ADDUCTORS: "Group of muscles mostly used for bringing the thighs together.",
   BICEPSBRACHII:
     "Two-headed muscle whose function is at the elbow where it flexes the forearm and supinates the forearm.",
@@ -87,8 +87,7 @@ export const MUSCLES = {
     "Adducts, medially rotates (with hip flexion), laterally rotates, and flexes the hip; also aids in flexion of the knee",
   HAMSTRINGS:
     "Flexes the knee joint and extends the thigh to the backside of the body",
-  HIP_ABDUCTION:
-    "Group of muscles mostly used for bringing the thighs apart.",
+  HIP_ABDUCTION: "Group of muscles mostly used for bringing the thighs apart.",
   HIP_FLEXION:
     "Several muscles that bring your legs and trunk together in a flexion movement.",
   HIPEXTERNALROTATORS: "The thigh and knee rotate outward, away from the body.",
@@ -152,14 +151,13 @@ export const MUSCLES = {
   LONGUS_COLLI: "",
   NO_SIGNIFICANT_STABILIZER: "",
   NO_SIGNIFICANT_STABILIZERS: "",
-  NO_SIGNIFICANT_STABILIZERS: "",
   RECTUS_CAPITIS: "",
   SEE_COMMENTS: "",
   BACK: "",
   GENERAL: "",
 };
 
-export const DEFINITIONS = {
+export const DEFINITIONS: { [key: string]: any } = {
   ISOMETRIC:
     '"Equal length," so that your muscles do not get longer or shorter by bending a joint.',
   ISOTONIC:
