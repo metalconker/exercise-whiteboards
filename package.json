@@ -16,12 +16,10 @@
     "@fontsource/roboto": "^5.0.1",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.3",
-    "@tldraw/editor": "^2.0.0-canary.ffda4cfb",
-    "@tldraw/tldraw": "^2.0.0-alpha.12",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.2.5",
-    "@types/react": "^18.2.8",
-    "@types/react-dom": "^18.2.4",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
@@ -42,6 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "description": "This repository contains the code for a React.js project created to demonstrate its capabilities.",
-  "devDependencies": {}
+  "description": "This repository contains the code for a React.js project created to demonstrate its capabilities."
 }

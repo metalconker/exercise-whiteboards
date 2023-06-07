@@ -17,24 +17,20 @@ import * as GeneralHelpers from "./helpers/GeneralHelpers";
 // import AutoNavigationScreen from "./views/screens/navigationscreens/AutoNavigationScreen";
 //import MyStack from "./views/screens/navigationscreens/AutoNavigationScreen";
 
-// import { Tldraw } from "@tldraw/tldraw";
-import "@tldraw/editor/editor.css";
-import "@tldraw/ui/ui.css";
 // import WhiteboardScreen from "./views/screens/whiteboard/WhiteboardScreen";
 // import LoadingScreen from "./LoadingScreen";
-import ExerciseBoardScreen from "./views/screens/whiteboard/WhiteboardScreenExercise";
+import ExerciseBoardScreen from "./views/screens/whiteboard/Exercises";
 
 var test = true;
 
 export default function App() {
   var date = new Date();
-  console.log(date.getDay());
+
   var today = date.getDay() % 7;
   if (test) today = 1;
   let num_weeks = Object.keys(ConstantsSchedule.WEEKS).length;
   var weekNumber = GeneralHelpers.getWeek(date) % num_weeks;
 
-  console.log(Object.keys(Constants.DAYS));
   var day = Object.keys(Constants.DAYS)[today];
   var week = ++weekNumber;
 

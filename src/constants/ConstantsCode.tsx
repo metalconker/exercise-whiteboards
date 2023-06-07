@@ -1,4 +1,4 @@
-export const MEDIATYPES = {
+export const MEDIA_TYPES: { [key: string]: any } = {
   VIDEO: "video",
   IMAGE: "image",
 };
