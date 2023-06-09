@@ -47,10 +47,6 @@ export function GetExerciseID(metaid) {
 }
 
 export function GetMedia(metaid) {
-  console.log("uri hey bitch:" + JSON.stringify(SelectDatabase(metaid)));
-  // console.log("uri hey bitch:" + JSON.stringify(SelectDatabase(metaid).METADATA));
-  console.log("uri hey bitch:" + JSON.stringify(SelectDatabase(metaid).METADATA[metaid]));
-  console.log("uri hey bitch:" + JSON.stringify(SelectDatabase(metaid).METADATA[metaid]["media"]));
   return SelectDatabase(metaid).METADATA[metaid]["media"];
 }
 
