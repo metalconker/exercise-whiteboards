@@ -4,7 +4,6 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Modal } from "@mui/material";
-import { TEXT_STYLES } from "./Styles";
 
 /** 
 The WhiteboardErasableText component is a Button component with a 
@@ -58,7 +57,7 @@ export const WhiteboardClickableText = ({
   return (
     <>
       <Button onClick={handleOpen} key={uri}>
-        <Typography variant="h6">{readableName}</Typography>
+        <Typography variant="h4">{readableName.toLowerCase()}</Typography>
       </Button>
       <Modal
         open={open}
@@ -67,12 +66,34 @@ export const WhiteboardClickableText = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          WebkitAlignItems: "center",
+          // width:"50vh",
+          // // position:"relative",
+          // height:"50%",
+          // marginRight:"50%",
+          // height:"50%",
         }}
       >
         {mediaType == "video" ? (
-          <video autoPlay src={uri} />
+          <video
+            autoPlay
+            src={uri}
+            style={{
+              maxWidth: "50%",
+              // // position:"relative",
+              maxHeight: "50%",
+            }}
+          />
         ) : (
-          <img src={uri} alt="popup" />
+          <img
+            src={uri}
+            alt="popup"
+            style={{
+              maxWidth: "50%",
+              // // position:"relative",
+              maxHeight: "50%",
+            }}
+          />
         )}
       </Modal>
     </>
