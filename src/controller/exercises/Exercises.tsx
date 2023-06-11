@@ -126,6 +126,11 @@ function ParseMuscleString(muscles) {
 // Chooses the correct database to return information from
 function SelectDatabase(metaid) {
   if (metaid.startsWith("Custom")) {
+    console.log(metaid);
     return Custom;
-  } else return Exrx;
+  } else 
+  {
+    console.log(metaid);
+    return Exrx;
+  }
 }

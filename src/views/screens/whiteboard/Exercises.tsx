@@ -9,9 +9,14 @@ import {
 } from "./Typography";
 import { WhiteboardScreenBackground } from "./Template";
 import * as Exercises from "../../../controller/exercises/Exercises";
-import { TEXT_STYLES, EXERCISE_BOARD_STYLES, theme } from "./Styles";
+import { EXERCISE_BOARD_STYLES, theme } from "./Styles";
 
-export default class ExerciseBoardScreen extends React.Component {
+interface ExerciseBoardScreenProps {
+  day: string;
+  week: number;
+}
+
+export class ExerciseBoardScreenTemplate extends React.Component<ExerciseBoardScreenProps> {
   scheduleName: string;
   scheduleData: Schedule.ScheduleData;
   day: string;
@@ -19,18 +24,17 @@ export default class ExerciseBoardScreen extends React.Component {
   maxSets: number;
   metaIDKeys: any[];
 
-  constructor(props: any) {
+  // ExerciseBoardScreen constructor
+  // This constructor sets the initial state of the ExerciseBoardScreen
+  // component by accessing the properties passed from the parent component.
+  // It retrieves the schedule name, sets the maximum no. of sets, and get
+  // the meta ID keys.
+  constructor(props: { day: string; week: number}) {
     super(props);
     this.day = props.day;
     this.week = props.week;
-    this.scheduleName = Schedule.getScheduleNameDWT(
-      this.day,
-      this.week,
-      Object.keys(ConstantsSchedule.EXERCISE_TYPE)[0]
-    );
-    this.scheduleData = new Schedule.ScheduleData(this.scheduleName);
-    this.maxSets = this.scheduleData.getMaxSets();
-    this.metaIDKeys = this.scheduleData.getMetadataKeys();
+    // Get the schedule name using day, week and Object.keys
+    // console.log(Object.keys(ConstantsSchedule.EXERCISE_TYPE)[1]);
   }
 
   render() {
@@ -50,6 +54,7 @@ export default class ExerciseBoardScreen extends React.Component {
                   index={index}
                   data={this.scheduleData}
                   maxSets={this.maxSets}
+                  maxExercises={this.metaIDKeys.length}
                 />
               ))}
             </Box>
@@ -60,29 +65,81 @@ export default class ExerciseBoardScreen extends React.Component {
   }
 }
 
+export default class ExerciseBoardScreen extends ExerciseBoardScreenTemplate {
+  constructor(props: { day: string; week: number}) {
+    super(props);
+    this.scheduleName = Schedule.getScheduleNameDWT(
+      this.day,
+      this.week,
+      Object.keys(ConstantsSchedule.EXERCISE_TYPE)[1]
+    );
+    // Initialize ScheduleData using schedule name
+    this.scheduleData = new Schedule.ScheduleData(this.scheduleName);
+    // Get maximum no. of sets
+    this.maxSets = this.scheduleData.getMaxSets();
+    // Get metadata keys
+    this.metaIDKeys = this.scheduleData.getMetadataKeys();
+  }
+
+}
+
+export class WarmupBoardScreen extends ExerciseBoardScreenTemplate {
+  constructor(props: { day: string; week: number}) {
+    super(props);
+    this.scheduleName = Schedule.getScheduleNameDWT(
+      this.day,
+      this.week,
+      Object.keys(ConstantsSchedule.EXERCISE_TYPE)[0]
+    );
+    // Initialize ScheduleData using schedule name
+    this.scheduleData = new Schedule.ScheduleData(this.scheduleName);
+    // Get maximum no. of sets
+    this.maxSets = this.scheduleData.getMaxSets();
+    // Get metadata keys
+    this.metaIDKeys = this.scheduleData.getMetadataKeys();
+  }
+
+}
+
+
+/** 
+  ExTitle() function takes two arguments 'day' and 'name' and renders a
+  Typography element with the title of the exercise.
+*/
 export const ExTitle = ({ day, name }: { day: string; name: string }) => {
   return (
     <Box sx={EXERCISE_BOARD_STYLES.TOP_COMPONENT.container}>
       {/* <Typography sx={TEXT_STYLES.TITLE}> */}
-      <Typography variant="h3">
+      <Typography variant="h1">
         {day} : {name}
       </Typography>
     </Box>
   );
 };
 
+/** 
+  ExSets() function takes one argument maxSets which is the maximum no.
+  of sets and renders a Grid element that holds the Set numbers.
+*/
 export const ExSets = ({ maxSets }: { maxSets: number }) => {
   return (
-    <Grid container spacing={2} columns={maxSets * 2}>
+    <Grid
+      container
+      spacing={0}
+      columns={maxSets * 2}
+      sx={{
+        height: "10%",
+      }}
+    >
       {[...Array(maxSets)].map((_, index) => {
         if (index == 0) {
           return <Grid key={index} item xs={maxSets}></Grid>;
         } else {
           return (
             <Grid key={index} item xs={1}>
-              <WhiteboardDefaultText key={index}>
-                Set {index}
-              </WhiteboardDefaultText>
+              <Typography variant="h2" key={index}>
+                SET {index}
+              </Typography>
             </Grid>
           );
         }
@@ -91,21 +148,36 @@ export const ExSets = ({ maxSets }: { maxSets: number }) => {
   );
 };
 
+/** 
+  ExExercises function
+  ExExercises() function takes three arguments 'data', 'index' and 'maxSets'
+  and renders a Grid element with exercise name and Rep numbers.
+*/
 export const ExExercises = ({
   data,
   index,
   maxSets,
+  maxExercises,
 }: {
   data: Schedule.ScheduleData;
   index: number;
   maxSets: number;
+  maxExercises: number;
 }) => {
   const exerciseData = data.getExerciseData(data.getMetadataKeys()[index]);
   const media = Exercises.GetMedia(data.getMetadataKeys()[index]);
   const mediaType = Exercises.GetMediaType(data.getMetadataKeys()[index]);
+  let divHeight = 90 / maxExercises; // TODO find a proper place for this calculation
 
   return (
-    <Grid container spacing={2} columns={maxSets * 2}>
+    <Grid
+      container
+      spacing={0}
+      columns={maxSets * 2}
+      sx={{
+        height: divHeight + "%",
+      }}
+    >
       {[...Array(maxSets)].map((_, index) => {
         if (index == 0) {
           return (

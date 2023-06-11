@@ -251,4 +251,10 @@ export const METADATA = {
     details: require("../../assets/exercises/exrx/Neck/Sternocleidomastoid/lever(plateloaded)/details.json"),
     media: require("../../assets/exercises/exrx/Neck/Sternocleidomastoid/lever(plateloaded)/LVNeckFlexionH.mp4"),
   },
+
+  ThighsDBSingleLegStiffLegDeadlift: {
+    id: "DBSingleLegStiffLegDeadlift",
+    details: require("../../assets/exercises/exrx/Hips/GluteusMaximus/dumbbell/details.json"),
+    media: require("../../assets/exercises/exrx/Hips/GluteusMaximus/dumbbell/DBSingleLegStiffLegDeadlift.mp4"),
+  },
 };
