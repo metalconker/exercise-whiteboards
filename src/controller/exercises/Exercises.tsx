@@ -130,7 +130,7 @@ function SelectDatabase(metaid) {
     return Custom;
   } else 
   {
-    console.log(metaid);
+    // console.log(metaid);
     return Exrx;
   }
 }
