@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, Modal, Paper } from "@mui/material";
 import * as Exercises from "../../../controller/exercises/Exercises";
-import { styles } from "./Styles";
+import { styles, MUSCLES_CONSTANTS } from "./Styles";
 import {
   MaleBodyImage,
   MuscleImages,
@@ -60,16 +60,7 @@ export const WhiteboardClickableText = ({
       <Button onClick={handleOpen} key={uri}>
         <Typography variant="h3">{readableName.toLowerCase()}</Typography>
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          WebkitAlignItems: "center",
-        }}
-      >
+      <Modal open={open} onClose={handleClose} style={clickableStyles}>
         {mediaType == "video" ? (
           <video autoPlay src={uri} style={{ maxWidth: "50%" }} />
         ) : (
@@ -100,13 +91,6 @@ export const WhiteboardClickableTextModalMuscles = ({
   const renderMedia = (metaID) => {
     const mediaType = Exercises.GetMediaType(metaID);
     const media = Exercises.GetMedia(metaID);
-
-    const mediaProps = {
-      width: "100%",
-      // maxWidth: "50%"
-      // maxHeight:"25%"
-    };
-
     return mediaType === "video" ? (
       <video autoPlay src={uri} style={mediaProps} />
     ) : (
@@ -146,18 +130,7 @@ export const WhiteboardClickableTextModalMuscles = ({
       <Button onClick={handleOpen} key={uri}>
         <Typography variant="h3">{readableName.toLowerCase()}</Typography>
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          WebkitAlignItems: "center",
-          width: "75%",
-          left: "12.5%",
-        }}
-      >
+      <Modal open={open} onClose={handleClose} style={musclesStyles}>
         <Box sx={styles.modalcontents}>
           <WhiteboardDefaultText key="ExerciseName">
             {Exercises.GetName(metaID)}
@@ -190,7 +163,7 @@ export class MuscleView extends React.Component<any> {
 
       mappedColors[color] = new Set();
       unmappedColors.forEach((unmapped) => {
-        const muscleMap = mapkeys[unmapped];
+        const muscleMap = MUSCLES_CONSTANTS[unmapped.toUpperCase()];
         if (muscleMap) {
           muscleMap.forEach((currentKey) => {
             mappedColors[color].add(currentKey);
@@ -208,14 +181,6 @@ export class MuscleView extends React.Component<any> {
       if (muscleContainer) {
         const current = MuscleImages[muscleContainer];
         const uniqueKey = `${color}-${muscleContainer}`;
-        const imgStyles = {
-          backgroundSize: "50vw 50vh",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          position: "fixed",
-          width: "50%",
-          height: "50%",
-        };
 
         temp.push(
           <Box key={uniqueKey}>
@@ -230,21 +195,12 @@ export class MuscleView extends React.Component<any> {
   render() {
     const separateMuscles = SeparateMuscles(this.props.metaid);
     const muscles = this.mapColors(separateMuscles);
+    console.log(muscles);
     const drawable: any[] = [];
     Object.keys(Colors).forEach((colorkey) => {
       const color = Colors[colorkey];
       drawable.push(this.loopColor(color, muscles[color]));
     });
-
-    const paperStyles = {
-      backgroundImage: `url(${MaleBodyImage})`,
-      backgroundSize: "50vw 50vh",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      position: "fixed",
-      width: "50%",
-      height: "50%",
-    };
 
     return (
       <Paper elevation={0} square sx={paperStyles}>
@@ -255,115 +211,53 @@ export class MuscleView extends React.Component<any> {
 }
 
 interface WhiteboardClickableTextProps {
-  // children: any;
   uri: string;
   readableName: string;
   mediaType: string;
 }
+
 interface WhiteboardClickableTextModalMuscles {
-  // children: any;
   uri: string;
   readableName: string;
   mediaType: string;
   metaID: string;
 }
 
-const muscleStyles = {
-  background: {
-    position: "relative",
-    width: "100%",
-    height: "100%",
-    aspectRatio: 1.3333333333333333333,
-    flex: 1,
-  },
-  muscle: {
-    width: "100%",
-    aspectRatio: 1,
-    height: undefined,
-  },
+const imgStyles = {
+  backgroundSize: "50vw 50vh",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  position: "fixed",
+  width: "50%",
+  height: "50%",
 };
 
-var mapkeys = {
-  Back: [],
-  General: [],
-  "Hip Abductors (listed below)": [
-    "AnteriorHipAbductors",
-    "PosteriorHipAbductors",
-  ],
-  "Hip Abductors (opposite)": ["AnteriorHipAbductors", "PosteriorHipAbductors"],
-  "Hip External Rotators (listed below)": [],
-  "Hip Internal Rotators (listed below)": [],
-  "Longus capitis": ["AnteriorSternocleidomastoid"],
-  "Longus colli": ["AnteriorSternocleidomastoid"],
-  "No significant stabilizer": [],
-  "No significant stabilizers": [],
-  "No significant stabilizers.": [],
-  None: [],
-  "Rectus capitus": [],
-  "See comments": [],
-  Supinator: ["AnteriorForearms", "PosteriorForearms"],
-  adductors: ["AnteriorHipAdductors", "PosteriorHipAdductors"],
-  bicepsbrachii: ["AnteriorBiceps"],
-  brachialis: ["AnteriorBiceps"],
-  brachioradialis: ["AnteriorForearms", "PosteriorForearms"],
-  deltoidanterior: ["AnteriorDeltoids"],
-  deltoidlateral: ["AnteriorDeltoids", "PosteriorDeltoids", ,],
-  deltoidposterior: ["PosteriorDeltoids"],
-  erectorspinae: ["PosteriorErectorSpinae"],
-  "forearm#pronation": ["AnteriorForearms", "PosteriorForearms"],
-  gastrocnemius: [
-    "AnteriorInnerGastrocnemius",
-    "AnteriorOuterGastrocnemius",
-    "PosteriorOuterGastrocnemius",
-    "PosteriorInnerGastrocnemius",
-  ],
-  gluteusmaximus: ["PosteriorGluteusMaximus"],
-  gluteusmedius: ["PosteriorHipAbductors"],
-  gluteusminimus: ["PosteriorHipAbductors"],
-  gracilis: ["AnteriorHipAdductors"],
-  hamstrings: ["PosteriorHamstrings"],
-  "hip#abduction": ["AnteriorHipAbductors", "PosteriorHipAbductors"],
-  "hip#flexion": ["AnteriorOuterQuadriceps", "AnteriorMidQuadriceps"],
-  hipexernalrotators: ["PosteriorHipAdductors"],
-  iliopsoas: ["AnteriorHipAdductors"],
-  infraspinatus: ["PosteriorRhomboids"],
-  latissimusdorsi: ["PosteriorLatissimus"],
-  levatorscapulae: ["PosteriorUpperTrapezius"],
-  obliques: ["AnteriorObliques"],
-  pectineus: ["AnteriorHipAdductors"],
-  pectoralisclavicular: ["AnteriorPectoralis"],
-  pectoralisminor: ["AnteriorPectoralis"],
-  pectoralissternal: ["AnteriorPectoralis"],
-  popliteus: ["PosteriorOuterGastrocnemius", "PosteriorInnerGastrocnemius"],
-  quadratuslumborum: ["AnteriorObliques"],
-  quadriceps: ["AnteriorOuterQuadriceps", "AnteriorMidQuadriceps"],
-  rectusabdominis: [
-    "AnteriorUpperRectusAbdominis",
-    "AnteriorUpperMidRectusAbdominis",
-    "AnteriorLowerMiddleRectusAbdominis",
-    "AnteriorLowerRectusAbdominis",
-  ],
-  rhomboids: ["PosteriorRhomboids"],
-  sartorius: ["AnteriorHipAdductors"],
-  serratusanterior: [],
-  soleus: ["PosteriorSoleus"],
-  splenius: ["PosteriorUpperTrapezius"],
-  sternocleidomastoid: ["AnteriorSternocleidomastoid"],
-  subscapularis: ["PosteriorRhomboids"],
-  supraspinatus: ["PosteriorRhomboids"],
-  tensorfasciaelatae: ["AnteriorHipAdductors"],
-  teresmajor: ["PosteriorRhomboids"],
-  teresminor: ["PosteriorRhomboids"],
-  tibialisanterior: ["AnteriorTibialis"],
-  trapeziuslower: ["PosteriorLowerTrapezius"],
-  trapeziusmiddle: [
-    "PosteriorLowerTrapezius",
-    "PosteriorUpperTrapezius",
-    "AnteriorTrapezius",
-    ,
-  ],
-  trapeziusupper: ["PosteriorUpperTrapezius", "AnteriorTrapezius", ,],
-  tricepsbrachii: ["PosteriorTriceps"],
-  wristextensors: ["AnteriorForearms", "PosteriorForearms"],
-  wristflexors: ["AnteriorForearms", "PosteriorForearms"],
+const paperStyles = {
+  backgroundImage: `url(${MaleBodyImage})`,
+  backgroundSize: "50vw 50vh",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  position: "fixed",
+  width: "50%",
+  height: "50%",
+};
+
+const musclesStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  WebkitAlignItems: "center",
+  width: "75%",
+  left: "12.5%",
+};
+
+const clickableStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  WebkitAlignItems: "center",
+};
+
+const mediaProps = {
+  width: "100%",
 };

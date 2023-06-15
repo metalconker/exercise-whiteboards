@@ -1,13 +1,12 @@
-// Cleaned up code
+
 import React from "react";
-import { DAYS } from "./constants/ConstantsCode";
+import { DAYS } from "./GlobalConstants";
 import { WEEKS } from "./controller/schedule/ConstantsSchedule";
-import { getWeek } from "./helpers/GeneralHelpers";
 import {
   ExerciseBoardScreen,
   WarmupBoardScreen,
-} from "./views/screens/whiteboard/Exercises";
-var test = true;
+} from "./view/screens/whiteboard/Exercises";
+var test = false;
 export default function App() {
   const date = new Date();
   var today = date.getDay() % 7;
@@ -17,4 +16,24 @@ export default function App() {
 
   return <ExerciseBoardScreen day={day} week={weekNumber} />;
   return <WarmupBoardScreen day={day} week={weekNumber} />;
+}
+
+// Returns the ISO week of the date.
+function getWeek(date_input: any) {
+  var date = new Date(date_input);
+  date.setHours(0, 0, 0, 0);
+  // Thursday in current week decides the year.
+  date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
+  // January 4 is always in week 1.
+  var week1 = new Date(date.getFullYear(), 0, 4);
+  // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+  return (
+    1 +
+    Math.round(
+      ((date.getTime() - week1.getTime()) / 86400000 -
+        3 +
+        ((week1.getDay() + 6) % 7)) /
+        7
+    )
+  );
 }

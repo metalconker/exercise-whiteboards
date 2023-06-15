@@ -2,7 +2,7 @@ import React from "react";
 import * as Custom from "./ConstantsCustom"
 import * as Exrx from "./ConstantsExrx";
 // import * as Custom from "./ConstantsCustom";
-import * as Constants from "../../constants/ConstantsCode";
+import * as Constants from "../../GlobalConstants";
 
 
 // var Custom = METADATA;

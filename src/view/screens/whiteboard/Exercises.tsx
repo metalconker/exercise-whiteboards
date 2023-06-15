@@ -2,23 +2,35 @@ import * as React from "react";
 import * as Schedule from "../../../controller/schedule/Schedule";
 import * as ConstantsSchedule from "../../../controller/schedule/ConstantsSchedule";
 import { Typography, Box, Grid, ThemeProvider } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import {
   WhiteboardClickableTextModalMuscles,
   WhiteboardErasableText,
 } from "./Typography";
-import { WhiteboardScreenBackground } from "./Template";
+import { WHITEBOARD_BACKGROUND } from "./Styles";
 import * as Exercises from "../../../controller/exercises/Exercises";
 import { COLORS, EXERCISE_BOARD_STYLES, theme } from "./Styles";
-import SeparateMuscles from "../../../controller/muscles/Muscles";
-import {
-  Colors,
-  MuscleImages,
-} from "../../../controller/muscles/ConstantsMuscles";
 
 interface ExerciseBoardScreenProps {
   day: string;
   week: number;
 }
+
+export class WhiteboardScreenBackground extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
+  }
+
+  render() {
+    // Renders the board to the screen
+    return (
+      <Paper elevation={0} square sx={WHITEBOARD_BACKGROUND}>
+        {this.props.children}
+      </Paper>
+    );
+  }
+}
+
 
 export class ExerciseBoardScreenTemplate extends React.Component<ExerciseBoardScreenProps> {
   scheduleName: string;
@@ -84,79 +96,7 @@ export class ExerciseBoardScreen extends ExerciseBoardScreenTemplate {
     this.maxSets = this.scheduleData.getMaxSets();
     // Get metadata keys
     this.metaIDKeys = this.scheduleData.getMetadataKeys();
-    // this.preloadImages();
-    // this.preloadMedia();
   }
-
-  // mapColors(muscles): any {
-  //   console.log(muscles);
-  //   const mappedColors = {};
-  //   Object.keys(Colors).forEach((colorKey) => {
-  //     const color = Colors[colorKey];
-  //     const unmappedColors = muscles[color];
-  //     mappedColors[color] = new Set();
-  //     unmappedColors.forEach((unmapped) => {
-  //       const muscleMap = mapkeys[unmapped];
-  //       if (muscleMap) {
-  //         muscleMap.forEach((currentKey) => {
-  //           mappedColors[color].add(currentKey);
-  //         });
-  //       }
-  //     });
-  //   });
-
-  //   return mappedColors;
-  // }
-
-  // loopColor(color, colorArray) {
-  //   const temp: any[] = [];
-  //   colorArray.forEach((muscleContainer) => {
-  //     if (muscleContainer) {
-  //       const current = MuscleImages[muscleContainer];
-  //       const uniqueKey = `${color}-${muscleContainer}`;
-
-  //       temp.push(
-  //         <Box key={uniqueKey}>
-  //           <img src={current[color]} />
-  //         </Box>
-  //       );
-  //     }
-  //   });
-  //   return temp;
-  // }
-
-  // preloadImages() {
-  //   this.metaIDKeys.forEach((metaid) => {
-  //     if (!metaid) return;
-  //     console.log(metaid);
-  //     const separateMuscles = SeparateMuscles(metaid);
-  //     console.log(separateMuscles);
-  //     const muscles = this.mapColors(separateMuscles);
-  //     console.log(muscles);
-  //     const drawable: any[] = [];
-  //     Object.keys(Colors).forEach((colorkey) => {
-  //       const color = Colors[colorkey];
-  //       drawable.push(this.loopColor(color, muscles[color]));
-  //     });
-  //   });
-  // }
-
-  // preloadMedia() {
-  //   this.metaIDKeys.forEach((metaID) => {
-  //     const mediaType = Exercises.GetMediaType(metaID);
-  //     const uri = Exercises.GetMedia(metaID);
-
-  //     const mediaProps = {
-  //       maxWidth: "50%",
-  //     };
-
-  //     return mediaType === "video" ? (
-  //       <video autoPlay src={uri} style={mediaProps} />
-  //     ) : (
-  //       <img src={uri} alt="popup" style={mediaProps} />
-  //     );
-  //   });
-  // }
 }
 
 export class WarmupBoardScreen extends ExerciseBoardScreen {
@@ -320,88 +260,3 @@ export class ExExercises extends React.Component<any> {
     );
   }
 }
-
-var mapkeys = {
-  Back: [],
-  General: [],
-  "Hip Abductors (listed below)": [
-    "AnteriorHipAbductors",
-    "PosteriorHipAbductors",
-  ],
-  "Hip Abductors (opposite)": ["AnteriorHipAbductors", "PosteriorHipAbductors"],
-  "Hip External Rotators (listed below)": [],
-  "Hip Internal Rotators (listed below)": [],
-  "Longus capitis": ["AnteriorSternocleidomastoid"],
-  "Longus colli": ["AnteriorSternocleidomastoid"],
-  "No significant stabilizer": [],
-  "No significant stabilizers": [],
-  "No significant stabilizers.": [],
-  None: [],
-  "Rectus capitus": [],
-  "See comments": [],
-  Supinator: ["AnteriorForearms", "PosteriorForearms"],
-  adductors: ["AnteriorHipAdductors", "PosteriorHipAdductors"],
-  bicepsbrachii: ["AnteriorBiceps"],
-  brachialis: ["AnteriorBiceps"],
-  brachioradialis: ["AnteriorForearms", "PosteriorForearms"],
-  deltoidanterior: ["AnteriorDeltoids"],
-  deltoidlateral: ["AnteriorDeltoids", "PosteriorDeltoids", ,],
-  deltoidposterior: ["PosteriorDeltoids"],
-  erectorspinae: ["PosteriorErectorSpinae"],
-  "forearm#pronation": ["AnteriorForearms", "PosteriorForearms"],
-  gastrocnemius: [
-    "AnteriorInnerGastrocnemius",
-    "AnteriorOuterGastrocnemius",
-    "PosteriorOuterGastrocnemius",
-    "PosteriorInnerGastrocnemius",
-  ],
-  gluteusmaximus: ["PosteriorGluteusMaximus"],
-  gluteusmedius: ["PosteriorHipAbductors"],
-  gluteusminimus: ["PosteriorHipAbductors"],
-  gracilis: ["AnteriorHipAdductors"],
-  hamstrings: ["PosteriorHamstrings"],
-  "hip#abduction": ["AnteriorHipAbductors", "PosteriorHipAbductors"],
-  "hip#flexion": ["AnteriorOuterQuadriceps", "AnteriorMidQuadriceps"],
-  hipexernalrotators: ["PosteriorHipAdductors"],
-  iliopsoas: ["AnteriorHipAdductors"],
-  infraspinatus: ["PosteriorRhomboids"],
-  latissimusdorsi: ["PosteriorLatissimus"],
-  levatorscapulae: ["PosteriorUpperTrapezius"],
-  obliques: ["AnteriorObliques"],
-  pectineus: ["AnteriorHipAdductors"],
-  pectoralisclavicular: ["AnteriorPectoralis"],
-  pectoralisminor: ["AnteriorPectoralis"],
-  pectoralissternal: ["AnteriorPectoralis"],
-  popliteus: ["PosteriorOuterGastrocnemius", "PosteriorInnerGastrocnemius"],
-  quadratuslumborum: ["AnteriorObliques"],
-  quadriceps: ["AnteriorOuterQuadriceps", "AnteriorMidQuadriceps"],
-  rectusabdominis: [
-    "AnteriorUpperRectusAbdominis",
-    "AnteriorUpperMidRectusAbdominis",
-    "AnteriorLowerMiddleRectusAbdominis",
-    "AnteriorLowerRectusAbdominis",
-  ],
-  rhomboids: ["PosteriorRhomboids"],
-  sartorius: ["AnteriorHipAdductors"],
-  serratusanterior: [],
-  soleus: ["PosteriorSoleus"],
-  splenius: ["PosteriorUpperTrapezius"],
-  sternocleidomastoid: ["AnteriorSternocleidomastoid"],
-  subscapularis: ["PosteriorRhomboids"],
-  supraspinatus: ["PosteriorRhomboids"],
-  tensorfasciaelatae: ["AnteriorHipAdductors"],
-  teresmajor: ["PosteriorRhomboids"],
-  teresminor: ["PosteriorRhomboids"],
-  tibialisanterior: ["AnteriorTibialis"],
-  trapeziuslower: ["PosteriorLowerTrapezius"],
-  trapeziusmiddle: [
-    "PosteriorLowerTrapezius",
-    "PosteriorUpperTrapezius",
-    "AnteriorTrapezius",
-    ,
-  ],
-  trapeziusupper: ["PosteriorUpperTrapezius", "AnteriorTrapezius", ,],
-  tricepsbrachii: ["PosteriorTriceps"],
-  wristextensors: ["AnteriorForearms", "PosteriorForearms"],
-  wristflexors: ["AnteriorForearms", "PosteriorForearms"],
-};

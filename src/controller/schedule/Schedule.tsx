@@ -1,8 +1,8 @@
-import * as Constants from "../../constants/ConstantsCode";
+import * as Constants from "../../GlobalConstants";
 import * as ConstantsSchedule from "./ConstantsSchedule";
 
-var ExerciseScheduleJSON: any = require("../../data/exercises/schedules/ExerciseSchedule.json");
-var ScheduleDataJSON: any = require("../../data/exercises/schedules/ScheduleData.json");
+var ExerciseScheduleJSON: any = require("../../_database/schedules/ExerciseSchedule.json");
+var ScheduleDataJSON: any = require("../../_database/schedules/ScheduleData.json");
 
 export class ExerciseData {
   private data: any;

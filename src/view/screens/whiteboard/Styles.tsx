@@ -1,18 +1,17 @@
 import { createTheme } from "@mui/material";
-import BackgroundImage from "../../../assets/images/whiteboard/Whiteboard.png";
-// import MusclesImage from "../../../assets/images/whiteboard/Whiteboard.png";
-
-export const theme = createTheme({
-  typography: {
-    fontFamily: "DryWhiteboardMarker-Regular",
-    allVariants: {
-      color: "black",
-    },
-  },
-});
+import BackgroundImage from "../../../_database/application/images/whiteboard/Whiteboard.png";
 
 const fontFamily = "DryWhiteboardMarker-Regular";
 const color = "black";
+
+export const theme = createTheme({
+  typography: {
+    fontFamily,
+    allVariants: {
+      color,
+    },
+  },
+});
 
 theme.typography.h1 = {
   fontFamily,
@@ -245,3 +244,102 @@ export const styles = {
     },
   },
 };
+
+export const MUSCLES_CONSTANTS = {
+  BACK: [],
+  GENERAL: [],
+  "HIP ABDUCTORS (LISTED BELOW)": [
+    "AnteriorHipAbductors",
+    "PosteriorHipAbductors",
+  ],
+  "HIP ABDUCTORS (OPPOSITE)": ["AnteriorHipAbductors", "PosteriorHipAbductors"],
+  "HIP EXTERNAL ROTATORS (LISTED BELOW)": [],
+  "HIP INTERNAL ROTATORS (LISTED BELOW)": [],
+  "LONGUS CAPITIS": ["AnteriorSternocleidomastoid"],
+  "LONGUS COLLI": ["AnteriorSternocleidomastoid"],
+  "NO SIGNIFICANT STABILIZER": [],
+  "NO SIGNIFICANT STABILIZERS": [],
+  "NO SIGNIFICANT STABILIZERS.": [],
+  NONE: [],
+  "RECTUS CAPITUS": [],
+  "SEE COMMENTS": [],
+  SUPINATOR: ["AnteriorForearms", "PosteriorForearms"],
+  ADDUCTORS: ["AnteriorHipAdductors", "PosteriorHipAdductors"],
+  BICEPSBRACHII: ["AnteriorBiceps"],
+  BRACHIALIS: ["AnteriorBiceps"],
+  BRACHIORADIALIS: ["AnteriorForearms", "PosteriorForearms"],
+  DELTOIDANTERIOR: ["AnteriorDeltoids"],
+  DELTOIDLATERAL: ["AnteriorDeltoids", "PosteriorDeltoids", ,],
+  DELTOIDPOSTERIOR: ["PosteriorDeltoids"],
+  ERECTORSPINAE: ["PosteriorErectorSpinae"],
+  "FOREARM#PRONATION": ["AnteriorForearms", "PosteriorForearms"],
+  GASTROCNEMIUS: [
+    "AnteriorGastrocnemius",
+    "PosteriorOuterGastrocnemius",
+    "PosteriorInnerGastrocnemius",
+  ],
+  GLUTEUSMAXIMUS: ["PosteriorGluteusMaximus"],
+  GLUTEUSMEDIUS: ["PosteriorHipAbductors"],
+  GLUTEUSMINIMUS: ["PosteriorHipAbductors"],
+  GRACILIS: ["AnteriorHipAdductors"],
+  HAMSTRINGS: ["PosteriorHamstrings"],
+  "HIP#ABDUCTION": ["AnteriorHipAbductors", "PosteriorHipAbductors"],
+  "HIP#FLEXION": ["AnteriorOuterQuadriceps", "AnteriorMidQuadriceps"],
+  HIPEXERNALROTATORS: ["PosteriorHipAdductors"],
+  ILIOPSOAS: ["AnteriorHipAdductors"],
+  INFRASPINATUS: ["PosteriorRhomboids"],
+  LATISSIMUSDORSI: ["PosteriorLatissimus"],
+  LEVATORSCAPULAE: ["PosteriorUpperTrapezius"],
+  OBLIQUES: ["AnteriorObliques"],
+  PECTINEUS: ["AnteriorHipAdductors"],
+  PECTORALISCLAVICULAR: ["AnteriorPectoralis"],
+  PECTORALISMINOR: ["AnteriorPectoralis"],
+  PECTORALISSTERNAL: ["AnteriorPectoralis"],
+  POPLITEUS: ["PosteriorOuterGastrocnemius", "PosteriorInnerGastrocnemius"],
+  QUADRATUSLUMBORUM: ["AnteriorObliques"],
+  QUADRICEPS: ["AnteriorOuterQuadriceps", "AnteriorMidQuadriceps"],
+  RECTUSABDOMINIS: [
+    "AnteriorUpperRectusAbdominis",
+    "AnteriorUpperMidRectusAbdominis",
+    "AnteriorLowerMiddleRectusAbdominis",
+    "AnteriorLowerRectusAbdominis",
+  ],
+  RHOMBOIDS: ["PosteriorRhomboids"],
+  SARTORIUS: ["AnteriorHipAdductors"],
+  SERRATUSANTERIOR: [],
+  SOLEUS: ["PosteriorSoleus"],
+  SPLENIUS: ["PosteriorUpperTrapezius"],
+  STERNOCLEIDOMASTOID: ["AnteriorSternocleidomastoid"],
+  SUBSCAPULARIS: ["PosteriorRhomboids"],
+  SUPRASPINATUS: ["PosteriorRhomboids"],
+  TENSORFASCIAELATAE: ["AnteriorHipAdductors"],
+  TERESMAJOR: ["PosteriorRhomboids"],
+  TERESMINOR: ["PosteriorRhomboids"],
+  TIBIALISANTERIOR: ["AnteriorTibialis"],
+  TRAPEZIUSLOWER: ["PosteriorLowerTrapezius"],
+  TRAPEZIUSMIDDLE: [
+    "PosteriorLowerTrapezius",
+    "PosteriorUpperTrapezius",
+    "AnteriorTrapezius",
+    ,
+  ],
+  TRAPEZIUSUPPER: ["PosteriorUpperTrapezius", "AnteriorTrapezius", ,],
+  TRICEPSBRACHII: ["PosteriorTriceps"],
+  WRISTEXTENSORS: ["AnteriorForearms", "PosteriorForearms"],
+  WRISTFLEXORS: ["AnteriorForearms", "PosteriorForearms"],
+};
+
+// export const muscleStyles = {
+//   background: {
+//     position: "relative",
+//     width: "100%",
+//     height: "100%",
+//     aspectRatio: 1.3333333333333333333,
+//     flex: 1,
+//   },
+//   muscle: {
+//     width: "100%",
+//     aspectRatio: 1,
+//     height: undefined,
+//   },
+// };
