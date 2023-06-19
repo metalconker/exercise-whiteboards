@@ -13,6 +13,9 @@
         "src/react-app-env.d.ts": true,
         "src/index.d.ts": true,
         "src/index.css": false,
-        "src/App.css": true
+        "src/App.css": true,
+        "src/controller/exercises/extractor.py": true,
+        "src/controller/exercises/converter.py": true,
+        "src/controller/exercises/Exercises.txt": true
     }
 }

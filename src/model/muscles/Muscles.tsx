@@ -1,4 +1,4 @@
-import * as Exercises from "../exercises/Exercises";
+import * as Exercises from "../../controller/exercises/Exercises";
 
 const { MuscleImages, MaleBodyImage, Colors } = require("./ConstantsMuscles");
 

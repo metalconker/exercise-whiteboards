@@ -328,18 +328,3 @@ export const MUSCLES_CONSTANTS = {
   WRISTEXTENSORS: ["AnteriorForearms", "PosteriorForearms"],
   WRISTFLEXORS: ["AnteriorForearms", "PosteriorForearms"],
 };
-
-// export const muscleStyles = {
-//   background: {
-//     position: "relative",
-//     width: "100%",
-//     height: "100%",
-//     aspectRatio: 1.3333333333333333333,
-//     flex: 1,
-//   },
-//   muscle: {
-//     width: "100%",
-//     aspectRatio: 1,
-//     height: undefined,
-//   },
-// };

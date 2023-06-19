@@ -9,67 +9,105 @@ import {
   MaleBodyImage,
   MuscleImages,
   Colors,
-} from "../../../controller/muscles/ConstantsMuscles";
-import SeparateMuscles from "../../../controller/muscles/Muscles";
+} from "../../../model/muscles/ConstantsMuscles";
+import SeparateMuscles from "../../../model/muscles/Muscles";
+import { MuscleViewController } from "../../../controller/ExerciseController";
 
 /**
 WhiteboardErasableText - Button component with a Typography as children. 
 When clicked, textValue set to an empty string.
 */
-export const WhiteboardErasableText = ({
-  children,
-  imageValue,
-  color,
-}: any) => {
-  const [textValue, setTextValue] = useState(children);
-  const onPress = () => setTextValue("");
+export class WhiteboardErasableText extends React.Component<
+  ErasableTextProps,
+  ErasableTextState
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      textValue: props.children || "",
+    };
+  }
 
-  return (
-    <Button onClick={onPress} key={textValue}>
-      <Typography variant="h4" style={{ color: color }}>
-        {textValue}
-      </Typography>
-      {imageValue}
-    </Button>
-  );
-};
+  onPress = () => {
+    this.setState({ textValue: "" });
+  };
+  render() {
+    return (
+      <Button onClick={this.onPress} key={this.state.textValue}>
+        <Typography variant="h4" style={{ color: this.props.color }}>
+          {this.state.textValue}
+        </Typography>
+      </Button>
+    );
+  }
+}
+
 /** 
 WhiteboardDefaultText - Button component with a Typography as its children. 
 When clicked, textValue remains as it was.
 */
-export const WhiteboardDefaultText = (props: any) => {
-  const [textValue] = useState(props.children);
-  return <Typography variant="h5">{textValue}</Typography>;
-};
+export class WhiteboardDefaultText extends React.Component<
+  DefaultTextProps,
+  DefaultTextState,
+  any
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      textValue: props.children,
+    };
+  }
+
+  render() {
+    return <Typography variant="h5">{this.state.textValue}</Typography>;
+  }
+}
 
 /**
 WhiteboardClickableText - Button component with a Typography as its children. 
 When clicked, Modal pop-up will open with a video or image depending on the mediaType prop.
 */
-export const WhiteboardClickableText = ({
-  uri,
-  readableName,
-  mediaType,
-}: WhiteboardClickableTextProps) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export class WhiteboardClickableText extends React.Component<
+  ClickableTextProps,
+  ClickableTextState
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+  }
 
-  return (
-    <>
-      <Button onClick={handleOpen} key={uri}>
-        <Typography variant="h3">{readableName.toLowerCase()}</Typography>
-      </Button>
-      <Modal open={open} onClose={handleClose} style={clickableStyles}>
-        {mediaType == "video" ? (
-          <video autoPlay src={uri} style={{ maxWidth: "50%" }} />
-        ) : (
-          <img src={uri} alt="popup" style={{ maxWidth: "50%" }} />
-        )}
-      </Modal>
-    </>
-  );
-};
+  handleOpen() {
+    this.setState({ open: true });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
+  }
+  render() {
+    return (
+      <>
+        <Button onClick={this.handleOpen} key={this.props.uri}>
+          <Typography variant="h3">
+            {this.props.readableName.toLowerCase()}
+          </Typography>
+        </Button>
+        <Modal
+          open={this.state.open}
+          onClose={this.handleClose}
+          style={clickableStyles}
+        >
+          {this.props.mediaType == "video" ? (
+            <video autoPlay src={this.props.uri} style={{ maxWidth: "50%" }} />
+          ) : (
+            <img src={this.props.uri} alt="popup" style={{ maxWidth: "50%" }} />
+          )}
+        </Modal>
+      </>
+    );
+  }
+}
 
 /** 
 The WhiteboardClickableText component is a Button component with a 
@@ -78,27 +116,46 @@ When the Button is clicked, the Modal pop-up is set to "open,"
 and either a video or image is rendered depending on the mediaType
 prop that is passed in.
 */
-export const WhiteboardClickableTextModalMuscles = ({
-  metaID,
-  readableName,
-}: WhiteboardClickableTextModalMuscles) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const mediaType = Exercises.GetMediaType(metaID);
-  const uri = Exercises.GetMedia(metaID);
+export class WhiteboardClickableTextModalMuscles extends React.Component<
+  WhiteboardClickableTextModalMusclesProps,
+  WhiteboardClickableTextModalMusclesState
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
 
-  const renderMedia = (metaID) => {
+  handleOpen() {
+    this.setState({ open: true });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
+  }
+
+  renderMedia(metaID) {
+    const uri = Exercises.GetMedia(metaID);
     const mediaType = Exercises.GetMediaType(metaID);
-    const media = Exercises.GetMedia(metaID);
     return mediaType === "video" ? (
       <video autoPlay src={uri} style={mediaProps} />
     ) : (
       <img src={uri} alt="popup" style={mediaProps} />
     );
-  };
+  }
 
-  const renderInformation = (metaID) => {
+  renderInformation = (metaID) => {
+    try {
+      Exercises.GetPreparation(metaID)
+    }
+    catch
+    {
+      return;
+    }
+    console.log(metaID);
     const preparation = Exercises.GetPreparation(metaID);
     const execution = Exercises.GetExecution(metaID);
     const comments = Exercises.GetComments(metaID);
@@ -115,9 +172,7 @@ export const WhiteboardClickableTextModalMuscles = ({
                 <WhiteboardDefaultText key={`TitleText${index}`}>
                   {titles[index]}
                 </WhiteboardDefaultText>
-                <WhiteboardDefaultText sx={styles.modaldefaultText}>
-                  {item}
-                </WhiteboardDefaultText>
+                <WhiteboardDefaultText>{item}</WhiteboardDefaultText>
               </Box>
             )
         )}
@@ -125,81 +180,64 @@ export const WhiteboardClickableTextModalMuscles = ({
     );
   };
 
-  return (
-    <>
-      <Button onClick={handleOpen} key={uri}>
-        <Typography variant="h3">{readableName.toLowerCase()}</Typography>
-      </Button>
-      <Modal open={open} onClose={handleClose} style={musclesStyles}>
-        <Box sx={styles.modalcontents}>
-          <WhiteboardDefaultText key="ExerciseName">
-            {Exercises.GetName(metaID)}
-          </WhiteboardDefaultText>
-          <Box key="MediaAndMusclesRow" sx={styles.mediaandmusclesrow}>
-            <Box key="Media" sx={styles.mediacontainer}>
-              {renderMedia(metaID)}
-              <Box key="Muscles" sx={styles.muscles}>
-                <MuscleView key="Muscles" sx={styles.muscles} metaid={metaID} />
+  render() {
+
+    this.renderMedia(this.props.metaID);
+    this.renderInformation(this.props.metaID);
+    return (
+      <>
+        <Button onClick={this.handleOpen} key={this.props.metaID}>
+          <Typography variant="h3">
+            {this.props.readableName.toLowerCase()}
+          </Typography>
+        </Button>
+        <Modal
+          open={this.state.open}
+          onClose={this.handleClose}
+          style={musclesStyles}
+        >
+          <Box sx={styles.modalcontents}>
+            <WhiteboardDefaultText key="ExerciseName">
+              {/* {Exercises.GetName(this.props.metaID)} */}
+
+            </WhiteboardDefaultText>
+            <Box key="MediaAndMusclesRow" sx={styles.mediaandmusclesrow}>
+              <Box key="Media" sx={styles.mediacontainer}>
+                {this.renderMedia(this.props.metaID)}
+                <Box key="Muscles" sx={styles.muscles}>
+                  <MuscleView
+                    key="Muscles"
+                    sx={styles.muscles}
+                    metaid={this.props.metaID}
+                  />
+                </Box>
               </Box>
             </Box>
+            {/* {renderInformation(this.props.metaID)} */}
           </Box>
-          {renderInformation(metaID)}
-        </Box>
-      </Modal>
-    </>
-  );
-};
+        </Modal>
+      </>
+    );
+  }
+}
 
 export class MuscleView extends React.Component<any> {
+
+  controller: MuscleViewController;
+  
   constructor(props) {
     super(props);
   }
 
-  mapColors(muscles) {
-    const mappedColors = {};
-    Object.keys(Colors).forEach((colorKey) => {
-      const color = Colors[colorKey];
-      const unmappedColors = muscles[color];
-
-      mappedColors[color] = new Set();
-      unmappedColors.forEach((unmapped) => {
-        const muscleMap = MUSCLES_CONSTANTS[unmapped.toUpperCase()];
-        if (muscleMap) {
-          muscleMap.forEach((currentKey) => {
-            mappedColors[color].add(currentKey);
-          });
-        }
-      });
-    });
-
-    return mappedColors;
-  }
-
-  loopColor(color, colorArray) {
-    const temp: any[] = [];
-    colorArray.forEach((muscleContainer) => {
-      if (muscleContainer) {
-        const current = MuscleImages[muscleContainer];
-        const uniqueKey = `${color}-${muscleContainer}`;
-
-        temp.push(
-          <Box key={uniqueKey}>
-            <img src={current[color]} alt="popup" style={imgStyles} />
-          </Box>
-        );
-      }
-    });
-    return temp;
-  }
-
   render() {
     const separateMuscles = SeparateMuscles(this.props.metaid);
-    const muscles = this.mapColors(separateMuscles);
-    console.log(muscles);
+    const muscles = this.controller.mapColors(separateMuscles)
+    // const muscles = this.mapColors(separateMuscles);
+    // console.log(muscles);
     const drawable: any[] = [];
     Object.keys(Colors).forEach((colorkey) => {
       const color = Colors[colorkey];
-      drawable.push(this.loopColor(color, muscles[color]));
+      drawable.push(this.controller.loopColor(color, muscles[color]));
     });
 
     return (
@@ -210,26 +248,48 @@ export class MuscleView extends React.Component<any> {
   }
 }
 
-interface WhiteboardClickableTextProps {
+interface ErasableTextProps {
+  children;
+  color;
+}
+interface ErasableTextState {
+  textValue: string;
+}
+
+interface DefaultTextProps {
+  children;
+}
+interface DefaultTextState {
+  textValue: any;
+}
+
+interface ClickableTextProps {
   uri: string;
   readableName: string;
   mediaType: string;
 }
 
-interface WhiteboardClickableTextModalMuscles {
-  uri: string;
-  readableName: string;
-  mediaType: string;
+interface ClickableTextState {
+  open: boolean;
+}
+
+interface WhiteboardClickableTextModalMusclesProps {
   metaID: string;
+  readableName: string;
 }
 
-const imgStyles = {
-  backgroundSize: "50vw 50vh",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
+interface WhiteboardClickableTextModalMusclesState {
+  open: boolean;
+}
+
+const popupStyle = {
+  // backgroundSize: "50vw 50vh",
+  // backgroundPosition: "center",
+  // backgroundRepeat: "no-repeat",
   position: "fixed",
   width: "50%",
   height: "50%",
+  // display: "flex",
 };
 
 const paperStyles = {

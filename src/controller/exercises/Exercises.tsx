@@ -1,13 +1,7 @@
-import React from "react";
-import * as Custom from "./ConstantsCustom"
+import * as Custom from "./ConstantsCustom";
 import * as Exrx from "./ConstantsExrx";
-// import * as Custom from "./ConstantsCustom";
 import * as Constants from "../../GlobalConstants";
 
-
-// var Custom = METADATA;
-
-// import { Image } from "react";
 /* Promises to return a dictionary as follows:
   {
     metaid:
@@ -47,22 +41,31 @@ export function GetExerciseID(metaid) {
 }
 
 export function GetMedia(metaid) {
+  // console.log(SelectDatabase(metaid).METADATA[metaid]["media"]);
+try{
   return SelectDatabase(metaid).METADATA[metaid]["media"];
+}
+catch
+{
+  return '';
+}
 }
 
 export function GetMediaType(metaid) {
-    let uri = GetMedia(metaid);
-    // console.log("uri hey bitch:" + JSON.stringify(uri));
-//   let uri = Image.resolveAssetSource(GetMedia(metaid)).uri;
+  let uri = GetMedia(metaid);
+  if (uri == '') return Constants.MEDIA_TYPES.IMAGE;
   for (let type in Constants.IMAGE_EXTENSIONS) {
     if (uri.includes("." + Constants.IMAGE_EXTENSIONS[type]))
       return Constants.MEDIA_TYPES.IMAGE;
+    if (uri.includes("image/")) return Constants.MEDIA_TYPES.IMAGE;
   }
   for (let type in Constants.VIDEO_EXTENSIONS) {
     if (uri.includes("." + Constants.VIDEO_EXTENSIONS[type]))
       return Constants.MEDIA_TYPES.VIDEO;
+    if (uri.includes("video/")) return Constants.MEDIA_TYPES.VIDEO;
   }
-  //throw "Media Extension not found: " + metaid;
+  return Constants.MEDIA_TYPES.IMAGE;
+  throw "Media Extension not found: " + metaid;
 }
 
 // Returns the muscle inf in set format
@@ -126,10 +129,9 @@ function ParseMuscleString(muscles) {
 // Chooses the correct database to return information from
 function SelectDatabase(metaid) {
   if (metaid.startsWith("Custom")) {
-    console.log(metaid);
+    // console.log(metaid);
     return Custom;
-  } else 
-  {
+  } else {
     // console.log(metaid);
     return Exrx;
   }

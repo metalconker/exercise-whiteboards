@@ -1,3 +1,32 @@
+export function validateProps(props) {
+  //First check if the props itself is null or unefined
+  if (!props) {
+    throw new Error("props are required parameter");
+  }
+
+  //Second check for each child of the props
+  for (let key in props) {
+    if (props[key] === null || typeof props[key] === "undefined") {
+      throw new Error(key + " is required parameter ");
+    }
+  }
+}
+
+//Error check
+export function checkSetter(value: any, variable: string): any {
+  if (!value || value === null || value === undefined) {
+    throw new Error(variable + " is invalid!");
+  }
+  return value;
+}
+
+export function checkGetter(value: any, variable: string): any {
+  if (!value || value === null || value === undefined) {
+    throw new Error(variable + " is invalid!");
+  }
+  return value;
+}
+
 export const MEDIA_TYPES: { [key: string]: any } = {
   VIDEO: "video",
   IMAGE: "image",
@@ -7,6 +36,7 @@ export const IMAGE_EXTENSIONS: { [key: string]: any } = {
   GIF: "gif",
   JPEG: "jpeg",
   JPG: "jpg",
+  PNG: "png",
 };
 
 export const VIDEO_EXTENSIONS: { [key: string]: any } = {
