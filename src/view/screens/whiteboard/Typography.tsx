@@ -227,11 +227,12 @@ export class MuscleView extends React.Component<any> {
   
   constructor(props) {
     super(props);
+    this.controller = new MuscleViewController();
   }
 
   render() {
     const separateMuscles = SeparateMuscles(this.props.metaid);
-    const muscles = this.controller.mapColors(separateMuscles)
+    const muscles = this.controller.mapColors(separateMuscles);
     // const muscles = this.mapColors(separateMuscles);
     // console.log(muscles);
     const drawable: any[] = [];

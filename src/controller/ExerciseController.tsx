@@ -202,7 +202,7 @@ export class ExExercisesGridController {
     );
     this.numSets = this.exerciseData.getNumSets();
     this.numReps = this.exerciseData.getNumReps();
-    this.time = this.exerciseData.getTime();
+    // this.time = this.exerciseData.getTime();
     this.media =
       props.data.getMetadataKeys().length > props.index && props.index >= 0
         ? Exercises.GetMedia(props.data.getMetadataKeys()[props.index])

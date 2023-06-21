@@ -14,17 +14,25 @@ export function validateProps(props) {
 
 //Error check
 export function checkSetter(value: any, variable: string): any {
-  if (!value || value === null || value === undefined) {
-    throw new Error(variable + " is invalid!");
+  try {
+    if (!value || value === null || value === undefined) {
+      throw new Error(variable + " is invalid!");
+    }
+    return value;
+  } catch (err) {
+    return console.log(err);
   }
-  return value;
 }
 
 export function checkGetter(value: any, variable: string): any {
-  if (!value || value === null || value === undefined) {
-    throw new Error(variable + " is invalid!");
+  try {
+    if (!value || value === null || value === undefined) {
+      throw new Error(variable + " is invalid!");
+    }
+    return value;
+  } catch (err) {
+    return console.log(err);
   }
-  return value;
 }
 
 export const MEDIA_TYPES: { [key: string]: any } = {

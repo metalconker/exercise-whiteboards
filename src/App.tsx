@@ -6,7 +6,8 @@ import {
   ExerciseBoardScreen,
   WarmupBoardScreen,
 } from "./view/screens/whiteboard/Exercises";
-var test = true;
+// var test = true;
+var test = false;
 export default function App() {
   const date = new Date();
   var today = date.getDay() % 7;
@@ -15,7 +16,7 @@ export default function App() {
   const day = Object.keys(DAYS)[today];
 
   return <ExerciseBoardScreen day={day} week={weekNumber} />;
-  // return <WarmupBoardScreen day={day} week={weekNumber} />;
+  return <WarmupBoardScreen day={day} week={weekNumber} />;
 }
 
 // Returns the ISO week of the date.
