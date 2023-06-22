@@ -1,9 +1,11 @@
-import * as Schedule from "../model/schedule/Schedule";
-import * as ConstantsSchedule from "../model/schedule/ConstantsSchedule";
-import * as Exercises from "../controller/exercises/Exercises";
-import { Colors, MuscleImages } from "../model/muscles/ConstantsMuscles";
-import { MUSCLES_CONSTANTS } from "../view/screens/whiteboard/Styles";
-import { checkGetter, checkSetter, validateProps } from "../GlobalConstants";
+import * as Schedule from "../model/ScheduleModel";
+import * as ConstantsSchedule from "../GlobalConstants";
+import * as Exercises from "../model/ExercisesModel";
+import { MUSCLE_IMAGES } from "../model/MusclesModel";
+import { MUSCLES_CONSTANTS } from "../view/styles/Stylesheet";
+import { checkGetter, checkSetter, validateProps } from "../GlobalHelpers";
+import { MUSCLE_COLORS } from "../GlobalConstants";
+
 /** 
 This class is used to create a controller for the ExerciseBoardScreen. 
 It stores the schedule name, the schedule data, the day and week values, 
@@ -217,8 +219,8 @@ export class ExExercisesGridController {
 export class MuscleViewController {
   mapColors(muscles) {
     const mappedColors = {};
-    Object.keys(Colors).forEach((colorKey) => {
-      const color = Colors[colorKey];
+    Object.keys(MUSCLE_COLORS).forEach((colorKey) => {
+      const color = MUSCLE_COLORS[colorKey];
       const unmappedColors = muscles[color];
 
       mappedColors[color] = new Set();
@@ -239,7 +241,7 @@ export class MuscleViewController {
     const temp: any[] = [];
     colorArray.forEach((muscleContainer) => {
       if (muscleContainer) {
-        const current = MuscleImages[muscleContainer];
+        const current = MUSCLE_IMAGES[muscleContainer];
         const uniqueKey = `${color}-${muscleContainer}`;
 
         temp.push(

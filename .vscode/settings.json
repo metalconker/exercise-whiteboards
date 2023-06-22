@@ -16,6 +16,15 @@
         "src/App.css": true,
         "src/controller/exercises/extractor.py": true,
         "src/controller/exercises/converter.py": true,
-        "src/controller/exercises/Exercises.txt": true
+        "src/controller/exercises/Exercises.txt": true,
+        "src/view/components": true,
+        "src/view/screens/navigation": true,
+        "src/model/muscles": true,
+        "src/model/schedule": true,
+        "src/_database/schedulesDB/MetaIDs.txt": true,
+        "src/_database/schedulesDB/MetaIDExtractor.py": true,
+        "src/_application": false,
+        "src/model/ExercisesModel.d.ts": true,
+        "src/controller/exercises": true
     }
 }
