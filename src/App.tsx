@@ -6,8 +6,8 @@ import {
   ExerciseBoardScreen,
   WarmupBoardScreen,
 } from "./view/screens/whiteboard/Exercises";
-// var test = true;
-var test = false;
+var test = true;
+// var test = false;
 export default function App() {
   const date = new Date();
   var today = date.getDay() % 7;
