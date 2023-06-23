@@ -1,11 +1,11 @@
 
 import React from "react";
 import { DAYS } from "./GlobalConstants";
-import { WEEKS } from "./model/schedule/ConstantsSchedule";
+import { WEEKS } from "./GlobalConstants";
 import {
   ExerciseBoardScreen,
   WarmupBoardScreen,
-} from "./view/screens/whiteboard/Exercises";
+} from "./view/ExercisesView";
 var test = true;
 // var test = false;
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
   const day = Object.keys(DAYS)[today];
 
   return <ExerciseBoardScreen day={day} week={weekNumber} />;
-  return <WarmupBoardScreen day={day} week={weekNumber} />;
+  // return <WarmupBoardScreen day={day} week={weekNumber} />;
 }
 
 // Returns the ISO week of the date.
