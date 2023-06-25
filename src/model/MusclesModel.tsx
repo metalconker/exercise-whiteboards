@@ -1,4 +1,4 @@
-import { MUSCLE_COLORS } from "../GlobalConstants";
+import { MUSCLE_COLORS } from "../Constants";
 import * as Exercises from "../model/ExercisesModel";
 
 export function SeparateMuscles(metaid) {

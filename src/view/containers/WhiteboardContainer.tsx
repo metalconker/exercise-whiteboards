@@ -9,8 +9,10 @@ import {
 } from "../styles/Stylesheet";
 
 interface WhiteboardContainerProps {
-  // title: string;
-  children: [React.ReactElement<WhiteboardTitleProps>, React.ReactElement<WhiteboardBodyProps>];
+  children: [
+    React.ReactElement<WhiteboardTitleProps>,
+    React.ReactElement<WhiteboardBodyProps>
+  ];
 }
 /**
  *  Class that renders a title to the board based on props
@@ -33,13 +35,13 @@ export const WhiteboardContainer = React.memo(
 );
 
 interface WhiteboardTitleProps {
-  text: string;
+  children: string;
 }
-const WhiteboardTitle = React.memo((props: WhiteboardTitleProps) => {
+export const WhiteboardTitle = React.memo((props: WhiteboardTitleProps) => {
   return (
     <Box sx={EXERCISE_BOARD_STYLES.SPLIT_SCREEN.top}>
       <Box sx={EXERCISE_BOARD_STYLES.TOP_COMPONENT.container}>
-        <Typography variant="h1">{props.text}</Typography>
+        <Typography variant="h1">{props.children}</Typography>
       </Box>
     </Box>
   );
@@ -51,11 +53,11 @@ interface WhiteboardBodyProps {
 /**
  *  Class that renders a title to the board based on props
  */
-const WhiteboardBody = React.memo((props: WhiteboardBodyProps) => {
+export const WhiteboardBody = React.memo((props: WhiteboardBodyProps) => {
   return (
     <Box sx={EXERCISE_BOARD_STYLES.SPLIT_SCREEN.bottom}>
       <Box sx={EXERCISE_BOARD_STYLES.TOP_COMPONENT.container}>
-        <Typography variant="h1">{props.children}</Typography>
+        {props.children}
       </Box>
     </Box>
   );

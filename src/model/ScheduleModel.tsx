@@ -1,4 +1,4 @@
-import * as Constants from "../GlobalConstants";
+import * as Constants from "../Constants";
 
 var ExerciseScheduleJSON: any = require("../_database/schedulesDB/ExerciseSchedule.json");
 var ScheduleDataJSON: any = require("../_database/schedulesDB/ScheduleData.json");

@@ -1,4 +1,4 @@
-import * as Constants from "../GlobalConstants";
+import * as Constants from "../Constants";
 
 /* Promises to return a dictionary as follows:
   {

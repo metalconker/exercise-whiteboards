@@ -6,7 +6,7 @@
     "Readme.md": true,
     "tsconfig.json": true,
     ".vscode": true,
-    "public": true,
+    "public": false,
     "node_modules": true,
     "package-lock.json": true,
     "package.json": true,

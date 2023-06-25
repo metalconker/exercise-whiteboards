@@ -7,21 +7,46 @@ import * as Exercises from "../../model/ExercisesModel";
 import { styles, MUSCLES_CONSTANTS, COLORS } from "../styles/Stylesheet";
 import { MALE_BODY_IMAGE, MUSCLE_IMAGES } from "../../model/MusclesModel";
 import SeparateMuscles from "../../model/MusclesModel";
-import { MuscleViewController } from "../../controller/ExerciseController";
-import { MUSCLE_COLORS } from "../../GlobalConstants";
+import { MuscleViewController } from "../../controller/ScheduleController";
+import { MUSCLE_COLORS } from "../../Constants";
 import { ErasableText } from "./TextComponents";
 
 
 
+/** 
+  Class that renders an exercise board to the screen with data from the ExerciseBoardScreenController
+*/
+interface ScheduleGridProps {
+  scheduleData : any;
+  maxSets: number;
+  metaIDKeys: any
+}
 
+/** 
+  Class that renders a grid of the exercises for each set based on props
+*/
+export class ScheduleGrid extends React.Component<ScheduleGridProps> {
 
-interface SetsRowProps {
+  render() {
+    return this.props.metaIDKeys.map((i, index) => (
+      <ExercisesRow
+        index={index}
+        // data={this.props.scheduleData}
+        maxSets={this.props.maxSets}
+        maxExercises={this.props.metaIDKeys.length}
+        key={index}
+      />
+    ));
+  }
+}
+
+interface SetsRowHeaderProps {
   maxSets: number;
 }
 /** 
   Class that renders a grid of the sets to the board based on props
 */
-export const SetsRow = React.memo((props: SetsRowProps) => {
+export const SetsRowHeader = React.memo((props: SetsRowHeaderProps) => {
   return (
     <Grid
       container
@@ -48,7 +73,7 @@ export const SetsRow = React.memo((props: SetsRowProps) => {
   );
 });
 
-interface ExercisesRowProps {
+interface IndividualExercisesRowProps {
   index: number;
   media: any;
   mediaType: any;
@@ -67,7 +92,7 @@ interface ExercisesRowProps {
 /** 
   Class that renders a particular exercise grid row based on props
 */
-export class ExercisesRow extends React.Component<ExercisesRowProps> {
+export class IndividualExercisesRow extends React.Component<IndividualExercisesRowProps> {
   // data: ExExercisesGridController;
   // constructor(props: {
   //   index: number;

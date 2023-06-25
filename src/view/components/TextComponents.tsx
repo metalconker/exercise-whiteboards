@@ -7,8 +7,8 @@ import * as Exercises from "../../model/ExercisesModel";
 import { styles, MUSCLES_CONSTANTS } from "../styles/Stylesheet";
 import { MUSCLE_IMAGES } from "../../model/MusclesModel";
 import SeparateMuscles from "../../model/MusclesModel";
-import { MuscleViewController } from "../../controller/ExerciseController";
-import { MUSCLE_COLORS } from "../../GlobalConstants";
+import { MuscleViewController } from "../../controller/ScheduleController";
+import { MUSCLE_COLORS } from "../../Constants";
 
 interface ErasableTextProps {
   children: any;
