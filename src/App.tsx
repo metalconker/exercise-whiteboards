@@ -5,7 +5,7 @@ import { WEEKS } from "./GlobalConstants";
 import {
   ExerciseBoardScreen,
   WarmupBoardScreen,
-} from "./view/ExercisesView";
+} from "./view/ExercisesBoardView";
 var test = true;
 // var test = false;
 export default function App() {

@@ -1,10 +1,12 @@
 import { createTheme } from "@mui/material";
 import BackgroundImage from "../../_application/images/whiteboard/Whiteboard.png";
+import { MALE_BODY_IMAGE, MUSCLE_IMAGES } from "../../model/MusclesModel";
+
 
 const fontFamily = "DryWhiteboardMarker-Regular";
 const color = "black";
 
-export const theme = createTheme({
+export const THEME = createTheme({
   typography: {
     fontFamily,
     allVariants: {
@@ -13,64 +15,64 @@ export const theme = createTheme({
   },
 });
 
-theme.typography.h1 = {
+THEME.typography.h1 = {
   fontFamily,
   color,
-  [theme.breakpoints.up("xs")]: { fontSize: "1.2rem" },
-  [theme.breakpoints.up("sm")]: { fontSize: "2.4rem" },
-  [theme.breakpoints.up("md")]: { fontSize: "3.6rem" },
-  [theme.breakpoints.up("lg")]: { fontSize: "4.8rem" },
-  [theme.breakpoints.up("xl")]: { fontSize: "6rem" },
+  [THEME.breakpoints.up("xs")]: { fontSize: "1.2rem" },
+  [THEME.breakpoints.up("sm")]: { fontSize: "2.4rem" },
+  [THEME.breakpoints.up("md")]: { fontSize: "3.6rem" },
+  [THEME.breakpoints.up("lg")]: { fontSize: "4.8rem" },
+  [THEME.breakpoints.up("xl")]: { fontSize: "6rem" },
 };
 
-theme.typography.h2 = {
+THEME.typography.h2 = {
   fontFamily,
   color,
-  [theme.breakpoints.up("xs")]: { fontSize: "0.8rem" },
-  [theme.breakpoints.up("sm")]: { fontSize: "1.6rem" },
-  [theme.breakpoints.up("md")]: { fontSize: "2.4rem" },
-  [theme.breakpoints.up("lg")]: { fontSize: "3.2rem" },
-  [theme.breakpoints.up("xl")]: { fontSize: "4rem" },
+  [THEME.breakpoints.up("xs")]: { fontSize: "0.8rem" },
+  [THEME.breakpoints.up("sm")]: { fontSize: "1.6rem" },
+  [THEME.breakpoints.up("md")]: { fontSize: "2.4rem" },
+  [THEME.breakpoints.up("lg")]: { fontSize: "3.2rem" },
+  [THEME.breakpoints.up("xl")]: { fontSize: "4rem" },
 };
 
-theme.typography.h3 = {
+THEME.typography.h3 = {
   fontFamily,
   color,
-  [theme.breakpoints.up("xs")]: { fontSize: "0.4rem" },
-  [theme.breakpoints.up("sm")]: { fontSize: "0.8rem" },
-  [theme.breakpoints.up("md")]: { fontSize: "1.2rem" },
-  [theme.breakpoints.up("lg")]: { fontSize: "1.6rem" },
-  [theme.breakpoints.up("xl")]: { fontSize: "2rem" },
+  [THEME.breakpoints.up("xs")]: { fontSize: "0.4rem" },
+  [THEME.breakpoints.up("sm")]: { fontSize: "0.8rem" },
+  [THEME.breakpoints.up("md")]: { fontSize: "1.2rem" },
+  [THEME.breakpoints.up("lg")]: { fontSize: "1.6rem" },
+  [THEME.breakpoints.up("xl")]: { fontSize: "2rem" },
 };
 
-theme.typography.h4 = {
+THEME.typography.h4 = {
   fontFamily,
   color,
-  [theme.breakpoints.up("xs")]: { fontSize: "0.35rem" },
-  [theme.breakpoints.up("sm")]: { fontSize: "0.7rem" },
-  [theme.breakpoints.up("md")]: { fontSize: "1.05rem" },
-  [theme.breakpoints.up("lg")]: { fontSize: "1.4rem" },
-  [theme.breakpoints.up("xl")]: { fontSize: "1.75rem" },
+  [THEME.breakpoints.up("xs")]: { fontSize: "0.35rem" },
+  [THEME.breakpoints.up("sm")]: { fontSize: "0.7rem" },
+  [THEME.breakpoints.up("md")]: { fontSize: "1.05rem" },
+  [THEME.breakpoints.up("lg")]: { fontSize: "1.4rem" },
+  [THEME.breakpoints.up("xl")]: { fontSize: "1.75rem" },
 };
 
-theme.typography.h5 = {
+THEME.typography.h5 = {
   fontFamily,
   color,
-  [theme.breakpoints.up("xs")]: { fontSize: "0.2rem" },
-  [theme.breakpoints.up("sm")]: { fontSize: "0.4rem" },
-  [theme.breakpoints.up("md")]: { fontSize: "0.6rem" },
-  [theme.breakpoints.up("lg")]: { fontSize: "0.8rem" },
-  [theme.breakpoints.up("xl")]: { fontSize: "1rem" },
+  [THEME.breakpoints.up("xs")]: { fontSize: "0.2rem" },
+  [THEME.breakpoints.up("sm")]: { fontSize: "0.4rem" },
+  [THEME.breakpoints.up("md")]: { fontSize: "0.6rem" },
+  [THEME.breakpoints.up("lg")]: { fontSize: "0.8rem" },
+  [THEME.breakpoints.up("xl")]: { fontSize: "1rem" },
 };
 
-theme.typography.h6 = {
+THEME.typography.h6 = {
   fontFamily,
   color,
-  [theme.breakpoints.up("xs")]: { fontSize: "0.1rem" },
-  [theme.breakpoints.up("sm")]: { fontSize: "0.2rem" },
-  [theme.breakpoints.up("md")]: { fontSize: "0.3rem" },
-  [theme.breakpoints.up("lg")]: { fontSize: "0.4rem" },
-  [theme.breakpoints.up("xl")]: { fontSize: "0.5rem" },
+  [THEME.breakpoints.up("xs")]: { fontSize: "0.1rem" },
+  [THEME.breakpoints.up("sm")]: { fontSize: "0.2rem" },
+  [THEME.breakpoints.up("md")]: { fontSize: "0.3rem" },
+  [THEME.breakpoints.up("lg")]: { fontSize: "0.4rem" },
+  [THEME.breakpoints.up("xl")]: { fontSize: "0.5rem" },
 };
 
 export const COLORS = {
@@ -244,6 +246,48 @@ export const styles = {
     },
   },
 };
+
+
+const popupStyle = {
+  // backgroundSize: "50vw 50vh",
+  // backgroundPosition: "center",
+  // backgroundRepeat: "no-repeat",
+  position: "fixed",
+  width: "50%",
+  height: "50%",
+  // display: "flex",
+};
+
+const paperStyles = {
+  backgroundImage: `url(${MALE_BODY_IMAGE})`,
+  backgroundSize: "50vw 50vh",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  position: "fixed",
+  width: "50%",
+  height: "50%",
+};
+
+const musclesStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  WebkitAlignItems: "center",
+  width: "75%",
+  left: "12.5%",
+};
+
+const clickableStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  WebkitAlignItems: "center",
+};
+
+const mediaProps = {
+  width: "100%",
+};
+
 
 export const MUSCLES_CONSTANTS = {
   BACK: [],

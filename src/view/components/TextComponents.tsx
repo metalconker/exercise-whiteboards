@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Box, Modal, Paper } from "@mui/material";
 import * as Exercises from "../../model/ExercisesModel";
 import { styles, MUSCLES_CONSTANTS } from "../styles/Stylesheet";
-import { MALE_BODY_IMAGE, MUSCLE_IMAGES } from "../../model/MusclesModel";
+import { MUSCLE_IMAGES } from "../../model/MusclesModel";
 import SeparateMuscles from "../../model/MusclesModel";
 import { MuscleViewController } from "../../controller/ExerciseController";
 import { MUSCLE_COLORS } from "../../GlobalConstants";
@@ -124,43 +124,3 @@ export class ClickableModalText extends React.Component<
     );
   }
 }
-
-const popupStyle = {
-  // backgroundSize: "50vw 50vh",
-  // backgroundPosition: "center",
-  // backgroundRepeat: "no-repeat",
-  position: "fixed",
-  width: "50%",
-  height: "50%",
-  // display: "flex",
-};
-
-const paperStyles = {
-  backgroundImage: `url(${MALE_BODY_IMAGE})`,
-  backgroundSize: "50vw 50vh",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  position: "fixed",
-  width: "50%",
-  height: "50%",
-};
-
-const musclesStyles = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  WebkitAlignItems: "center",
-  width: "75%",
-  left: "12.5%",
-};
-
-const clickableStyles = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  WebkitAlignItems: "center",
-};
-
-const mediaProps = {
-  width: "100%",
-};
