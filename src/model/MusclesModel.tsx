@@ -1,5 +1,5 @@
 import { MUSCLE_COLORS } from "../Constants";
-import * as Exercises from "../model/ExercisesModel";
+import * as Exercises from "../model/ExercisesDatabaseModel";
 
 export function SeparateMuscles(metaid) {
   let muscles = {};
@@ -30,14 +30,14 @@ export function GetMuscleOfColor(muscle, color) {
 
 export function GetMusclesOfColor(muscle_array, color) {
   // error check for colors
-  if (!MUSCLE_COLORS.has(color)) {
+  if (!MUSCLE_COLORS.hasOwnProperty(color)) {
     throw "Color doesn't exist";
   }
 
   let musclecolors:any[] = [];
   for (let muscle of muscle_array) {
     // error check for muscles
-    if (!MUSCLE_IMAGES.has(muscle)) {
+    if (!MUSCLE_IMAGES.hasOwnProperty(muscle)) {
       throw "Muscle doesn't exist";
     }
     let musclecolor = GetMuscleOfColor(muscle, color);

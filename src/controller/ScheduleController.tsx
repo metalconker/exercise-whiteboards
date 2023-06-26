@@ -1,12 +1,12 @@
 import * as Schedule from "../model/ScheduleModel";
 import * as ConstantsSchedule from "../Constants";
-import * as Exercises from "../model/ExercisesModel";
+import * as Exercises from "../model/ExercisesDatabaseModel";
 import { MUSCLE_IMAGES } from "../model/MusclesModel";
 import { MUSCLES_CONSTANTS } from "../view/styles/Stylesheet";
 import { checkGetter, checkSetter, validateProps } from "../Helpers";
 import { MUSCLE_COLORS } from "../Constants";
 // import React from "react";
-import { ScheduleBoard } from "../view/ScheduleBoard";
+import { ScheduleBoard } from "../view/ScheduleBoardView";
 import React from "react";
 
 /** 

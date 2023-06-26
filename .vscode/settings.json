@@ -6,13 +6,13 @@
     "Readme.md": true,
     "tsconfig.json": true,
     ".vscode": true,
-    "public": false,
+    "public": true,
     "node_modules": true,
     "package-lock.json": true,
     "package.json": true,
     "src/react-app-env.d.ts": true,
     "src/index.d.ts": true,
-    "src/index.css": false,
+    "src/index.css": true,
     "src/App.css": true,
     "src/controller/exercises/extractor.py": true,
     "src/controller/exercises/converter.py": true,
@@ -25,7 +25,8 @@
     "src/_database/schedulesDB/MetaIDExtractor.py": true,
     "src/_application": false,
     "src/model/ExercisesModel.d.ts": true,
-    "src/controller/exercises": true
+    "src/controller/exercises": true,
+    "src/index.tsx": true
   },
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnPaste": false, // required

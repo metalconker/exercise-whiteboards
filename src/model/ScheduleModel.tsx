@@ -3,44 +3,6 @@ import * as Constants from "../Constants";
 var ExerciseScheduleJSON: any = require("../_database/schedulesDB/ExerciseSchedule.json");
 var ScheduleDataJSON: any = require("../_database/schedulesDB/ScheduleData.json");
 
-export class ExerciseData {
-  private data: any;
-
-  constructor(data: any) {
-    if (data instanceof ExerciseData) {
-      this.data = data.data;
-      return;
-    }
-    this.data = data;
-  }
-  getName(): string {
-    return this.data["Name"];
-  }
-
-  getNumSets(): number {
-    return parseInt(this.data["Sets"]);
-  }
-
-  getNumReps(): number {
-    return parseInt(this.data["Reps"]);
-  }
-
-  getTime(): number {
-    return parseInt(this.data["Time"]);
-  }
-
-  getIsAlternating(): boolean {
-    if (parseInt(this.data["Alternating"]) == 0) return false;
-    return true;
-  }
-
-  getIsTimeBased(): boolean {
-    if (this.getTime() > 0) return true;
-    return false;
-  }
-}
-
-
 export class ScheduleData {
   // Defines a class for storing and manipulating schedule data
 
@@ -111,6 +73,43 @@ export class ScheduleData {
   getMetadataKeys(): Array<string> {
     if (this.keys && this.keys.length > 0) return this.keys;
     throw "No keys Object";
+  }
+}
+
+class ExerciseData {
+  private data: any;
+
+  constructor(data: any) {
+    if (data instanceof ExerciseData) {
+      this.data = data.data;
+      return;
+    }
+    this.data = data;
+  }
+  getName(): string {
+    return this.data["Name"];
+  }
+
+  getNumSets(): number {
+    return parseInt(this.data["Sets"]);
+  }
+
+  getNumReps(): number {
+    return parseInt(this.data["Reps"]);
+  }
+
+  getTime(): number {
+    return parseInt(this.data["Time"]);
+  }
+
+  getIsAlternating(): boolean {
+    if (parseInt(this.data["Alternating"]) == 0) return false;
+    return true;
+  }
+
+  getIsTimeBased(): boolean {
+    if (this.getTime() > 0) return true;
+    return false;
   }
 }
 
