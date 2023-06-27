@@ -24,8 +24,7 @@ export default function App() {
   //   week,
   //   1
   // );
-
-  warmupScreenController.render();
+  return warmupScreenController.render();
 
   // return <WorkoutBoardScreen day={day} week={weekNumber} />;
   // return <WarmupBoardScreen day={day} week={weekNumber} />;
