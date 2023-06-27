@@ -1,9 +1,5 @@
 import * as Constants from "../Constants";
-
-const EXERCISE_SCHEDULE_JSON: any = require("../_database/schedulesDB/ExerciseSchedule.json");
-const SCHEDULE_DATA_JSON: any = require("../_database/schedulesDB/ScheduleData.json");
-var loadedSchedule: any = null;
-var loadedMetaIdKeys: Array<string> = [];
+const WEEKLY_EXERCISE_SCHEDULE_JSON: any = require("../_database/schedulesDB/WeeklyExerciseSchedule.json");
 
 export function getScheduleName(
   day: string,
@@ -25,28 +21,7 @@ export function getScheduleName(
       );
     }
   }
-  if (!scheduleNameExists(scheduleName)) {
-    throw `${scheduleName} is not a valid Schedule Name`;
-  }
-  loadedSchedule = SCHEDULE_DATA_JSON[scheduleName];
   return scheduleName;
-}
-
-// Get Metadata Keys
-// Returns an array of strings representing the IDs of all exercises in the schedule
-export function getMetaIDKeys(): Array<string> {
-  for (let exercise in loadedSchedule) {
-    // Key
-    loadedMetaIdKeys.push(exercise);
-  }
-  if (loadedMetaIdKeys && loadedMetaIdKeys.length > 0) return loadedMetaIdKeys;
-  throw "No keys Object";
-}
-
-// Check Name Existence
-// Checks if the given scheduleName exists
-function scheduleNameExists(scheduleName: string): Boolean {
-  return scheduleName in SCHEDULE_DATA_JSON;
 }
 
 // Returns a string
@@ -73,7 +48,7 @@ function getScheduleNameD(day: any) {
     throw day + " not in Exercise Schedule";
   }
   let dayString: string = Constants.DAYS[day];
-  return EXERCISE_SCHEDULE_JSON[dayString];
+  return WEEKLY_EXERCISE_SCHEDULE_JSON[dayString];
 }
 
 function scheduleExists(day: any, week: any, type: any) {

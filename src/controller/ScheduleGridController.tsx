@@ -2,7 +2,12 @@ import * as ScheduleModel from "../model/ScheduleModel";
 import * as Exercises from "../model/ExercisesDatabaseModel";
 import { checkGetter, checkSetter, validateProps } from "../Helpers";
 
+
+// Set max sets here while settings the routine controller
 export class ScheduleGridController {
+
+  maxSets: number;
+
   constructor(props: {
     index: number;
     data: ScheduleModel.ScheduleData;
