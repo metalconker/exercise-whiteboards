@@ -1,0 +1,9 @@
+Exercise = each individual exercise as stored within the database
+
+Muscles = all muscles used within a single exercise
+
+Routine = an exercise with the appropriate amount of sets and reps associated
+    Workout routine = a single routine within a workout schedule
+    Warmup routine =  a single routine within a warmup schedule
+
+Schedule = Daily schedule itself

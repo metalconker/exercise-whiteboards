@@ -23,10 +23,18 @@
     "src/model/schedule": true,
     "src/_database/schedulesDB/MetaIDs.txt": true,
     "src/_database/schedulesDB/MetaIDExtractor.py": true,
-    "src/_application": false,
+    "src/_application": true,
     "src/model/ExercisesModel.d.ts": true,
     "src/controller/exercises": true,
-    "src/index.tsx": true
+    "src/index.tsx": true,
+    "src/model": false,
+    "src/view/containers": true,
+    "src/_database": true,
+    "src/view/styles": true,
+    "src/Helpers.tsx": true,
+    "src/Constants.tsx": true,
+    "src/view/ScheduleBoardScreen.tsx": true,
+    "src/view/components/TypographyElements.tsx": true
   },
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnPaste": false, // required

@@ -1,7 +1,6 @@
-import React from "react";
 import { DAYS, WEEKS } from "./Constants";
 import { getWeek } from "./Helpers";
-import { ScheduleBoardScreenController } from "./controller/ScheduleController";
+import { MasterBoardController } from "./controller/MasterBoardController";
 
 var test = true;
 // var test = false;
@@ -14,7 +13,7 @@ export default function App() {
   const day = Object.keys(DAYS)[today];
 
   // TODO use constants instead of integers
-  const warmupScreenController = new ScheduleBoardScreenController(
+  const warmupScreenController = new MasterBoardController(
     day,
     week,
     0
@@ -25,7 +24,7 @@ export default function App() {
   //   1
   // );
 
-  warmupScreenController.render();
+  return warmupScreenController.render();
 
   // return <WorkoutBoardScreen day={day} week={weekNumber} />;
   // return <WarmupBoardScreen day={day} week={weekNumber} />;

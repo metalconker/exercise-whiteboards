@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material";
 import BackgroundImage from "../../_application/images/whiteboard/Whiteboard.png";
-import { MALE_BODY_IMAGE, MUSCLE_IMAGES } from "../../model/MusclesModel";
+// import { MALE_BODY_IMAGE, MUSCLE_IMAGES } from "../../model/MusclesModel";
+import MALE_BODY_IMAGE from "../../_database/musclesDB/MaleBody.png";
 
 
 const fontFamily = "DryWhiteboardMarker-Regular";

@@ -1,14 +1,7 @@
 import * as React from "react";
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Box, Modal, Paper } from "@mui/material";
-import * as Exercises from "../../model/ExercisesModel";
-import { styles, MUSCLES_CONSTANTS } from "../styles/Stylesheet";
-import { MUSCLE_IMAGES } from "../../model/MusclesModel";
-import SeparateMuscles from "../../model/MusclesModel";
-import { MuscleViewController } from "../../controller/ScheduleController";
-import { MUSCLE_COLORS } from "../../Constants";
+import { Modal } from "@mui/material";
 
 interface ErasableTextProps {
   children: any;
@@ -80,7 +73,7 @@ export class DefaultText extends React.Component<
 
 interface ClickableModalTextProps {
   text: string;
- children: any;
+  children: any;
 }
 interface ClickableModalTextState {
   open: boolean;
