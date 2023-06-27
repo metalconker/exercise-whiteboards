@@ -1,17 +1,47 @@
-import * as Schedule from "../model/ScheduleModel";
-import * as ConstantsSchedule from "../Constants";
-import * as Exercises from "../model/ExercisesModel";
-import { MUSCLE_IMAGES } from "../model/MusclesModel";
-import { MUSCLES_CONSTANTS } from "../view/styles/Stylesheet";
+import * as ScheduleModel from "../model/ScheduleModel";
+import * as Exercises from "../model/ExercisesDatabaseModel";
 import { checkGetter, checkSetter, validateProps } from "../Helpers";
-import { MUSCLE_COLORS } from "../Constants";
 
-export class ExercisesGridController {
-  private _data: Schedule.ScheduleData;
-  public get data(): Schedule.ScheduleData {
+
+// Set max sets here while settings the routine controller
+export class ScheduleGridController {
+
+  maxSets: number;
+
+  constructor(props: {
+    index: number;
+    data: ScheduleModel.ScheduleData;
+    maxSets: number;
+    maxExercises: number;
+    key: any;
+  }) {
+    validateProps(props);
+    this.data = props.data;
+    this.index = props.index;
+    this.maxSets = props.maxSets;
+    this.maxExercises = props.maxExercises;
+    this.exerciseData = props.data.getExerciseData(
+      props.data.getMetadataKeys()[props.index]
+    );
+    this.numSets = this.exerciseData.getNumSets();
+    this.numReps = this.exerciseData.getNumReps();
+    // this.time = this.exerciseData.getTime();
+    this.media =
+      props.data.getMetadataKeys().length > props.index && props.index >= 0
+        ? Exercises.GetMedia(props.data.getMetadataKeys()[props.index])
+        : "";
+    this.mediaType = Exercises.GetMediaType(
+      props.data.getMetadataKeys()[props.index]
+    );
+    this.divHeight = 90 / props.maxExercises;
+  }
+
+
+  private _data: ScheduleModel.ScheduleData;
+  public get data(): ScheduleModel.ScheduleData {
     return checkGetter(this._data, "Data");
   }
-  public set data(value: Schedule.ScheduleData) {
+  public set data(value: ScheduleModel.ScheduleData) {
     this._data = checkSetter(value, "Data");
   }
   private _index: number;
@@ -35,11 +65,11 @@ export class ExercisesGridController {
   public set maxExercises(value: number) {
     this._maxExercises = checkSetter(value, "Max exercises");
   }
-  private _exerciseData: Schedule.ExerciseData;
-  public get exerciseData(): Schedule.ExerciseData {
+  private _exerciseData: ScheduleModel.ExerciseData;
+  public get exerciseData(): ScheduleModel.ExerciseData {
     return checkGetter(this._exerciseData, "Exercise data");
   }
-  public set exerciseData(value: Schedule.ExerciseData) {
+  public set exerciseData(value: ScheduleModel.ExerciseData) {
     this._exerciseData = checkSetter(value, "Exercise data");
   }
   private _time: number;
@@ -85,31 +115,7 @@ export class ExercisesGridController {
     this._divHeight = checkSetter(value, "Div height");
   }
 
-  constructor(props: {
-    index: number;
-    data: Schedule.ScheduleData;
-    maxSets: number;
-    maxExercises: number;
-    key: any;
-  }) {
-    validateProps(props);
-    this.data = props.data;
-    this.index = props.index;
-    this.maxSets = props.maxSets;
-    this.maxExercises = props.maxExercises;
-    this.exerciseData = props.data.getExerciseData(
-      props.data.getMetadataKeys()[props.index]
-    );
-    this.numSets = this.exerciseData.getNumSets();
-    this.numReps = this.exerciseData.getNumReps();
-    // this.time = this.exerciseData.getTime();
-    this.media =
-      props.data.getMetadataKeys().length > props.index && props.index >= 0
-        ? Exercises.GetMedia(props.data.getMetadataKeys()[props.index])
-        : "";
-    this.mediaType = Exercises.GetMediaType(
-      props.data.getMetadataKeys()[props.index]
-    );
-    this.divHeight = 90 / props.maxExercises;
-  }
+
 }
+
+

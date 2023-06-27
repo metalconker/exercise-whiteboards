@@ -7,15 +7,15 @@ import {
 import {
   ScheduleGrid,
   SetsRowHeader,
-} from "./components/ScheduleBoardComponents";
+} from "./components/ScheduleGridComponents";
 
-interface ScheduleBoardProps {
+interface ScheduleBoardScreenProps {
   name: string;
   maxSets: number;
   data: any;
 }
 
-export class ScheduleBoard extends React.Component<ScheduleBoardProps> {
+export class ScheduleBoardScreen extends React.Component<ScheduleBoardScreenProps> {
   render() {
     // Renders the board to the screen
     return (

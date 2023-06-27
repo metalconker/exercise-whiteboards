@@ -1,76 +1,68 @@
+/*
+This code imports from the Constants a color dictionary and an image 
+source for the MaleBody.png. It also exports two functions - one getter 
+and one that delivers an array of muscles to set a color of the muscles 
+from the MUSCLE_IMAGES dictionary. Error checks are included in the 
+GetMusclesOfColor function for both the colors from the MUSCLE_COLORS 
+dictionary and the matching muscle in the MUSCLE_IMAGES dictionary. 
+The final results are a unique array of muscle colors.
+*/
+
 import { MUSCLE_COLORS } from "../Constants";
-import * as Exercises from "../model/ExercisesModel";
+import MALE_BODY_IMAGE from "../_database/musclesDB/MaleBody.png";
 
-export function SeparateMuscles(metaid) {
-  let muscles = {};
-  var muscleinfo = Exercises.GetMuscleInformation(metaid);
-  for (let colorkey in MUSCLE_COLORS) {
-    muscles[MUSCLE_COLORS[colorkey]] = new Set();
-  }
-  // Gets the necessary information from the details file
-  for (let category in muscleinfo) {
-    let color = FilterColor(category);
-    let info = muscleinfo[category];
-
-    for (let muscle of info) {
-      muscles[color].add(muscle);
-    }
-  }
-  return muscles;
-}
-
-// Gets the base male body image
+/**
+ * Gets the base male body image
+ * This function returns the imported MaleBody.png image
+ */
 export function GetMaleBodyImage() {
   return MALE_BODY_IMAGE;
 }
 
-export function GetMuscleOfColor(muscle, color) {
+export function getMuscleImage(muscleContainer) {
+  return MUSCLE_IMAGES[muscleContainer];
+}
+
+/**
+ * This function takes two parameters, a given muscle name and a color
+ * and returns a targeted muscle image with that given color
+ */
+export function GetSingleMuscleOfColor(muscle, color) {
   return MUSCLE_IMAGES[muscle][color];
 }
 
-export function GetMusclesOfColor(muscle_array, color) {
+/**
+ * This function takes two parameters, an array of muscles names and a
+ * color, and finds and returns an array of unique muslce images with 
+ * each muscle in the array in the given corresponding color.
+ */
+export function GetUniqueMusclesOfColor(muscle_array, color) {
   // error check for colors
-  if (!MUSCLE_COLORS.has(color)) {
+  // This 'if' statement throws an error message
+  // if the given color does not exist
+  if (!MUSCLE_COLORS.hasOwnProperty(color)) {
     throw "Color doesn't exist";
   }
 
-  let musclecolors:any[] = [];
+  let musclecolors: any[] = [];
+  // This 'for' loop will loop over the provided array of
+  // muscle names and return musclecolor images
   for (let muscle of muscle_array) {
     // error check for muscles
-    if (!MUSCLE_IMAGES.has(muscle)) {
+    // This 'if' statement throws an error message if
+    // the given muscle does not exist
+    if (!MUSCLE_IMAGES.hasOwnProperty(muscle)) {
       throw "Muscle doesn't exist";
     }
-    let musclecolor = GetMuscleOfColor(muscle, color);
+    let musclecolor = GetSingleMuscleOfColor(muscle, color);
     musclecolors.push(musclecolor);
   }
+  // This line creates an array from the targeted set
+  // of muscle images without any duplicates
   return Array.from(new Set(musclecolors));
 }
 
-function FilterColor(musclegroup) {
-  switch (musclegroup) {
-    case "antagonist stabilizers":
-      return MUSCLE_COLORS.GREEN;
-    case "dynamic stabilizers":
-      return MUSCLE_COLORS.GREEN;
-    case "other":
-      return MUSCLE_COLORS.GREEN;
-    case "stabilizers":
-      return MUSCLE_COLORS.GREEN;
-    case "synergists":
-      return MUSCLE_COLORS.BLUE;
-    case "target":
-      return MUSCLE_COLORS.RED;
-    default:
-      throw "Muscle Group doesn't exist: " + musclegroup;
-  }
-}
-
-export default SeparateMuscles;
-
-// This is separate from the actual code due to potential generator file being necessary
-export const MALE_BODY_IMAGE = require("../_database/musclesDB/MaleBody.png");
-
-export const MUSCLE_IMAGES = {
+const MUSCLE_IMAGES = {
   AnteriorBiceps: {
     green: require("../_database/musclesDB/green/AnteriorBiceps.png"),
     blue: require("../_database/musclesDB/blue/AnteriorBiceps.png"),
