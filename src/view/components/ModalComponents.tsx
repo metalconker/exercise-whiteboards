@@ -1,27 +1,25 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { Box, Modal, Paper } from "@mui/material";
-import * as Exercises from "../../model/ExercisesModel";
-import { styles } from "../styles/Stylesheet";
+import { paperStyles, popupStyle, styles } from "../styles/Stylesheet";
+import { render } from "react-dom";
 
-
-
-
-
-
-export class MusclesImagesContainer extends React.Component<any> {
+interface MusclesImagesContainerProps {
+  muscles: Array<string>;
+}
+export class MusclesImagesContainer extends React.Component<MusclesImagesContainerProps> {
   render() {
-    // const muscles = this.mapColors(separateMuscles);
-    // console.log(muscles);
     return (
       <Paper elevation={0} square sx={paperStyles}>
-        {drawable}
+{this.props.muscles.map(src => {
+    return  <Box key={src}> 
+      {/* use unique keys to associate data retrieval */}
+      <img src={src} alt="popup" style={popupStyle} />
+    </Box>;
+  })}
       </Paper>
     );
   }
 }
-
 
 interface WhiteboardClickableTextModalMusclesProps {
   metaID: string;
@@ -73,29 +71,8 @@ handleClose() {
   this.setState({ open: false });
 }
 
-renderMedia(metaID) {
-  const uri = Exercises.GetMedia(metaID);
-  const mediaType = Exercises.GetMediaType(metaID);
-  return mediaType === "video" ? (
-    <video autoPlay src={uri} style={mediaProps} />
-  ) : (
-    <img src={uri} alt="popup" style={mediaProps} />
-  );
-}
 
-renderInformation = (metaID) => {
-  try {
-    Exercises.GetPreparation(metaID);
-  } catch {
-    return;
-  }
-  console.log(metaID);
-  const preparation = Exercises.GetPreparation(metaID);
-  const execution = Exercises.GetExecution(metaID);
-  const comments = Exercises.GetComments(metaID);
 
-  const information = [preparation, execution, comments];
-  const titles = ["Preparation", "Execution", "Comments"];
 
   return (
     <Box key="InformationRow" sx={styles.informationrow}>
@@ -116,8 +93,7 @@ renderInformation = (metaID) => {
 
 
 render() {
-  this.renderMedia(this.props.metaID);
-  this.renderInformation(this.props.metaID);
+
   return (
     <>
       <Button onClick={this.handleOpen} key={this.props.metaID}>

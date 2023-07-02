@@ -1,11 +1,9 @@
 import * as ScheduleModel from "../model/ScheduleModel";
-import * as Exercises from "../model/ExercisesDatabaseModel";
+import * as ExerciseModel from "../model/ExerciseModel";
 import { checkGetter, checkSetter, validateProps } from "../Helpers";
-
 
 // Set max sets here while settings the routine controller
 export class ScheduleGridController {
-
   maxSets: number;
 
   constructor(props: {
@@ -28,14 +26,13 @@ export class ScheduleGridController {
     // this.time = this.exerciseData.getTime();
     this.media =
       props.data.getMetadataKeys().length > props.index && props.index >= 0
-        ? Exercises.GetMedia(props.data.getMetadataKeys()[props.index])
+        ? ExerciseModel.GetMedia(props.data.getMetadataKeys()[props.index])
         : "";
-    this.mediaType = Exercises.GetMediaType(
+    this.mediaType = ExerciseModel.GetMediaType(
       props.data.getMetadataKeys()[props.index]
     );
     this.divHeight = 90 / props.maxExercises;
   }
-
 
   private _data: ScheduleModel.ScheduleData;
   public get data(): ScheduleModel.ScheduleData {
@@ -114,8 +111,4 @@ export class ScheduleGridController {
   public set divHeight(value: number) {
     this._divHeight = checkSetter(value, "Div height");
   }
-
-
 }
-
-

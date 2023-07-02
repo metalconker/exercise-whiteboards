@@ -30,8 +30,8 @@
     "src/model": false,
     "src/view/containers": true,
     "src/_database": true,
-    "src/view/styles": true,
-    "src/Helpers.tsx": true,
+    "src/view/styles": false,
+    "src/Helpers.tsx": false,
     "src/Constants.tsx": true,
     "src/view/ScheduleBoardScreen.tsx": true,
     "src/view/components/TypographyElements.tsx": true

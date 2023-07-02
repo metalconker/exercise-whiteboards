@@ -3,6 +3,7 @@ import React from "react";
 import { MUSCLE_COLORS } from "../Constants";
 import { MUSCLES_CONSTANTS } from "../view/styles/Stylesheet";
 import * as MusclesModel from "../model/MusclesModel";
+import { MusclesImagesContainer } from "../view/components/ModalComponents";
 /**
  * MuscleViewController class creates objects
  * based on color in order to draw muscles
@@ -28,7 +29,7 @@ export class MusclesController {
 
   render()
   {
-    return this.drawable;
+    return <MusclesImagesContainer muscles={this.drawable}/>
   }
 
   separateMuscles(muscleInformation: {}) {
@@ -83,14 +84,10 @@ export class MusclesController {
         const uniqueKey = `${color}-${muscleContainer}`;
         // Add objects to drawabled array
         temp.push(
-          <Box key={uniqueKey}>
-            {/* use unique keys to associate data retrieval */}
-            <img src={current[color]} alt="popup" style={popupStyle} />
-          </Box>
+          current[color]
         );
       }
     });
-
     return temp;
   }
 

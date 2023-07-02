@@ -1,6 +1,6 @@
 import React from "react";
 import { ScheduleBoardScreen } from "../view/ScheduleBoardScreen";
-import { ScheduleImporter } from "./ScheduleImporter";
+import { ScheduleImporter } from "./importers/ScheduleImporter";
 import { MusclesController } from "./MusclesController";
 
 export class MasterBoardController {

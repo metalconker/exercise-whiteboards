@@ -3,7 +3,6 @@ import BackgroundImage from "../../_application/images/whiteboard/Whiteboard.png
 // import { MALE_BODY_IMAGE, MUSCLE_IMAGES } from "../../model/MusclesModel";
 import MALE_BODY_IMAGE from "../../_database/musclesDB/MaleBody.png";
 
-
 const fontFamily = "DryWhiteboardMarker-Regular";
 const color = "black";
 
@@ -248,8 +247,7 @@ export const styles = {
   },
 };
 
-
-const popupStyle = {
+export const popupStyle = {
   // backgroundSize: "50vw 50vh",
   // backgroundPosition: "center",
   // backgroundRepeat: "no-repeat",
@@ -259,7 +257,7 @@ const popupStyle = {
   // display: "flex",
 };
 
-const paperStyles = {
+export const paperStyles = {
   backgroundImage: `url(${MALE_BODY_IMAGE})`,
   backgroundSize: "50vw 50vh",
   backgroundPosition: "center",
@@ -288,7 +286,6 @@ const clickableStyles = {
 const mediaProps = {
   width: "100%",
 };
-
 
 export const MUSCLES_CONSTANTS = {
   BACK: [],

@@ -68,13 +68,13 @@ export class ScheduleImporter {
   public set scheduleName(value: string) {
     this._scheduleName = checkSetter(value, "ScheduleModel name");
   }
-  private _scheduleData: ScheduleModel.ScheduleData;
-  public get scheduleData(): ScheduleModel.ScheduleData {
-    return checkGetter(this._scheduleData, "ScheduleModel data");
-  }
-  public set scheduleData(value: ScheduleModel.ScheduleData) {
-    this._scheduleData = checkSetter(value, "ScheduleModel data");
-  }
+  // private _scheduleData: ScheduleModel.ScheduleData;
+  // public get scheduleData(): ScheduleModel.ScheduleData {
+  //   return checkGetter(this._scheduleData, "ScheduleModel data");
+  // }
+  // public set scheduleData(value: ScheduleModel.ScheduleData) {
+  //   this._scheduleData = checkSetter(value, "ScheduleModel data");
+  // }
   private _day: string;
   public get day(): string {
     return checkGetter(this._day, "Day");
