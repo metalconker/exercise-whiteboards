@@ -8,7 +8,7 @@ dictionary and the matching muscle in the MUSCLE_IMAGES dictionary.
 The final results are a unique array of muscle colors.
 */
 
-import { MUSCLE_COLORS } from "../Constants";
+import { MuscleColors } from "../Constants";
 import MALE_BODY_IMAGE from "../_database/musclesDB/MaleBody.png";
 
 /**
@@ -40,7 +40,7 @@ export function GetUniqueMusclesOfColor(muscle_array, color) {
   // error check for colors
   // This 'if' statement throws an error message
   // if the given color does not exist
-  if (!MUSCLE_COLORS.hasOwnProperty(color)) {
+  if (!MuscleColors.hasOwnProperty(color)) {
     throw "Color doesn't exist";
   }
 

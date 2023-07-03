@@ -1,4 +1,4 @@
-import { DAYS, WEEKS } from "./Constants";
+import { Days, Weeks } from "./Constants";
 import { getWeek } from "./Helpers";
 import { MasterBoardController } from "./controller/MasterBoardController";
 
@@ -10,7 +10,7 @@ export default function App() {
   var today = date.getDay() % 7;
   if (test) today = 5;
   const week = (getWeek(date) % Object.keys(WEEKS).length) + 1;
-  const day = Object.keys(DAYS)[today];
+  const day = Object.keys(Days)[today];
 
   // TODO use constants instead of integers
   const warmupScreenController = new MasterBoardController(

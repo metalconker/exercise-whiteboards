@@ -1,7 +1,7 @@
-import { checkGetter, checkSetter } from "../Helpers";
 import * as ExerciseModel from "../model/ExerciseModel";
+import { checkGetter, checkSetter } from "../Helpers";
 
-export class Exercise {
+export default class Exercise {
   private _comments: string;
   private _execution: string;
   private _mediaType: string;
@@ -10,12 +10,12 @@ export class Exercise {
   private _uri: string;
 
   constructor(metaID: string) {
-    this.metaID = metaID;
     this.comments = ExerciseModel.GetComments(metaID);
-    this.preparation = ExerciseModel.GetPreparation(metaID);
     this.execution = ExerciseModel.GetExecution(metaID);
-    this.uri = ExerciseModel.GetMedia(metaID);
     this.mediaType = ExerciseModel.GetMediaType(metaID);
+    this.metaID = metaID;
+    this.preparation = ExerciseModel.GetPreparation(metaID);
+    this.uri = ExerciseModel.GetMedia(metaID);
   }
 
   public get comments(): string {

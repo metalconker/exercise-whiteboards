@@ -1,35 +1,34 @@
-
-import { checkGetter, checkSetter } from "../Helpers";
 import * as RoutineModel from "../model/RoutineModel";
-
+import { checkGetter, checkSetter } from "../Helpers";
+import Exercise from "./Exercise";
 
 /**
-*   SCHEDULE_NAME: {
-*     META_ID: {
-*       NAME,
-*       SETS,
-*       REPS,
-*       TIME,
-*       ALTERNATING
-*     }
+ *   SCHEDULE_NAME: {
+ *     META_ID: {
+ *       NAME,
+ *       SETS,
+ *       REPS,
+ *       TIME,
+ *       ALTERNATING
+ *     }
  */
-export class Routine {
+export default class Routine {
   private _alternating: boolean;
+  private _exercise: Exercise;
   private _metaID: string;
   private _name: string;
   private _reps: number;
-  private _scheduleName: string;
   private _sets: number;
   private _time: number;
 
   constructor(scheduleName: string, metaID: string) {
-    this.scheduleName = scheduleName;
     this.metaID = metaID;
     this.alternating = RoutineModel.getIsAlternating(scheduleName, metaID);
     this.name = RoutineModel.getName(scheduleName, metaID);
     this.reps = RoutineModel.getNumReps(scheduleName, metaID);
     this.sets = RoutineModel.getNumSets(scheduleName, metaID);
     this.time = RoutineModel.getTime(scheduleName, metaID);
+    this.exercise = new Exercise(metaID);
   }
 
   public get alternating(): boolean {
@@ -39,18 +38,11 @@ export class Routine {
     this._alternating = checkSetter(value, "Alternating");
   }
 
-  public get reps(): number {
-    return checkGetter(this._reps, "Reps");
+  public get exercise(): Exercise {
+    return checkGetter(this._exercise, "Exercise");
   }
-  private set reps(value: number) {
-    this._reps = checkSetter(value, "Reps");
-  }
-
-  public get time(): number {
-    return checkGetter(this._time, "Time");
-  }
-  private set time(value: number) {
-    this._time = checkSetter(value, "Time");
+  private set exercise(value: Exercise) {
+    this._exercise = checkSetter(value, "Exercise");
   }
 
   public get metaID(): string {
@@ -67,6 +59,13 @@ export class Routine {
     this._name = checkSetter(value, "Name");
   }
 
+  public get reps(): number {
+    return checkGetter(this._reps, "Reps");
+  }
+  private set reps(value: number) {
+    this._reps = checkSetter(value, "Reps");
+  }
+
   public get sets(): number {
     return checkGetter(this._sets, "Number");
   }
@@ -74,10 +73,10 @@ export class Routine {
     this._sets = checkSetter(value, "Number");
   }
 
-  public get scheduleName(): string {
-    return checkGetter(this._scheduleName, "Schedule Name");
+  public get time(): number {
+    return checkGetter(this._time, "Time");
   }
-  private set scheduleName(value: string) {
-    this._scheduleName = checkSetter(value, "Schedule Name");
+  private set time(value: number) {
+    this._time = checkSetter(value, "Time");
   }
 }

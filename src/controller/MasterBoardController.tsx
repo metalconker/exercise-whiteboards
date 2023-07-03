@@ -1,22 +1,23 @@
 import React from "react";
+import Schedule from "../objects/Schedule";
 import { ScheduleBoardScreen } from "../view/ScheduleBoardScreen";
-import { ScheduleImporter } from "./importers/ScheduleImporter";
 import { MusclesController } from "./MusclesController";
+import { Days, ScheduleTypes, Weeks } from "../Constants";
 
 export class MasterBoardController {
-  importedSchedule: ScheduleImporter;
-  musclesController : MusclesController;
+  schedule: Schedule;
+  musclesController: MusclesController;
 
-  constructor(day: string, week: number, scheduleType: number) {
-    this.importedSchedule = new ScheduleImporter(day, week, scheduleType);
+  constructor(day: Days, week: Weeks, scheduleType: ScheduleTypes) {
+    this.schedule = new Schedule(day, week, scheduleType);
   }
 
   render() {
     return (
       <ScheduleBoardScreen
-        name={this.importedSchedule.scheduleName}
-        maxSets={this.importedSchedule.maxSets}
-        data={this.importedSchedule.scheduleData}
+        name={this.schedule.scheduleName}
+        maxSets={this.schedule.maxSets}
+        // data={this.schedule.scheduleData}
       ></ScheduleBoardScreen>
     );
   }

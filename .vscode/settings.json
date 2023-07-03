@@ -32,7 +32,7 @@
     "src/_database": true,
     "src/view/styles": false,
     "src/Helpers.tsx": false,
-    "src/Constants.tsx": true,
+    "src/Constants.tsx": false,
     "src/view/ScheduleBoardScreen.tsx": true,
     "src/view/components/TypographyElements.tsx": true
   },
