@@ -19,7 +19,7 @@ export function assertNotNull(
 ) {
   if (value === null || value === undefined) {
     throw new Error(
-      `The variable ${key} in class ${functionName} must not be null or undefined.`
+      `The variable ${key} in function ${functionName} must not be null or undefined.`
     );
   }
 }
@@ -31,10 +31,12 @@ export function checkParameters(params: Array<any>, functionName: String) {
 };
 
 //Error check
-export function checkSetter(value: any, variable: string): any {
+export function checkSetter(value: any, variable: string, className: String): any {
   try {
     if (!value || value === null || value === undefined) {
-      throw new Error(variable + " is invalid!");
+      throw new Error(
+        `SetterError: ${variable} in ${className} must not be null or undefined.`
+      );
     }
     return value;
   } catch (err) {
@@ -42,10 +44,12 @@ export function checkSetter(value: any, variable: string): any {
   }
 }
 
-export function checkGetter(value: any, variable: string): any {
+export function checkGetter(value: any, variable: string, className: String): any {
   try {
     if (!value || value === null || value === undefined) {
-      throw new Error(variable + " is invalid!");
+      throw new Error(
+        `GetterError: ${variable} in ${className} must not be null or undefined.`
+        );
     }
     return value;
   } catch (err) {

@@ -1,6 +1,8 @@
 import * as ExerciseModel from "../model/ExerciseModel";
 import { checkGetter, checkSetter } from "../Helpers";
 
+const name = "Exercise";
+
 export default class Exercise {
   private _comments: string;
   private _execution: string;
@@ -19,44 +21,44 @@ export default class Exercise {
   }
 
   public get comments(): string {
-    return checkGetter(this._comments, "Comments");
+    return checkGetter(this._comments, "Comments", name);
   }
   private set comments(value: string) {
-    this._comments = checkSetter(value, "Comments");
+    this._comments = checkSetter(value, "Comments", name);
   }
 
   public get execution(): string {
-    return checkGetter(this._execution, "Execution");
+    return checkGetter(this._execution, "Execution", name);
   }
   private set execution(value: string) {
-    this._execution = checkSetter(value, "Execution");
+    this._execution = checkSetter(value, "Execution", name);
   }
 
   public get mediaType(): string {
-    return checkGetter(this._mediaType, "MediaType");
+    return checkGetter(this._mediaType, "MediaType", name);
   }
   private set mediaType(value: string) {
-    this._mediaType = checkSetter(value, "MediaType");
+    this._mediaType = checkSetter(value, "MediaType", name);
   }
 
   public get metaID(): string {
-    return checkGetter(this._metaID, "MetaID");
+    return checkGetter(this._metaID, "MetaID", name);
   }
   private set metaID(value: string) {
-    this._metaID = checkSetter(value, "MetaID");
+    this._metaID = checkSetter(value, "MetaID", name);
   }
 
   public get preparation(): string {
-    return checkGetter(this._preparation, "Preparation");
+    return checkGetter(this._preparation, "Preparation", name);
   }
   private set preparation(value: string) {
-    this._preparation = checkSetter(value, "Preparation");
+    this._preparation = checkSetter(value, "Preparation", name);
   }
 
   public get uri(): string {
-    return checkGetter(this._uri, "Uri");
+    return checkGetter(this._uri, "Uri", name);
   }
   private set uri(value: string) {
-    this._uri = checkSetter(value, "Uri");
+    this._uri = checkSetter(value, "Uri", name);
   }
 }

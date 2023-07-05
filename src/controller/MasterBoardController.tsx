@@ -9,7 +9,6 @@ export class MasterBoardController {
   // musclesController: MusclesImagesController;
 
   constructor(day: Days, week: Weeks, scheduleType: ScheduleTypes) {
-    console.log(day);
     this.schedule = new Schedule(day, week, scheduleType);
   }
 

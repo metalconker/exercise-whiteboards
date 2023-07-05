@@ -2,6 +2,8 @@ import * as RoutineModel from "../model/RoutineModel";
 import { checkGetter, checkSetter } from "../Helpers";
 import Exercise from "./Exercise";
 
+const name = "Routine";
+
 /**
  *   SCHEDULE_NAME: {
  *     META_ID: {
@@ -13,10 +15,11 @@ import Exercise from "./Exercise";
  *     }
  */
 export default class Routine {
-  private _alternating: boolean;
   private _exercise: Exercise;
   private _metaID: string;
   private _name: string;
+  
+  private _alternating: boolean;
   private _reps: number;
   private _sets: number;
   private _time: number;
@@ -31,52 +34,52 @@ export default class Routine {
     this.exercise = new Exercise(metaID);
   }
 
-  public get alternating(): boolean {
-    return checkGetter(this._alternating, "Alternating");
-  }
-  private set alternating(value: boolean) {
-    this._alternating = checkSetter(value, "Alternating");
-  }
-
   public get exercise(): Exercise {
-    return checkGetter(this._exercise, "Exercise");
+    return checkGetter(this._exercise, "Exercise", name);
   }
   private set exercise(value: Exercise) {
-    this._exercise = checkSetter(value, "Exercise");
+    this._exercise = checkSetter(value, "Exercise", name);
   }
 
   public get metaID(): string {
-    return checkGetter(this._metaID, "MetaID");
+    return checkGetter(this._metaID, "MetaID", name);
   }
   private set metaID(value: string) {
-    this._metaID = checkSetter(value, "MetaID");
+    this._metaID = checkSetter(value, "MetaID", name);
   }
 
   public get name(): string {
-    return checkGetter(this._name, "Name");
+    return checkGetter(this._name, "Name", name);
   }
   private set name(value: string) {
-    this._name = checkSetter(value, "Name");
+    this._name = checkSetter(value, "Name", name);
+  }
+
+  public get alternating(): boolean {
+    return this._alternating;
+  }
+  private set alternating(value: boolean) {
+    this._alternating = value;
   }
 
   public get reps(): number {
-    return checkGetter(this._reps, "Reps");
+    return this._reps;
   }
   private set reps(value: number) {
-    this._reps = checkSetter(value, "Reps");
+    this._reps = value;
   }
 
   public get sets(): number {
-    return checkGetter(this._sets, "Number");
+    return this._sets;
   }
   private set sets(value: number) {
-    this._sets = checkSetter(value, "Number");
+    this._sets = value;
   }
 
   public get time(): number {
-    return checkGetter(this._time, "Time");
+    return this._time;
   }
   private set time(value: number) {
-    this._time = checkSetter(value, "Time");
+    this._time = value;
   }
 }

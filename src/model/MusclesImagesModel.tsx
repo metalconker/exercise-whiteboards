@@ -1,6 +1,7 @@
 import { MuscleColors } from "../Enums";
+import { checkGetter, checkParameters } from "../Helpers";
 import MALE_BODY_IMAGE from "../_database/musclesDB/MaleBody.png";
-
+const name = "MusclesImagesModel";
 /**
  * gets the base male body image
  * This function returns the imported MaleBody.png image
@@ -10,7 +11,9 @@ export function getMaleBodyImage() {
 }
 
 export function getMuscleImage(muscleContainer) {
-  return MUSCLE_IMAGES[muscleContainer];
+  checkParameters(Object.entries(arguments), "getMuscleImage");
+  let temp = MUSCLE_IMAGES[muscleContainer];
+  return checkGetter(temp, "getMuscleImage", name);
 }
 
 /**
@@ -21,7 +24,9 @@ export function getSingleMuscleImageOfColor(
   muscle: string,
   color: MuscleColors
 ): NodeRequire {
-  return MUSCLE_IMAGES[muscle][color];
+  checkParameters(Object.entries(arguments), "getSingleMuscleImageOfColor");
+  let temp = MUSCLE_IMAGES[muscle][color];
+  return checkGetter(temp, "getSingleMuscleImageOfColor", name);
 }
 
 /**
@@ -33,6 +38,7 @@ export function getAllUniqueMuscleImagesOfColor(
   muscles: string[],
   color: MuscleColors
 ): NodeRequire[] {
+  checkParameters(Object.entries(arguments), "getAllUniqueMuscleImagesOfColor");
   let musclecolors: NodeRequire[] = [];
   // This 'for' loop will loop over the provided array of
   // muscle names and return musclecolor images

@@ -4,7 +4,8 @@ import {
   MuscleTypes,
   VideoExtensions,
 } from "../Enums";
-const extensions = [ImageExtensions, VideoExtensions];
+import { checkGetter, checkParameters } from "../Helpers";
+const name = "ExerciseModel";
 
 /* Promises to return an array of dictionaries as follows:
   {
@@ -17,11 +18,12 @@ const extensions = [ImageExtensions, VideoExtensions];
   }
 */
 export function getMultipleMetadata(metaIDs: Array<string>): Array<{}> {
+  checkParameters(Object.entries(arguments), "getMultipleMetadata");
   let temp: Array<{}> = [];
   for (let metaID of metaIDs) {
     temp[metaID] = getSingleMetadata(metaID);
   }
-  return temp;
+  return checkGetter(temp, "getMultipleMetadata", name);
 }
 
 /* Promises to return a dictionary as follows:
@@ -33,22 +35,31 @@ export function getMultipleMetadata(metaIDs: Array<string>): Array<{}> {
     }
 */
 export function getSingleMetadata(metaID: string): {} {
-  return SelectDatabase(metaID)[metaID];
+  checkParameters(Object.entries(arguments), "getSingleMetadata");
+  let temp = selectDatabase(metaID)[metaID];
+  return checkGetter(temp, "getSingleMetadata", name);
 }
 
 export function getExerciseDetails(metaID: string) {
-  return SelectDatabase(metaID)[metaID]["details"][metaID];
+  checkParameters(Object.entries(arguments), "getExerciseDetails");
+  let temp = selectDatabase(metaID)[metaID]["details"][metaID];
+  return checkGetter(temp, "getExerciseDetails", name);
 }
 
 export function getExerciseID(metaID: string): string {
-  return SelectDatabase(metaID)[metaID]["id"];
+  checkParameters(Object.entries(arguments), "getExerciseID");
+  let temp = selectDatabase(metaID)[metaID]["id"];
+  return checkGetter(temp, "getExerciseID", name);
 }
 
 export function getMedia(metaID: string): string {
-  return SelectDatabase(metaID)[metaID]["media"] ?? "";
+  checkParameters(Object.entries(arguments), "getMedia");
+  let temp = selectDatabase(metaID)[metaID]["media"] ?? "";
+  return checkGetter(temp, "getMedia", name);
 }
 
 export function getMediaType(metaID: string): MediaTypes {
+  checkParameters(Object.entries(arguments), "getMediaType");
   let uri = getMedia(metaID);
   if (!uri) return MediaTypes.IMAGE;
 
@@ -71,62 +82,85 @@ export function getMediaType(metaID: string): MediaTypes {
 
 // // Returns the muscle inf in set format
 export function getMuscleInformation(metaID: string): {} {
+  checkParameters(Object.entries(arguments), "getMuscleInformation");
   const exerciseDetails = getExerciseDetails(metaID);
   const muscleInformation = {};
   for (let [muscleType, muscleString] of Object.entries(exerciseDetails)) {
-    const muscles = ParseMuscleString(muscleString);
+    const muscles = parseMuscleString(muscleString);
     muscleInformation[muscleType] = new Set(muscles);
   }
-
   return muscleInformation;
 }
 
 export function getMuscleGroup(metaID: string): string {
-  return getExerciseDetails(metaID)["musclegroup"];
+  checkParameters(Object.entries(arguments), "getMuscleGroup");
+  let temp = getExerciseDetails(metaID)["musclegroup"];
+  return checkGetter(temp, "getMuscleGroup", name);
 }
 export function getEquipment(metaID: string): string {
-  return getExerciseDetails(metaID)["equipment"];
+  checkParameters(Object.entries(arguments), "getEquipment");
+  let temp = getExerciseDetails(metaID)["equipment"];
+  return checkGetter(temp, "getEquipment", name);
 }
 export function getExerciseType(metaID: string): string {
-  return getExerciseDetails(metaID)["exercisetype"];
+  checkParameters(Object.entries(arguments), "getExerciseType");
+  let temp = getExerciseDetails(metaID)["exercisetype"];
+  return checkGetter(temp, "getExerciseType", name);
 }
 export function getName(metaID: string): string {
-  return getExerciseDetails(metaID)["name"];
+  checkParameters(Object.entries(arguments), "getName");
+  let temp = getExerciseDetails(metaID)["name"];
+  return checkGetter(temp, "getName", name);
 }
 export function getMuscleClass(metaID: string): string {
-  return getExerciseDetails(metaID)["muscleclass"];
+  checkParameters(Object.entries(arguments), "getMuscleClass");
+  let temp = getExerciseDetails(metaID)["muscleclass"];
+  return checkGetter(temp, "getMuscleClass", name);
 }
 export function getUtility(metaID: string): string {
-  return getExerciseDetails(metaID)["utility"];
+  checkParameters(Object.entries(arguments), "getUtility");
+  let temp = getExerciseDetails(metaID)["utility"];
+  return checkGetter(temp, "getUtility", name);
 }
 export function getMechanics(metaID: string): string {
-  return getExerciseDetails(metaID)["mechanics"];
+  checkParameters(Object.entries(arguments), "getMechanics");
+  let temp = getExerciseDetails(metaID)["mechanics"];
+  return checkGetter(temp, "getMechanics", name);
 }
 export function getForce(metaID: string): string {
-  return getExerciseDetails(metaID)["force"];
+  checkParameters(Object.entries(arguments), "getForce");
+  let temp = getExerciseDetails(metaID)["force"];
+  return checkGetter(temp, "getForce", name);
 }
 export function getPreparation(metaID: string): string {
-  return getExerciseDetails(metaID)["preparation"];
+  checkParameters(Object.entries(arguments), "getPreparation");
+  let temp = getExerciseDetails(metaID)["preparation"];
+  return checkGetter(temp, "getPreparation", name);
 }
 export function getExecution(metaID: string): string {
-  return getExerciseDetails(metaID)["execution"];
+  checkParameters(Object.entries(arguments), "getExecution");
+  let temp = getExerciseDetails(metaID)["execution"];
+  return checkGetter(temp, "getExecution", name);
 }
 export function getComments(metaID: string): string {
-  return getExerciseDetails(metaID)["comments"];
+  checkParameters(Object.entries(arguments), "getComments");
+  let temp = getExerciseDetails(metaID)["comments"];
+  return checkGetter(temp, "getComments", name);
 }
 
-function ParseMuscleString(muscles: any): Array<string> {
+function parseMuscleString(muscles: any): Array<string> {
+  checkParameters(Object.entries(arguments), "parseMuscleString");
   return muscles.replace(/\s/g, "").split(",");
 }
 
 // Chooses the correct database to return information from
-function SelectDatabase(metaID: string): {} {
+function selectDatabase(metaID: string): {} {
+  checkParameters(Object.entries(arguments), "selectDatabase");
   if (metaID.startsWith("Custom")) {
     return CUSTOM_METADATA;
   }
   return EXRX_METADATA;
 }
-
 
 const CUSTOM_METADATA = {
   CustomStandAndReach: {
