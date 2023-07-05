@@ -10,12 +10,12 @@ export default class Exercise {
   private _uri: string;
 
   constructor(metaID: string) {
-    this.comments = ExerciseModel.GetComments(metaID);
-    this.execution = ExerciseModel.GetExecution(metaID);
-    this.mediaType = ExerciseModel.GetMediaType(metaID);
     this.metaID = metaID;
-    this.preparation = ExerciseModel.GetPreparation(metaID);
-    this.uri = ExerciseModel.GetMedia(metaID);
+    this.comments = ExerciseModel.getComments(metaID);
+    this.execution = ExerciseModel.getExecution(metaID);
+    this.mediaType = ExerciseModel.getMediaType(metaID);
+    this.preparation = ExerciseModel.getPreparation(metaID);
+    this.uri = ExerciseModel.getMedia(metaID);
   }
 
   public get comments(): string {

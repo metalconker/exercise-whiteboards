@@ -1,6 +1,6 @@
 import * as ScheduleModel from "../model/ScheduleModel";
 import * as RoutineModel from "../model/RoutineModel";
-import { Days, ScheduleTypes, Weeks } from "../Constants";
+import { Days, ScheduleTypes, Weeks } from "../Enums";
 import { checkGetter, checkSetter } from "../Helpers";
 import Routine from "./Routine";
 

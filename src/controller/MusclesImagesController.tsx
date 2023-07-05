@@ -1,15 +1,14 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { MUSCLE_COLORS } from "../Constants";
+import { MuscleColors } from "../Enums";
 import { MUSCLES_CONSTANTS } from "../view/styles/Stylesheet";
-import * as MusclesModel from "../model/MusclesModel";
+import * as MusclesImagesModel from "../model/MusclesImagesModel";
 import { MusclesImagesContainer } from "../view/components/ModalComponents";
 /**
  * MuscleViewController class creates objects
  * based on color in order to draw muscles
  */
-export class MusclesController {
-
+export class MusclesImagesController {
   drawable: any[] = [];
 
   constructor(muscleInformation: {}) {
@@ -20,23 +19,22 @@ export class MusclesController {
     // Create array in which To hold the objects can be draw
     // const drawable: any[] = [];
     // Loop through the available muscle colors
-    Object.keys(MUSCLE_COLORS).forEach((colorkey) => {
-      const color = MUSCLE_COLORS[colorkey];
+    Object.keys(MuscleColors).forEach((colorkey) => {
+      const color = MuscleColors[colorkey];
       // Create the objects for each color to be drawable
       this.drawable.push(this.loopColor(color, mappedColors[color]));
     });
   }
 
-  render()
-  {
-    return <MusclesImagesContainer muscles={this.drawable}/>
+  render() {
+    return <MusclesImagesContainer muscles={this.drawable} />;
   }
 
   separateMuscles(muscleInformation: {}) {
     let muscles = {};
     // Intialize new Set for each colors and add them to `muscles` object
-    for (let colorkey in MUSCLE_COLORS) {
-      muscles[MUSCLE_COLORS[colorkey]] = new Set();
+    for (let colorkey in MuscleColors) {
+      muscles[MuscleColors[colorkey]] = new Set();
     }
     // Get needed informational details from the file
     for (let category in muscleInformation) {
@@ -55,8 +53,8 @@ export class MusclesController {
   mapColors(muscles) {
     const mappedColors = {};
     // Iterate through each color and map related muscle names to that color
-    Object.keys(MUSCLE_COLORS).forEach((colorKey) => {
-      const color = MUSCLE_COLORS[colorKey];
+    Object.keys(MuscleColors).forEach((colorKey) => {
+      const color = MuscleColors[colorKey];
       const unmappedColors = muscles[color];
       // List to hold the currently mappedMuscles
       mappedColors[color] = new Set();
@@ -79,13 +77,11 @@ export class MusclesController {
     const temp: any[] = [];
     colorArray.forEach((muscleContainer) => {
       if (muscleContainer) {
-        const current = MusclesModel.getMuscleImage(muscleContainer);
+        const current = MusclesImagesModel.getMuscleImage(muscleContainer);
         // const current = MUSCLE_IMAGES[muscleContainer];
         const uniqueKey = `${color}-${muscleContainer}`;
         // Add objects to drawabled array
-        temp.push(
-          current[color]
-        );
+        temp.push(current[color]);
       }
     });
     return temp;
@@ -94,20 +90,17 @@ export class MusclesController {
   /**
    * Associate the provided muscle group with its applicable color
    */
-  filterColor(musclegroup) {
+  filterColor(musclegroup): MuscleColors {
     switch (musclegroup) {
       case "antagonist stabilizers":
-        return MUSCLE_COLORS.GREEN;
-      case "dynamic stabilizers":
-        return MUSCLE_COLORS.GREEN;
+      case "dynamic stabilizers": 
       case "other":
-        return MUSCLE_COLORS.GREEN;
       case "stabilizers":
-        return MUSCLE_COLORS.GREEN;
+        return MuscleColors.GREEN;
       case "synergists":
-        return MUSCLE_COLORS.BLUE;
+        return MuscleColors.BLUE;
       case "target":
-        return MUSCLE_COLORS.RED;
+        return MuscleColors.RED;
       default:
         throw "Muscle Group doesn't exist: " + musclegroup;
     }

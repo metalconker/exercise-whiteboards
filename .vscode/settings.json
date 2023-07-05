@@ -24,17 +24,20 @@
     "src/_database/schedulesDB/MetaIDs.txt": false,
     "src/_database/schedulesDB/MetaIDExtractor.py": false,
     "src/_application": true,
-    "src/model/ExercisesModel.d.ts": true,
+    "src/model/ExercisesModel.d.ts": false,
     "src/controller/exercises": true,
     "src/index.tsx": true,
     "src/model": false,
     "src/view/containers": true,
-    "src/_database": true,
+    "src/_database": false,
     "src/view/styles": false,
     "src/Helpers.tsx": false,
     "src/Constants.tsx": false,
     "src/view/ScheduleBoardScreen.tsx": true,
-    "src/view/components/TypographyElements.tsx": true
+    "src/view/components/TypographyElements.tsx": true,
+    "typings/custom": false,
+    "typings": false,
+    "/home/rayyan/Desktop/Desktop/whiteboards-app-local-scratch": true
   },
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnPaste": false, // required

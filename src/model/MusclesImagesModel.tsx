@@ -1,21 +1,11 @@
-/*
-This code imports from the Constants a color dictionary and an image 
-source for the MaleBody.png. It also exports two functions - one getter 
-and one that delivers an array of muscles to set a color of the muscles 
-from the MUSCLE_IMAGES dictionary. Error checks are included in the 
-GetMusclesOfColor function for both the colors from the MUSCLE_COLORS 
-dictionary and the matching muscle in the MUSCLE_IMAGES dictionary. 
-The final results are a unique array of muscle colors.
-*/
-
-import { MuscleColors } from "../Constants";
+import { MuscleColors } from "../Enums";
 import MALE_BODY_IMAGE from "../_database/musclesDB/MaleBody.png";
 
 /**
- * Gets the base male body image
+ * gets the base male body image
  * This function returns the imported MaleBody.png image
  */
-export function GetMaleBodyImage() {
+export function getMaleBodyImage() {
   return MALE_BODY_IMAGE;
 }
 
@@ -27,34 +17,33 @@ export function getMuscleImage(muscleContainer) {
  * This function takes two parameters, a given muscle name and a color
  * and returns a targeted muscle image with that given color
  */
-export function GetSingleMuscleOfColor(muscle, color) {
+export function getSingleMuscleImageOfColor(
+  muscle: string,
+  color: MuscleColors
+): NodeRequire {
   return MUSCLE_IMAGES[muscle][color];
 }
 
 /**
  * This function takes two parameters, an array of muscles names and a
- * color, and finds and returns an array of unique muslce images with 
+ * color, and finds and returns an array of unique muslce images with
  * each muscle in the array in the given corresponding color.
  */
-export function GetUniqueMusclesOfColor(muscle_array, color) {
-  // error check for colors
-  // This 'if' statement throws an error message
-  // if the given color does not exist
-  if (!MuscleColors.hasOwnProperty(color)) {
-    throw "Color doesn't exist";
-  }
-
-  let musclecolors: any[] = [];
+export function getAllUniqueMuscleImagesOfColor(
+  muscles: string[],
+  color: MuscleColors
+): NodeRequire[] {
+  let musclecolors: NodeRequire[] = [];
   // This 'for' loop will loop over the provided array of
   // muscle names and return musclecolor images
-  for (let muscle of muscle_array) {
+  for (let muscle of muscles) {
     // error check for muscles
     // This 'if' statement throws an error message if
     // the given muscle does not exist
     if (!MUSCLE_IMAGES.hasOwnProperty(muscle)) {
       throw "Muscle doesn't exist";
     }
-    let musclecolor = GetSingleMuscleOfColor(muscle, color);
+    let musclecolor = getSingleMuscleImageOfColor(muscle, color);
     musclecolors.push(musclecolor);
   }
   // This line creates an array from the targeted set

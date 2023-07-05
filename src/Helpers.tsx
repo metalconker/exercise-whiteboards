@@ -12,6 +12,24 @@ export function validateProps(props) {
   }
 }
 
+export function assertNotNull(
+  key: String,
+  value: any,
+  functionName: String
+) {
+  if (value === null || value === undefined) {
+    throw new Error(
+      `The variable ${key} in class ${functionName} must not be null or undefined.`
+    );
+  }
+}
+
+export function checkParameters(params: Array<any>, functionName: String) {
+   params.forEach( ([key, value]) => {
+    assertNotNull(key, value, functionName);
+  });
+};
+
 //Error check
 export function checkSetter(value: any, variable: string): any {
   try {

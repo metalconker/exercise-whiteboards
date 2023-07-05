@@ -1,31 +1,18 @@
-import { Days, Weeks } from "./Constants";
+import { Days, ScheduleTypes, Weeks } from "./Enums";
 import { getWeek } from "./Helpers";
 import { MasterBoardController } from "./controller/MasterBoardController";
 
-var test = true;
-// var test = false;
+const date = new Date();
+const test = true;
+// const test : boolean= false;
 
 export default function App() {
-  const date = new Date();
-  var today = date.getDay() % 7;
-  if (test) today = 5;
-  const week = (getWeek(date) % Object.keys(WEEKS).length) + 1;
-  const day = Object.keys(Days)[today];
+  const dayIndex = test ? 5 : date.getDay() % 7;
+  const weekIndex = getWeek(date) % Object.keys(Weeks).length;
 
-  // TODO use constants instead of integers
-  const warmupScreenController = new MasterBoardController(
-    day,
-    week,
-    0
-  );
-  // const workoutScreenController = new ScheduleBoardScreenController(
-  //   day,
-  //   week,
-  //   1
-  // );
+  const week: Weeks = Weeks[Object.keys(Weeks)[weekIndex]];
+  const day: Days = Days[Object.keys(Days)[dayIndex]];
 
-  warmupScreenController.render();
-
-  // return <WorkoutBoardScreen day={day} week={weekNumber} />;
-  // return <WarmupBoardScreen day={day} week={weekNumber} />;
+  const warmups = new MasterBoardController(day, week, ScheduleTypes.WARMUPS);
+  return warmups.render();
 }

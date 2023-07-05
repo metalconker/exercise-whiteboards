@@ -1,14 +1,15 @@
 import React from "react";
 import Schedule from "../objects/Schedule";
 import { ScheduleBoardScreen } from "../view/ScheduleBoardScreen";
-import { MusclesController } from "./MusclesController";
-import { Days, ScheduleTypes, Weeks } from "../Constants";
+// import { MusclesImagesController } from "./MusclesImagesController";
+import { Days, ScheduleTypes, Weeks } from "../Enums";
 
 export class MasterBoardController {
   schedule: Schedule;
-  musclesController: MusclesController;
+  // musclesController: MusclesImagesController;
 
   constructor(day: Days, week: Weeks, scheduleType: ScheduleTypes) {
+    console.log(day);
     this.schedule = new Schedule(day, week, scheduleType);
   }
 
@@ -17,7 +18,6 @@ export class MasterBoardController {
       <ScheduleBoardScreen
         name={this.schedule.scheduleName}
         maxSets={this.schedule.maxSets}
-        // data={this.schedule.scheduleData}
       ></ScheduleBoardScreen>
     );
   }

@@ -3,9 +3,10 @@ import {
   MediaTypes,
   MuscleTypes,
   VideoExtensions,
-} from "../Constants";
+} from "../Enums";
+const extensions = [ImageExtensions, VideoExtensions];
 
-/* Promises to return a dictionary as follows:
+/* Promises to return an array of dictionaries as follows:
   {
     metaID:
         {
@@ -15,10 +16,10 @@ import {
         }
   }
 */
-export function GetMultipleMetadata(metaIDs: Array<string>) {
-  var temp = {};
-  for (var metaID of metaIDs) {
-    temp[metaID] = GetSingleMetadata(metaID);
+export function getMultipleMetadata(metaIDs: Array<string>): Array<{}> {
+  let temp: Array<{}> = [];
+  for (let metaID of metaIDs) {
+    temp[metaID] = getSingleMetadata(metaID);
   }
   return temp;
 }
@@ -31,111 +32,101 @@ export function GetMultipleMetadata(metaIDs: Array<string>) {
       media:
     }
 */
-export function GetSingleMetadata(metaID: string): string {
+export function getSingleMetadata(metaID: string): {} {
   return SelectDatabase(metaID)[metaID];
 }
 
-export function GetExerciseDetails(metaID: string): string {
+export function getExerciseDetails(metaID: string) {
   return SelectDatabase(metaID)[metaID]["details"][metaID];
 }
 
-export function GetExerciseID(metaID: string): string {
+export function getExerciseID(metaID: string): string {
   return SelectDatabase(metaID)[metaID]["id"];
 }
 
-export function GetMedia(metaID: string): string {
-  // console.log(SelectDatabase(metaID).METADATA[metaID]["media"]);
-  try {
-    return SelectDatabase(metaID)[metaID]["media"];
-  } catch {
-    return "";
-  }
+export function getMedia(metaID: string): string {
+  return SelectDatabase(metaID)[metaID]["media"] ?? "";
 }
 
-export function GetMediaType(metaID: string): string {
-  let uri = GetMedia(metaID);
-  if (uri == "") return MediaTypes.IMAGE;
-  for (let type in ImageExtensions) {
-    if (uri.includes("." + ImageExtensions[type])) return MediaTypes.IMAGE;
-    if (uri.includes("image/")) return MediaTypes.IMAGE;
+export function getMediaType(metaID: string): MediaTypes {
+  let uri = getMedia(metaID);
+  if (!uri) return MediaTypes.IMAGE;
+
+  if (
+    uri.includes("image") ||
+    Object.values(ImageExtensions).some((ext) => uri.includes(ext))
+  ) {
+    return MediaTypes.IMAGE;
   }
-  for (let type in VideoExtensions) {
-    if (uri.includes("." + VideoExtensions[type])) return MediaTypes.VIDEO;
-    if (uri.includes("video/")) return MediaTypes.VIDEO;
+
+  if (
+    uri.includes("video") ||
+    Object.values(VideoExtensions).some((ext) => uri.includes(ext))
+  ) {
+    return MediaTypes.VIDEO;
   }
-  return MediaTypes.IMAGE;
+
   throw "Media Extension not found: " + metaID;
 }
 
-// Returns the muscle inf in set format
-export function GetMuscleInformation(metaID: string): string {
-  var temp = {};
-  let details = GetExerciseDetails(metaID);
-
-  for (let key in MuscleTypes) {
-    let muscletype = MuscleTypes[key];
-    if (muscletype in details) {
-      temp[muscletype] = new Set();
-      let muscles = ParseMuscleString(details[muscletype]);
-      for (let muscle of muscles) {
-        temp[muscletype].add(muscle);
-      }
-    }
+// // Returns the muscle inf in set format
+export function getMuscleInformation(metaID: string): {} {
+  const exerciseDetails = getExerciseDetails(metaID);
+  const muscleInformation = {};
+  for (let [muscleType, muscleString] of Object.entries(exerciseDetails)) {
+    const muscles = ParseMuscleString(muscleString);
+    muscleInformation[muscleType] = new Set(muscles);
   }
-  return temp;
+
+  return muscleInformation;
 }
 
-export function GetMuscleGroup(metaID: string): string {
-  return GetExerciseDetails(metaID)["musclegroup"];
+export function getMuscleGroup(metaID: string): string {
+  return getExerciseDetails(metaID)["musclegroup"];
 }
-export function GetEquipment(metaID: string): string {
-  return GetExerciseDetails(metaID)["equipment"];
+export function getEquipment(metaID: string): string {
+  return getExerciseDetails(metaID)["equipment"];
 }
-export function GetExerciseType(metaID: string): string {
-  return GetExerciseDetails(metaID)["exercisetype"];
+export function getExerciseType(metaID: string): string {
+  return getExerciseDetails(metaID)["exercisetype"];
 }
-export function GetName(metaID: string): string {
-  return GetExerciseDetails(metaID)["name"];
+export function getName(metaID: string): string {
+  return getExerciseDetails(metaID)["name"];
 }
-export function GetMuscleClass(metaID: string): string {
-  return GetExerciseDetails(metaID)["muscleclass"];
+export function getMuscleClass(metaID: string): string {
+  return getExerciseDetails(metaID)["muscleclass"];
 }
-export function GetUtility(metaID: string): string {
-  return GetExerciseDetails(metaID)["utility"];
+export function getUtility(metaID: string): string {
+  return getExerciseDetails(metaID)["utility"];
 }
-export function GetMechanics(metaID: string): string {
-  return GetExerciseDetails(metaID)["mechanics"];
+export function getMechanics(metaID: string): string {
+  return getExerciseDetails(metaID)["mechanics"];
 }
-export function GetForce(metaID: string): string {
-  return GetExerciseDetails(metaID)["force"];
+export function getForce(metaID: string): string {
+  return getExerciseDetails(metaID)["force"];
 }
-export function GetPreparation(metaID: string): string {
-  return GetExerciseDetails(metaID)["preparation"];
+export function getPreparation(metaID: string): string {
+  return getExerciseDetails(metaID)["preparation"];
 }
-export function GetExecution(metaID: string): string {
-  return GetExerciseDetails(metaID)["execution"];
+export function getExecution(metaID: string): string {
+  return getExerciseDetails(metaID)["execution"];
 }
-export function GetComments(metaID: string): string {
-  return GetExerciseDetails(metaID)["comments"];
+export function getComments(metaID: string): string {
+  return getExerciseDetails(metaID)["comments"];
 }
 
-function ParseMuscleString(muscles: string): Array<string> {
-  var muscles = muscles.replace(/ /g, "");
-  var musclesArr = muscles.split(",");
-  return musclesArr;
+function ParseMuscleString(muscles: any): Array<string> {
+  return muscles.replace(/\s/g, "").split(",");
 }
 
 // Chooses the correct database to return information from
-function SelectDatabase(metaID: string): string {
+function SelectDatabase(metaID: string): {} {
   if (metaID.startsWith("Custom")) {
-    // console.log(metaID);
-    // var METADATA = CUSTOM_METADATA;
     return CUSTOM_METADATA;
-  } else {
-    // console.log(metaID);
-    return EXRX_METADATA;
   }
+  return EXRX_METADATA;
 }
+
 
 const CUSTOM_METADATA = {
   CustomStandAndReach: {

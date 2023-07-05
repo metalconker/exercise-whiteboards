@@ -41,6 +41,7 @@ export enum Days {
   SATURDAY = "Saturday",
 }
 
+
 export enum JSONDetails {
   ID = "id",
   EXERCISEID = "exerciseid",
@@ -149,3 +150,4 @@ export enum Definitions {
   ISOTONIC = '"Equal tension" so that the weight on your muscles stays the same.',
   ISOKINETIC = '"Equal speed" so that your muscles are contracting at the same speed throughout the workout.',
 }
+
