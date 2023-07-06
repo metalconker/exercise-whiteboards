@@ -1,24 +1,28 @@
 import * as React from "react";
-import { Typography, Box, Grid, ThemeProvider } from "@mui/material";
+import {
+  SetsRowHeader,
+} from "./components/ScheduleComponents";
+import { Typography, Box, ThemeProvider } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import {
   WHITEBOARD_BACKGROUND,
-  COLORS,
   EXERCISE_BOARD_STYLES,
   THEME,
-} from "../styles/Stylesheet";
+} from "./styles/Stylesheet";
 
-interface WhiteboardContainerProps {
-  children: [
-    React.ReactElement<WhiteboardTitleProps>,
-    React.ReactElement<WhiteboardBodyProps>
-  ];
+interface WhiteboardBackgroundProps {
+  children
+  // : 
+  // [
+  //   React.ReactElement<WhiteboardTitleProps>,
+  //   React.ReactElement<WhiteboardBodyProps>
+  // ];
 }
 /**
  *  Class that renders a title to the board based on props
  */
-export const WhiteboardContainer = React.memo(
-  (props: WhiteboardContainerProps) => {
+export const WhiteboardBackground = React.memo(
+  (props: WhiteboardBackgroundProps) => {
     // const [title, body] = props.children;
     return (
       <ThemeProvider theme={THEME}>

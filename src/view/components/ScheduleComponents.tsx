@@ -7,7 +7,7 @@ import { ErasableText } from "./TypographyElements";
 /** 
   Class that renders an exercise board to the screen with data from the ExerciseBoardScreenController
 */
-interface ScheduleGridProps {
+interface ScheduleViewProps {
   scheduleData: any;
   maxSets: number;
   metaIDKeys: any;
@@ -16,7 +16,7 @@ interface ScheduleGridProps {
 /** 
   Class that renders a grid of the exercises for each set based on props
 */
-export class ScheduleGrid extends React.Component<ScheduleGridProps> {
+export class ScheduleView extends React.Component<ScheduleViewProps> {
   render() {
     return this.props.metaIDKeys.map((i, index) => (
       <ExercisesRow
@@ -30,13 +30,13 @@ export class ScheduleGrid extends React.Component<ScheduleGridProps> {
   }
 }
 
-interface SetsRowHeaderProps {
+interface SetsRowViewProps {
   maxSets: number;
 }
 /** 
   Class that renders a grid of the sets to the board based on props
 */
-export const SetsRowHeader = React.memo((props: SetsRowHeaderProps) => {
+export const SetsRowView = React.memo((props: SetsRowViewProps) => {
   return (
     <Grid
       container
@@ -63,7 +63,7 @@ export const SetsRowHeader = React.memo((props: SetsRowHeaderProps) => {
   );
 });
 
-interface RoutineRowProps {
+interface RoutineViewProps {
   index: number;
   media: any;
   mediaType: any;
@@ -82,8 +82,8 @@ interface RoutineRowProps {
 /** 
   Class that renders a particular exercise grid row based on props
 */
-export const RoutineRow = React.memo(
-  (props: RoutineRowProps) => {
+export const RoutineView = React.memo(
+  (props: RoutineViewProps) => {
     return (
       <Grid
         container
@@ -100,7 +100,7 @@ export const RoutineRow = React.memo(
 );
 
 // Function 2
-const repsRow = (props: RoutineRowProps, index: number): Grid => {
+const repsRow = (props: RoutineViewProps, index: number): Grid => {
   if (index == 0) {
     return (
       <Grid key={index} item xs={props.maxSets}>

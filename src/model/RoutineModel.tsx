@@ -1,58 +1,62 @@
-import { checkGetter, checkParameters } from "../Helpers";
-
+import { assertNotNull, checkGetter, checkParameters } from "../Helpers";
 const ROUTINE_DATA_JSON: any = require("../_database/schedulesDB/RoutineData.json");
 const name = "RoutineModel";
+var routineData;
 
-// Get Metadata Keys
-// Returns an array of strings representing the IDs of all exercises in the schedule
-export function getMetaIDKeys(scheduleName: string): Array<string> {
+/**
+ * MUST BE CALLED for Routine Model to work
+ * Get Metadata Keys
+ * Returns an array of strings representing the IDs of all exercises in the schedule
+ * Loads the Model in to working memory
+ */
+export function getMetaIDKeys(
+  scheduleName: string
+): Array<string> {
   checkParameters(Object.entries(arguments), "getMetaIDKeys");
   let keys: Array<string> = [];
-  const scheduleData = ROUTINE_DATA_JSON[scheduleName];
-  for (let metaIDKey in scheduleData) {
+  routineData = ROUTINE_DATA_JSON[scheduleName];
+  for (let metaIDKey in routineData) {
     keys.push(metaIDKey);
   }
   if (keys.length > 0) return keys;
   throw "No Keys Object";
 }
 
-export function getName(scheduleName: string, metaIDKey: string): string {
+export function getName(metaIDKey: string): string {
   checkParameters(Object.entries(arguments), "getName");
-
-  return ROUTINE_DATA_JSON[scheduleName][metaIDKey]["Name"];
+  assertNotNull("Routine Data", routineData, "getName");
+  return routineData[metaIDKey]["Name"];
 }
 
-export function getNumSets(scheduleName: string, metaIDKey: string): number {
+export function getNumSets(metaIDKey: string): number {
   checkParameters(Object.entries(arguments), "getNumSets");
-  return ROUTINE_DATA_JSON[scheduleName][metaIDKey]["Sets"];
+  assertNotNull("Routine Data", routineData, "getNumSets");
+  return routineData[metaIDKey]["Sets"];
 }
 
-export function getNumReps(scheduleName: string, metaIDKey: string): number {
+export function getNumReps(metaIDKey: string): number {
   checkParameters(Object.entries(arguments), "getNumReps");
-  return ROUTINE_DATA_JSON[scheduleName][metaIDKey]["Reps"];
+  assertNotNull("Routine Data", routineData, "getNumReps");
+  return routineData[metaIDKey]["Reps"];
 }
 
-export function getTime(scheduleName: string, metaIDKey: string): number {
+export function getTime(metaIDKey: string): number {
   checkParameters(Object.entries(arguments), "getTime");
-  return ROUTINE_DATA_JSON[scheduleName][metaIDKey]["Time"];
+  assertNotNull("Routine Data", routineData, "getTime");
+  return routineData[metaIDKey]["Time"];
 }
 
-export function getIsAlternating(
-  scheduleName: string,
-  metaIDKey: string
-): boolean {
+export function getIsAlternating(metaIDKey: string): boolean {
   checkParameters(Object.entries(arguments), "getIsAlternating");
-  if (ROUTINE_DATA_JSON[scheduleName][metaIDKey]["Alternating"] == 0)
-    return false;
+  assertNotNull("Routine Data", routineData, "getIsAlternating");
+  if (routineData[metaIDKey]["Alternating"] == 0) return false;
   return true;
 }
 
-export function getIsTimeBased(
-  scheduleName: string,
-  metaIDKey: string
-): boolean {
+export function getIsTimeBased(metaIDKey: string): boolean {
   checkParameters(Object.entries(arguments), "getIsTimeBased");
-  if (getTime(scheduleName, metaIDKey) > 0) return true;
+  assertNotNull("Routine Data", routineData, "getIsTimeBased");
+  if (getTime(metaIDKey) > 0) return true;
   return false;
 }
 

@@ -1,5 +1,6 @@
 import * as ExerciseModel from "../model/ExerciseModel";
 import { checkGetter, checkSetter } from "../Helpers";
+import Muscles from "./Muscles";
 
 const name = "Exercise";
 
@@ -8,6 +9,8 @@ export default class Exercise {
   private _execution: string;
   private _mediaType: string;
   private _metaID: string;
+  private _muscles: Muscles;
+  private _muscleInformation: {};
   private _preparation: string;
   private _uri: string;
 
@@ -18,6 +21,8 @@ export default class Exercise {
     this.mediaType = ExerciseModel.getMediaType(metaID);
     this.preparation = ExerciseModel.getPreparation(metaID);
     this.uri = ExerciseModel.getMedia(metaID);
+    this.muscleInformation = ExerciseModel.getMuscleInformation(metaID);
+    this.muscles = new Muscles(this.muscleInformation);
   }
 
   public get comments(): string {
@@ -46,6 +51,20 @@ export default class Exercise {
   }
   private set metaID(value: string) {
     this._metaID = checkSetter(value, "MetaID", name);
+  }
+
+  public get muscleInformation(): {} {
+    return checkGetter(this._muscleInformation, "muscleInformation", name);
+  }
+  private set muscleInformation(value: {}) {
+    this._muscleInformation = checkSetter(value, "muscleInformation", name);
+  }
+
+  public get muscles(): Muscles {
+    return checkGetter(this._muscles, "muscles", name);
+  }
+  private set muscles(value: Muscles) {
+    this._muscles = checkSetter(value, "muscles", name);
   }
 
   public get preparation(): string {

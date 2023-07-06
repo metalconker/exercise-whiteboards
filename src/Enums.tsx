@@ -1,37 +1,37 @@
 // order matters from least important to most
-export enum MuscleColors {
+export enum MuscleColor {
   GREEN = "green",
   BLUE = "blue",
   RED = "red",
 }
 
-export enum ScheduleTypes {
+export enum ScheduleType {
   WARMUPS = "Warmups",
   WORKOUTS = "Workouts",
 }
 
-export enum Weeks {
+export enum Week {
   ONE = "Week 1",
   TWO = "Week 2",
 }
 
-export enum MediaTypes {
+export enum MediaType {
   VIDEO = "video",
   IMAGE = "image",
 }
 
-export enum ImageExtensions {
+export enum ImageExtension {
   GIF = "gif",
   JPEG = "jpeg",
   JPG = "jpg",
   PNG = "png",
 }
 
-export enum VideoExtensions {
+export enum VideoExtension {
   MP4 = "mp4",
 }
 
-export enum Days {
+export enum Day {
   SUNDAY = "Sunday",
   MONDAY = "Monday",
   TUESDAY = "Tuesday",
@@ -58,7 +58,7 @@ export enum JSONDetails {
   COMMENTS = "comments",
 }
 
-export enum MuscleGroups {
+export enum MuscleGroup {
   BACK = "Back",
   CALVES = "Calves",
   CHEST = "Chest",
@@ -71,7 +71,7 @@ export enum MuscleGroups {
   WAIST = "Waist",
 }
 
-export enum MuscleTypes {
+export enum MuscleType {
   ANTAGONIST_STABILIZERS = "antagonist stabilizers",
   DYNAMIC_STABILIZERS = "dynamic stabilizers",
   OTHER = "other",
@@ -80,7 +80,7 @@ export enum MuscleTypes {
   TARGET = "target",
 }
 
-export enum Muscles {
+export enum Muscle {
   ADDUCTORS = "Group of muscles mostly used for bringing the thighs together.",
   BICEPSBRACHII = "Two-headed muscle whose function is at the elbow where it flexes the forearm and supinates the forearm.",
   BRACHIALIS = "Flexes the elbow joint.",

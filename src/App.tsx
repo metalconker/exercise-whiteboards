@@ -1,6 +1,6 @@
-import { Days, ScheduleTypes, Weeks } from "./Enums";
+import { Day, ScheduleType, Week } from "./Enums";
 import { getWeek } from "./Helpers";
-import { MasterBoardController } from "./controller/MasterBoardController";
+import { WhiteboardController } from "./controller/WhiteboardController";
 
 const date = new Date();
 const test = true;
@@ -8,11 +8,11 @@ const test = true;
 
 export default function App() {
   const dayIndex = test ? 5 : date.getDay() % 7;
-  const weekIndex = getWeek(date) % Object.keys(Weeks).length;
+  const weekIndex = getWeek(date) % Object.keys(Week).length;
 
-  const week: Weeks = Weeks[Object.keys(Weeks)[weekIndex]];
-  const day: Days = Days[Object.keys(Days)[dayIndex]];
+  const week: Week = Week[Object.keys(Week)[weekIndex]];
+  const day: Day = Day[Object.keys(Day)[dayIndex]];
 
-  const warmups = new MasterBoardController(day, week, ScheduleTypes.WARMUPS);
+  const warmups = new WhiteboardController(day, week, ScheduleType.WARMUPS);
   return warmups.render();
 }

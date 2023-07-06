@@ -1,8 +1,8 @@
 import {
-  ImageExtensions,
-  MediaTypes,
-  MuscleTypes,
-  VideoExtensions,
+  ImageExtension,
+  MediaType,
+  MuscleType,
+  VideoExtension,
 } from "../Enums";
 import { checkGetter, checkParameters } from "../Helpers";
 const name = "ExerciseModel";
@@ -58,23 +58,23 @@ export function getMedia(metaID: string): string {
   return checkGetter(temp, "getMedia", name);
 }
 
-export function getMediaType(metaID: string): MediaTypes {
+export function getMediaType(metaID: string): MediaType {
   checkParameters(Object.entries(arguments), "getMediaType");
   let uri = getMedia(metaID);
-  if (!uri) return MediaTypes.IMAGE;
+  if (!uri) return MediaType.IMAGE;
 
   if (
     uri.includes("image") ||
-    Object.values(ImageExtensions).some((ext) => uri.includes(ext))
+    Object.values(ImageExtension).some((ext) => uri.includes(ext))
   ) {
-    return MediaTypes.IMAGE;
+    return MediaType.IMAGE;
   }
 
   if (
     uri.includes("video") ||
-    Object.values(VideoExtensions).some((ext) => uri.includes(ext))
+    Object.values(VideoExtension).some((ext) => uri.includes(ext))
   ) {
-    return MediaTypes.VIDEO;
+    return MediaType.VIDEO;
   }
 
   throw "Media Extension not found: " + metaID;
@@ -134,18 +134,15 @@ export function getForce(metaID: string): string {
 }
 export function getPreparation(metaID: string): string {
   checkParameters(Object.entries(arguments), "getPreparation");
-  let temp = getExerciseDetails(metaID)["preparation"];
-  return checkGetter(temp, "getPreparation", name);
+  return getExerciseDetails(metaID)["preparation"] ?? "No Preparation Found";
 }
 export function getExecution(metaID: string): string {
   checkParameters(Object.entries(arguments), "getExecution");
-  let temp = getExerciseDetails(metaID)["execution"];
-  return checkGetter(temp, "getExecution", name);
+  return getExerciseDetails(metaID)["execution"]?? "No Execution Found";
 }
 export function getComments(metaID: string): string {
   checkParameters(Object.entries(arguments), "getComments");
-  let temp = getExerciseDetails(metaID)["comments"];
-  return checkGetter(temp, "getComments", name);
+  return getExerciseDetails(metaID)["comments"] ?? "No Comments Found";
 }
 
 function parseMuscleString(muscles: any): Array<string> {

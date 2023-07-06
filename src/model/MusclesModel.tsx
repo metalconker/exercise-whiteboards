@@ -1,7 +1,7 @@
-import { MuscleColors } from "../Enums";
+import { MuscleColor } from "../Enums";
 import { checkGetter, checkParameters } from "../Helpers";
 import MALE_BODY_IMAGE from "../_database/musclesDB/MaleBody.png";
-const name = "MusclesImagesModel";
+const name = "MusclesModel";
 /**
  * gets the base male body image
  * This function returns the imported MaleBody.png image
@@ -22,7 +22,7 @@ export function getMuscleImage(muscleContainer) {
  */
 export function getSingleMuscleImageOfColor(
   muscle: string,
-  color: MuscleColors
+  color: MuscleColor
 ): NodeRequire {
   checkParameters(Object.entries(arguments), "getSingleMuscleImageOfColor");
   let temp = MUSCLE_IMAGES[muscle][color];
@@ -36,7 +36,7 @@ export function getSingleMuscleImageOfColor(
  */
 export function getAllUniqueMuscleImagesOfColor(
   muscles: string[],
-  color: MuscleColors
+  color: MuscleColor
 ): NodeRequire[] {
   checkParameters(Object.entries(arguments), "getAllUniqueMuscleImagesOfColor");
   let musclecolors: NodeRequire[] = [];
@@ -47,7 +47,7 @@ export function getAllUniqueMuscleImagesOfColor(
     // This 'if' statement throws an error message if
     // the given muscle does not exist
     if (!MUSCLE_IMAGES.hasOwnProperty(muscle)) {
-      throw "Muscle doesn't exist";
+      throw muscle + " muscle doesn't exist";
     }
     let musclecolor = getSingleMuscleImageOfColor(muscle, color);
     musclecolors.push(musclecolor);
