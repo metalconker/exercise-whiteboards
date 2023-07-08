@@ -10,12 +10,14 @@ export class MusclesImagesContainer extends React.Component<MusclesImagesContain
   render() {
     return (
       <Paper elevation={0} square sx={paperStyles}>
-{this.props.muscles.map(src => {
-    return  <Box key={src}> 
-      {/* use unique keys to associate data retrieval */}
-      <img src={src} alt="popup" style={popupStyle} />
-    </Box>;
-  })}
+        {this.props.muscles.map((src) => {
+          return (
+            <Box key={src}>
+              {/* use unique keys to associate data retrieval */}
+              <img src={src} alt="popup" style={popupStyle} />
+            </Box>
+          );
+        })}
       </Paper>
     );
   }
@@ -36,7 +38,6 @@ When the Button is clicked, the Modal pop-up is set to "open,"
 and either a video or image is rendered depending on the mediaType
 prop that is passed in.
 */
-
 
 export class WhiteboardClickableTextModalMuscles extends React.Component<
 WhiteboardClickableTextModalMusclesProps,
@@ -71,9 +72,6 @@ handleClose() {
   this.setState({ open: false });
 }
 
-
-
-
   return (
     <Box key="InformationRow" sx={styles.informationrow}>
       {information.map(
@@ -90,7 +88,6 @@ handleClose() {
     </Box>
   );
 };
-
 
 render() {
 
@@ -129,4 +126,3 @@ render() {
   );
 }
 }
-

@@ -1,6 +1,7 @@
+import React from "react";
 import { Day, ScheduleType, Week } from "./Enums";
 import { getWeek } from "./Helpers";
-import { WhiteboardController } from "./controller/WhiteboardController";
+import { WhiteboardController} from "./controller/WhiteboardController";
 
 const date = new Date();
 const test = true;
@@ -14,5 +15,5 @@ export default function App() {
   const day: Day = Day[Object.keys(Day)[dayIndex]];
 
   const warmups = new WhiteboardController(day, week, ScheduleType.WARMUPS);
-  return warmups.render();
+  return warmups.init();
 }

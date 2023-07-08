@@ -1,39 +1,72 @@
 import React from "react";
 import { Day, ScheduleType, Week } from "../Enums";
-import { ScheduleController } from "./ScheduleController";
 import { checkGetter, checkSetter } from "../Helpers";
 import {
   WhiteboardBackground,
   WhiteboardTitle,
   WhiteboardBody,
 } from "../view/WhiteboardScreen";
+import Muscles from "../objects/Muscles";
+import Routines from "../objects/Routines";
+import Schedule from "../objects/Schedule";
+import { MusclesImagesContainer } from "../view/components/ModalComponents";
+import {
+  RoutineView,
+  SetsHeader,
+  SetsHeaderView,
+} from "../view/components/ScheduleComponents";
 
 const name = "WhiteboardController";
 
-// const warmups = new WhiteboardController(day, week, ScheduleType.WARMUPS);
 
-// hav ethis be tghe single render controller TODO ??
+
+// Function 2
+const repsRow = (
+  props: RoutineViewProps,
+  index: number,
+  name: string
+): Grid => {
+  if (index == 0) {
+
+  } else {
+
+  }
+};
+
 export class WhiteboardController {
-  // Call main Whiteboard and set up
-  render() {
-    // Renders the board to the screen
+  private _muscles: Muscles;
+  private _routines: Routines;
+  private _schedule: Schedule;
+  private _scheduleName: string;
+  private _maxSets: number;
+
+  constructor(day: Day, week: Week, scheduleType: ScheduleType) {
+    this._schedule = new Schedule(day, week, scheduleType);
+    this._scheduleName = this._schedule.scheduleName;
+    this._routines = this._schedule.routines;
+    this._maxSets = this._routines.maxSets;
+  }
+
+  init() {
+    let scheduleName = this._scheduleName;
+    let maxSets = this._maxSets;
+
     return (
       <WhiteboardBackground>
-        {this._scheduleController.render}
+        <WhiteboardTitle>{scheduleName}</WhiteboardTitle>
+        <WhiteboardBody>
+          <SetsHeader numSets={maxSets} />
+          <RoutineView />
+          {/* <MusclesImagesContainer muscles={this._muscles.colorMap} />; */}
+        </WhiteboardBody>
       </WhiteboardBackground>
     );
   }
 
-  _scheduleController: ScheduleController;
-
-  constructor(day: Day, week: Week, scheduleType: ScheduleType) {
-    this._scheduleController = new ScheduleController(day, week, scheduleType);
+  public get schedule(): Schedule {
+    return checkGetter(this._schedule, "schedule", name);
   }
-
-  public get scheduleController(): ScheduleController {
-    return checkGetter(this._scheduleController, "scheduleController", name);
-  }
-  public set scheduleController(value: ScheduleController) {
-    this._scheduleController = checkSetter(value, "scheduleController", name);
+  public set schedule(value: Schedule) {
+    this._schedule = checkSetter(value, "schedule", name);
   }
 }

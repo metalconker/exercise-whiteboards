@@ -1,37 +1,23 @@
 import * as React from "react";
-import {
-  SetsRowHeader,
-} from "./components/ScheduleComponents";
 import { Typography, Box, ThemeProvider } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import {
   WHITEBOARD_BACKGROUND,
   EXERCISE_BOARD_STYLES,
-  THEME,
+  WHITEBOARD_THEME,
 } from "./styles/Stylesheet";
 
-interface WhiteboardBackgroundProps {
-  children
-  // : 
-  // [
-  //   React.ReactElement<WhiteboardTitleProps>,
-  //   React.ReactElement<WhiteboardBodyProps>
-  // ];
-}
-/**
- *  Class that renders a title to the board based on props
- */
+const ROOT_STYLE = EXERCISE_BOARD_STYLES.SPLIT_SCREEN.root;
+const SPLIT_TOP_STYLE = EXERCISE_BOARD_STYLES.SPLIT_SCREEN.top;
+const SPLIT_BOTTOM_STYLE = EXERCISE_BOARD_STYLES.SPLIT_SCREEN.bottom;
+const TOP_CONTAINER_STYLE = EXERCISE_BOARD_STYLES.TOP_COMPONENT.container;
+
 export const WhiteboardBackground = React.memo(
-  (props: WhiteboardBackgroundProps) => {
-    // const [title, body] = props.children;
+  (props: React.PropsWithChildren) => {
     return (
-      <ThemeProvider theme={THEME}>
+      <ThemeProvider theme={WHITEBOARD_THEME}>
         <Paper elevation={0} square sx={WHITEBOARD_BACKGROUND}>
-          <Box sx={EXERCISE_BOARD_STYLES.SPLIT_SCREEN.root}>
-            {/* <WhiteboardTitle text={props.title} />
-            <WhiteboardBody>{props.children}</WhiteboardBody> */}
-            {props.children}
-          </Box>
+          <Box sx={ROOT_STYLE}>{props.children}</Box>
         </Paper>
       </ThemeProvider>
     );
@@ -43,26 +29,18 @@ interface WhiteboardTitleProps {
 }
 export const WhiteboardTitle = React.memo((props: WhiteboardTitleProps) => {
   return (
-    <Box sx={EXERCISE_BOARD_STYLES.SPLIT_SCREEN.top}>
-      <Box sx={EXERCISE_BOARD_STYLES.TOP_COMPONENT.container}>
+    <Box sx={SPLIT_TOP_STYLE}>
+      <Box sx={TOP_CONTAINER_STYLE}>
         <Typography variant="h1">{props.children}</Typography>
       </Box>
     </Box>
   );
 });
 
-interface WhiteboardBodyProps {
-  children: any;
-}
-/**
- *  Class that renders a title to the board based on props
- */
-export const WhiteboardBody = React.memo((props: WhiteboardBodyProps) => {
+export const WhiteboardBody = React.memo((props: React.PropsWithChildren) => {
   return (
-    <Box sx={EXERCISE_BOARD_STYLES.SPLIT_SCREEN.bottom}>
-      <Box sx={EXERCISE_BOARD_STYLES.TOP_COMPONENT.container}>
-        {props.children}
-      </Box>
+    <Box sx={SPLIT_BOTTOM_STYLE}>
+      <Box sx={TOP_CONTAINER_STYLE}>{props.children}</Box>
     </Box>
   );
 });

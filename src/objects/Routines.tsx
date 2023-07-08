@@ -1,6 +1,8 @@
 import * as RoutineModel from "../model/RoutineModel";
 import { checkGetter, checkSetter } from "../Helpers";
 import Routine from "./Routine";
+import React from "react";
+import { SetsHeaderView } from "../view/components/ScheduleComponents";
 
 const name = "Routines";
 
@@ -15,7 +17,7 @@ const name = "Routines";
  *     }
  */
 export default class Routines {
-  private _maxSets: number;
+  private _maxSets: number = 0;
   private _metaIDKeys: {};
   private _routines: { [metaID: string]: Routine } = {};
 
@@ -23,9 +25,7 @@ export default class Routines {
     this._metaIDKeys = RoutineModel.getMetaIDKeys(scheduleName);
     // Creates dictionary of routines and sets max sets
     for (let metaIDKey of this.metaIDKeys) {
-      console.log(metaIDKey);
       const routine = new Routine(metaIDKey);
-      console.log(routine);
       this.routines[metaIDKey] = routine;
       if (routine.sets > this.maxSets) this.maxSets = routine.sets;
     }
