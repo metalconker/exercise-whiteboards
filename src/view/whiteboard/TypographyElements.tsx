@@ -2,9 +2,34 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Modal } from "@mui/material";
+import { MODAL_TEXT, MODAL_WINDOW } from "../styles/Stylesheet";
+
+interface DefaultTextProps {
+  children: string;
+  color: string;
+}
+/**
+ * DefaultText is a class that extends React.Component and is used to
+ * render a text element onto a page. It takes in a DefaultTextProps
+ * interface which contains a React.ReactNode and a DefaultTextState
+ * interface which contains a string. The class constructor instantiates
+ * the state with the props children value and the render() method
+ * renders a Typography element with the text stored in the state.
+ */
+export class DefaultText extends React.Component<DefaultTextProps> {
+  render() {
+    return <Typography variant="h2">{this.props.children}</Typography>;
+  }
+}
+
+export class ModalText extends React.Component<DefaultTextProps> {
+  render() {
+    return <Typography sx={MODAL_TEXT}>{this.props.children}</Typography>;
+  }
+}
 
 interface ErasableTextProps {
-  children: any;
+  children: string;
   color: string;
 }
 interface ErasableTextState {
@@ -41,43 +66,16 @@ export class ErasableText extends React.Component<
   }
 }
 
-interface DefaultTextProps {
-  children: React.ReactNode;
-}
-interface DefaultTextState {
-  text: string;
-}
-/**
- * DefaultText is a class that extends React.Component and is used to
- * render a text element onto a page. It takes in a DefaultTextProps
- * interface which contains a React.ReactNode and a DefaultTextState
- * interface which contains a string. The class constructor instantiates
- * the state with the props children value and the render() method
- * renders a Typography element with the text stored in the state.
- */
-export class DefaultText extends React.Component<
-  DefaultTextProps,
-  DefaultTextState,
-  any
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: props.children,
-    };
-  }
-  render() {
-    return <Typography variant="h5">{this.state.text}</Typography>;
-  }
+interface ClickableModalTextProps {
+  children: string;
+  color: string;
+  modalWindowContents: any;
 }
 
-interface ClickableModalTextProps {
-  text: string;
-  children: any;
-}
 interface ClickableModalTextState {
   open: boolean;
 }
+
 /**
  * ClickableModalText is a React component which renders a button with
  * text passed in from props. When the button is clicked, an associated
@@ -104,14 +102,21 @@ export class ClickableModalText extends React.Component<
   handleClose() {
     this.setState({ open: false });
   }
+
   render() {
     return (
       <>
-        <Button onClick={this.handleOpen} key={this.props.text}>
-          <Typography variant="h3">{this.props.text.toLowerCase()}</Typography>
+        <Button onClick={this.handleOpen} key={this.props.children}>
+          <Typography variant="h3">
+            {this.props.children.toLowerCase()}
+          </Typography>
         </Button>
-        <Modal open={this.state.open} onClose={this.handleClose}>
-          <div>{this.props.children}</div>
+        <Modal
+          open={this.state.open}
+          onClose={this.handleClose}
+          style={MODAL_WINDOW}
+        >
+          <>{this.props.modalWindowContents}</>
         </Modal>
       </>
     );

@@ -39,7 +39,7 @@
     "typings": false,
     "/home/rayyan/Desktop/Desktop/whiteboards-app-local-scratch": false,
     "src/model/tests": true,
-    "src/Enums.tsx": true
+    "src/Enums.tsx": false
   },
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnPaste": false, // required

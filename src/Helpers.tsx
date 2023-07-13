@@ -12,11 +12,7 @@ export function validateProps(props) {
   }
 }
 
-export function assertNotNull(
-  key: String,
-  value: any,
-  functionName: String
-) {
+export function assertNotNull(key: String, value: any, functionName: String) {
   if (value === null || value === undefined) {
     throw new Error(
       `The variable ${key} in function ${functionName} must not be null or undefined.`
@@ -25,13 +21,17 @@ export function assertNotNull(
 }
 
 export function checkParameters(params: Array<any>, functionName: String) {
-   params.forEach( ([key, value]) => {
+  params.forEach(([key, value]) => {
     assertNotNull(key, value, functionName);
   });
-};
+}
 
 //Error check
-export function checkSetter(value: any, variable: string, className: String): any {
+export function checkSetter(
+  value: any,
+  variable: string,
+  className: String
+): any {
   try {
     if (!value || value === null || value === undefined) {
       throw new Error(
@@ -44,12 +44,16 @@ export function checkSetter(value: any, variable: string, className: String): an
   }
 }
 
-export function checkGetter(value: any, variable: string, className: String): any {
+export function checkGetter(
+  value: any,
+  variable: string,
+  className: String
+): any {
   try {
     if (!value || value === null || value === undefined) {
       throw new Error(
         `GetterError: ${variable} in ${className} must not be null or undefined.`
-        );
+      );
     }
     return value;
   } catch (err) {

@@ -9,9 +9,7 @@ var routineData;
  * Returns an array of strings representing the IDs of all exercises in the schedule
  * Loads the Model in to working memory
  */
-export function getMetaIDKeys(
-  scheduleName: string
-): Array<string> {
+export function getMetaIDKeys(scheduleName: string): Array<string> {
   checkParameters(Object.entries(arguments), "getMetaIDKeys");
   let keys: Array<string> = [];
   routineData = ROUTINE_DATA_JSON[scheduleName];

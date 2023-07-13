@@ -1,19 +1,18 @@
-import * as MusclesModel from "../model/MusclesModel";
+import * as MusclesModel from "../model/MusclesImagesModel";
 import { MuscleColor } from "../Enums";
 import { checkGetter, checkSetter } from "../Helpers";
 
 const name = "Muscles";
 
-export default class Muscles {
+export default class MusclesImages {
   private _colorMap: any[] = [];
 
   constructor(muscleInformation: {}) {
     // Seperate muscles basied on provided muscle information
     const separateMuscles = this.separateMuscles(muscleInformation);
     // Constuct a mapping of colors to related muscle names
-    const mappedColors = this.mapColors(separateMuscles);
+    const mappedColors: {} = this.mapColors(separateMuscles);
     // Create array in which To hold the objects can be draw
-    // const drawable: any[] = [];
     // Loop through the available muscle colors
     Object.keys(MuscleColor).forEach((colorkey) => {
       const color = MuscleColor[colorkey];
@@ -31,35 +30,20 @@ export default class Muscles {
 
   separateMuscles(muscleInformation: {}) {
     let muscles = {};
+
     // Intialize new Set for each colors and add them to `muscles` object
-    for (let colorkey in MuscleColor) {
-      muscles[MuscleColor[colorkey]] = new Set();
-    }
+    Object.keys(MuscleColor).forEach(
+      (key) => (muscles[MuscleColor[key]] = new Set())
+    );
 
     // Get needed informational details from the file
-    for (let category in muscleInformation) {
-      let color;
-      if (
-        category in
-        [
-          "antagonist stabilizers",
-          "dynamic stabilizers",
-          "other",
-          "stabilizers",
-          "synergists",
-          "target",
-        ]
-      ) {
-        color = this.filterColor(category);
-      } else continue;
-      let info = muscleInformation[category];
+    Object.keys(muscleInformation).forEach((category) => {
+      let color = this.filterColor(category);
+      muscleInformation[category].forEach((muscle) =>
+        muscles[color].add(muscle)
+      );
+    });
 
-      // Loop through the muscular information in a category,
-      //  adding a single muscle to the assocaited array
-      for (let muscle of info) {
-        muscles[color].add(muscle);
-      }
-    }
     return muscles;
   }
 
@@ -91,8 +75,6 @@ export default class Muscles {
     colorArray.forEach((muscleContainer) => {
       if (muscleContainer) {
         const current = MusclesModel.getMuscleImage(muscleContainer);
-        // const current = MUSCLE_IMAGES[muscleContainer];
-        const uniqueKey = `${color}-${muscleContainer}`;
         // Add objects to drawabled array
         temp.push(current[color]);
       }
@@ -123,8 +105,6 @@ export default class Muscles {
     }
   }
 }
-
-
 
 const MUSCLES_CONSTANTS = {
   BACK: [],

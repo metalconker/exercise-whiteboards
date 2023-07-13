@@ -80,16 +80,19 @@ export function getMediaType(metaID: string): MediaType {
   throw "Media Extension not found: " + metaID;
 }
 
-// // Returns the muscle inf in set format
+// Returns the muscle inf in set format
 export function getMuscleInformation(metaID: string): {} {
   checkParameters(Object.entries(arguments), "getMuscleInformation");
   const exerciseDetails = getExerciseDetails(metaID);
-  const muscleInformation = {};
-  for (let [muscleType, muscleString] of Object.entries(exerciseDetails)) {
-    const muscles = parseMuscleString(muscleString);
-    muscleInformation[muscleType] = new Set(muscles);
-  }
-  return muscleInformation;
+  return Object.keys(MuscleType).reduce((muscleInformation, key) => {
+    let muscletype = MuscleType[key];
+    if (muscletype in exerciseDetails) {
+      muscleInformation[muscletype] = new Set(
+        parseMuscleString(exerciseDetails[muscletype])
+      );
+    }
+    return muscleInformation;
+  }, {});
 }
 
 export function getMuscleGroup(metaID: string): string {
@@ -138,7 +141,7 @@ export function getPreparation(metaID: string): string {
 }
 export function getExecution(metaID: string): string {
   checkParameters(Object.entries(arguments), "getExecution");
-  return getExerciseDetails(metaID)["execution"]?? "No Execution Found";
+  return getExerciseDetails(metaID)["execution"] ?? "No Execution Found";
 }
 export function getComments(metaID: string): string {
   checkParameters(Object.entries(arguments), "getComments");

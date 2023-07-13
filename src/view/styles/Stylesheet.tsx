@@ -1,9 +1,10 @@
 import { createTheme } from "@mui/material";
 import BackgroundImage from "../../_application/images/whiteboard/Whiteboard.png";
 import MALE_BODY_IMAGE from "../../_database/musclesDB/MaleBody.png";
+import React from "react";
 
 const fontFamily = "DryWhiteboardMarker-Regular";
-const color = "red";
+const color = "black";
 
 export const WHITEBOARD_THEME = createTheme({
   typography: {
@@ -80,23 +81,44 @@ export const COLORS = {
 };
 
 export const EXERCISE_BOARD_STYLES = {
-  SPLIT_SCREEN: {
-    root: {
-      height: "96%",
-      margin: "2% 3%",
-      backgroundColor: "transparent",
-    },
-    top: { height: "12%", width: "100%" },
-    bottom: { height: "84%", width: "100%" },
+  root: {
+    height: "96%",
+    margin: "2% 3%",
+    backgroundColor: "transparent",
+    display: "block",
   },
-  TOP_COMPONENT: {
-    container: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100%",
-    },
+  top: {
+    height: "20%",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
+  bottom: {
+    height: "80%",
+    width: "100%",
+    display: "block",
+  },
+};
+
+export const MUSCLES_BACKGROUND = {
+  backgroundImage: `url(${MALE_BODY_IMAGE})`,
+  backgroundSize: "25vw 25vh",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  position: "fixed",
+  width: "25%",
+  height: "25%",
+};
+
+export const MUSCLES_IMAGES: React.CSSProperties = {
+  position: "fixed",
+  width: "25%",
+  height: "25%",
+  // display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  WebkitAlignItems: "center",
 };
 
 export const WHITEBOARD_BACKGROUND = {
@@ -110,178 +132,159 @@ export const WHITEBOARD_BACKGROUND = {
   backgroundRepeat: "no-repeat",
 };
 
-export const styles = {
-  reps: {
-    color: "blue",
-    alignItems: "center",
-    flex: 1,
-  },
-  name: {
-    flex: 6.5,
-  },
-  background: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  modalBackground: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    width: "70%",
-    margin: 20,
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  textStyle: {
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-    fontFamily: "Arial",
-  },
-  sets: {
-    color: "red",
-    alignItems: "center",
-    flex: 1,
-  },
-  line: {
-    flexDirection: "row",
-  },
-  modalcontents: {
-    alignItems: "center",
-    flexDirection: "column",
-    position: "relative",
-    width: "100%",
-    height: "90%",
-  },
-  informationrow: {
-    height: "45%",
-    width: "100%",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-  },
-  mediaandmusclesrow: {
-    height: "45%",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  mediacontainer: {
-    position: "relative",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    alignSelf: "flex-start",
-    width: "100%",
-    height: "100%",
-    flex: 1,
-  },
-  image: {
-    width: "100%",
-    alignItems: "flex-start",
-    alignSelf: "flex-start",
-  },
-  muscles: {
-    position: "relative",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    flex: 1,
-    width: "100%",
-  },
-  modaltitleText: {
-    fontFamily: "Arial",
-    fontSize: 30,
-  },
-  modaldefaultText: {
-    fontFamily: "Arial",
-    fontSize: 15,
-  },
-
-  grid: {
-    workouts: {
-      backgroundColor: "blue",
-      flex: 7,
-      flexDirection: "column",
-      justifyContent: "flex-start",
-    },
-    exercises: {
-      backgroundColor: "yellow",
-      flexDirection: "row",
-    },
-    name: {
-      backgroundColor: "white",
-      flex: 6.5,
-    },
-    reps: {
-      color: "red",
-      alignItems: "center",
-      backgroundColor: "pink",
-      flex: 1,
-    },
-  },
-};
-
-export const popupStyle = {
-  // backgroundSize: "50vw 50vh",
-  // backgroundPosition: "center",
-  // backgroundRepeat: "no-repeat",
-  position: "fixed",
-  width: "50%",
-  height: "50%",
-  // display: "flex",
-};
-
-export const paperStyles = {
-  backgroundImage: `url(${MALE_BODY_IMAGE})`,
-  backgroundSize: "50vw 50vh",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  position: "fixed",
-  width: "50%",
-  height: "50%",
-};
-
-export const musclesStyles = {
-  display: "flex",
+export const MODAL_WINDOW = {
+  left: "25%",
+  display: "block",
   alignItems: "center",
   justifyContent: "center",
   WebkitAlignItems: "center",
-  width: "75%",
-  left: "12.5%",
+  width: "50%",
 };
 
-export const clickableStyles = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  WebkitAlignItems: "center",
+export const MODAL_TEXT = {
+  fontWeight: "bold",
+  textAlign: "left",
+  marginBottom: 2,
+  fontFamily: "Arial",
 };
 
-export const mediaProps = {
+export const EXERCISE_DETAILS_WINDOW = {
+  height: "45%",
   width: "100%",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
 };
+
+// export const styles = {
+//   reps: {
+//     color: "blue",
+//     alignItems: "center",
+//     flex: 1,
+//   },
+//   name: {
+//     flex: 6.5,
+//   },
+//   background: {
+//     flex: 1,
+//     justifyContent: "center",
+//   },
+//   modalBackground: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   centeredView: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     marginTop: 22,
+//   },
+//   modalView: {
+//     width: "70%",
+//     margin: 20,
+//     borderRadius: 20,
+//     padding: 35,
+//     alignItems: "center",
+//     shadowColor: "#000",
+//     shadowOffset: {
+//       width: 0,
+//       height: 2,
+//     },
+//     shadowOpacity: 0.25,
+//     shadowRadius: 3.84,
+//     elevation: 5,
+//   },
+//   openButton: {
+//     backgroundColor: "#F194FF",
+//     borderRadius: 20,
+//     padding: 10,
+//     elevation: 2,
+//   },
+//   textStyle: {},
+
+//   sets: {
+//     color: "red",
+//     alignItems: "center",
+//     flex: 1,
+//   },
+//   line: {
+//     flexDirection: "row",
+//   },
+//   modalcontents: {
+//     alignItems: "center",
+//     flexDirection: "column",
+//     position: "relative",
+//     width: "100%",
+//     height: "90%",
+//   },
+
+//   mediaandmusclesrow: {
+//     height: "45%",
+//     flexDirection: "row",
+//     alignItems: "center",
+//   },
+//   mediacontainer: {
+//     position: "relative",
+//     justifyContent: "center",
+//     alignItems: "flex-start",
+//     alignSelf: "flex-start",
+//     width: "100%",
+//     height: "100%",
+//     flex: 1,
+//   },
+//   image: {
+//     width: "100%",
+//     alignItems: "flex-start",
+//     alignSelf: "flex-start",
+//   },
+//   muscles: {
+//     position: "relative",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     alignSelf: "center",
+//     flex: 1,
+//     width: "100%",
+//   },
+//   modaltitleText: {
+//     fontFamily: "Arial",
+//     fontSize: 30,
+//   },
+//   modaldefaultText: {
+//     fontFamily: "Arial",
+//     fontSize: 15,
+//   },
+
+//   grid: {
+//     workouts: {
+//       backgroundColor: "blue",
+//       flex: 7,
+//       flexDirection: "column",
+//       justifyContent: "flex-start",
+//     },
+//     exercises: {
+//       backgroundColor: "yellow",
+//       flexDirection: "row",
+//     },
+//     name: {
+//       backgroundColor: "white",
+//       flex: 6.5,
+//     },
+//     reps: {
+//       color: "red",
+//       alignItems: "center",
+//       backgroundColor: "pink",
+//       flex: 1,
+//     },
+//   },
+// };
+
+// export const POPUP_STYLE = {
+//   backgroundSize: "50vw 50vh",
+//   backgroundPosition: "center",
+//   backgroundRepeat: "no-repeat",
+//   position: "fixed",
+//   width: "50%",
+//   height: "50%",
+//   display: "flex",
+// };

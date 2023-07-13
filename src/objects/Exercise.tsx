@@ -1,6 +1,6 @@
 import * as ExerciseModel from "../model/ExerciseModel";
 import { checkGetter, checkSetter } from "../Helpers";
-import Muscles from "./Muscles";
+import Muscles from "./MusclesImages";
 
 const name = "Exercise";
 
