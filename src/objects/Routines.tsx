@@ -31,15 +31,6 @@ export default class Routines {
     }
   }
 
-  /**  
-   * this.forEach((key, routine) => {
-    // do something
-  }); 
-  */
-  // public forEach(callback: (key: string, routine: Routine) => any): any[] {
-  //   return Object.keys(this._routines).map(key => callback(key, this._routines[key]));
-  // }
-
   public iterate(callback: (routine: Routine) => void): void {
     for (let routine of this._routines) {
       callback(routine);

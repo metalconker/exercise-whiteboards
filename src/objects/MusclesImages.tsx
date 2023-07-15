@@ -30,7 +30,6 @@ export default class MusclesImages {
 
   separateMuscles(muscleInformation: {}) {
     let muscles = {};
-
     // Intialize new Set for each colors and add them to `muscles` object
     Object.keys(MuscleColor).forEach(
       (key) => (muscles[MuscleColor[key]] = new Set())
@@ -43,7 +42,6 @@ export default class MusclesImages {
         muscles[color].add(muscle)
       );
     });
-
     return muscles;
   }
 

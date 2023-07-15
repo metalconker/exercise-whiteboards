@@ -41,11 +41,12 @@ export class ExerciseMediaView extends React.Component<
 }
 
 interface MusclesImagesProps {
-  muscles: Array<Array<NodeRequire>>;
+  muscles: Array<Array<string>>;
 }
 interface MusclesImagesState {
   imagesLoaded: boolean;
 }
+
 export class MusclesImagesView extends React.Component<
   MusclesImagesProps,
   MusclesImagesState
@@ -63,7 +64,7 @@ export class MusclesImagesView extends React.Component<
       return src.map((src2) => {
         return new Promise((resolve, reject) => {
           let img = new Image();
-          img.src = src2.toString();
+          img.src = src2;
           img.onload = resolve;
         });
       });
@@ -100,24 +101,6 @@ export class MusclesImagesView extends React.Component<
   }
 }
 
-// export class MuscleView extends React.Component {
-//   render() {
-//     var separatemuscles = SeparateMuscles(this.props.metaid);
-//     var muscles = MapColors(separatemuscles);
-//     var drawable = [];
-//     for (let colorkey in Colors) {
-//       let color = Colors[colorkey];
-//       drawable.push(LoopColor(color, muscles[color]));
-//     }
-
-//     return (
-//       <ImageBackground style={styles.background} source={MaleBodyImage}>
-//         {drawable}
-//       </ImageBackground>
-//     );
-//   }
-// }
-
 interface ExerciseDetailsViewProps {
   preparation: string;
   execution: string;
@@ -129,7 +112,7 @@ interface ExerciseDetailsViewProps {
 export class ExerciseDetailsView extends React.Component<ExerciseDetailsViewProps> {
   render() {
     return (
-      <Box key="InformationRow" sx={EXERCISE_DETAILS_WINDOW}>
+      <Box key="ExerciseDetailsView" sx={EXERCISE_DETAILS_WINDOW}>
         <Box key={"preparation"}>
           <ModalText color={"black"}>Preparation:</ModalText>
           <ModalText color={"black"}>{this.props.preparation}</ModalText>
@@ -146,67 +129,3 @@ export class ExerciseDetailsView extends React.Component<ExerciseDetailsViewProp
     );
   }
 }
-
-// <Modal
-// open={this.state.open}
-// onClose={this.handleClose}
-// style={clickableStyles}
-// >
-// {this.props.mediaType == "video" ? (
-//   <video autoPlay src={this.props.uri} style={{ maxWidth: "50%" }} />
-// ) : (
-//   <img src={this.props.uri} alt="popup" style={{ maxWidth: "50%" }} />
-// )}
-// </Modal>
-
-// handleOpen() {
-//   this.setState({ open: true });
-// }
-
-// handleClose() {
-//   this.setState({ open: false });
-// }
-
-// };
-
-// render() {
-
-// <Modal open={this.state.open} onClose={this.handleClose}>
-// {this.props.children}
-// </Modal>
-
-//   return (
-//     <>
-//       <Button onClick={this.handleOpen} key={this.props.metaID}>
-//         <Typography variant="h3">
-//           {this.props.readableName.toLowerCase()}
-//         </Typography>
-//       </Button>
-//       <Modal
-//         open={this.state.open}
-//         onClose={this.handleClose}
-//         style={musclesStyles}
-//       >
-//         <Box sx={styles.modalcontents}>
-//           <DefaultText key="ExerciseName">
-//             {/* {Exercises.GetName(this.props.metaID)} */}
-//           </DefaultText>
-//           <Box key="MediaAndMusclesRow" sx={styles.mediaandmusclesrow}>
-//             <Box key="Media" sx={styles.mediacontainer}>
-//               {this.renderMedia(this.props.metaID)}
-//               <Box key="Muscles" sx={styles.muscles}>
-//                 <MuscleView
-//                   key="Muscles"
-//                   sx={styles.muscles}
-//                   metaid={this.props.metaID}
-//                 />
-//               </Box>
-//             </Box>
-//           </Box>
-//           {/* {renderInformation(this.props.metaID)} */}
-//         </Box>
-//       </Modal>
-//     </>
-//   );
-// }
-// }

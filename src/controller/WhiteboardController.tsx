@@ -90,13 +90,13 @@ export class WhiteboardController {
     let comments = exercise.comments;
     return (
       <div>
-        <ExerciseMediaView uri={uri} mediaType={mediaType} />
-        <MusclesImagesView muscles={muscles} />
         <ExerciseDetailsView
           preparation={preparation}
           execution={execution}
           comments={comments}
         />
+        <ExerciseMediaView uri={uri} mediaType={mediaType} />
+        <MusclesImagesView muscles={muscles} />
       </div>
     );
   }

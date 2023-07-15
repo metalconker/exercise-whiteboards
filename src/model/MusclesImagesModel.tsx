@@ -1,6 +1,7 @@
 import { MuscleColor } from "../Enums";
 import { checkGetter, checkParameters } from "../Helpers";
 import MALE_BODY_IMAGE from "../_database/musclesDB/MaleBody.png";
+
 const name = "MusclesModel";
 /**
  * gets the base male body image
