@@ -95,7 +95,7 @@ export const EXERCISE_BOARD_STYLES = {
     justifyContent: "center",
   },
   bottom: {
-    height: "80%",
+    height: "76%",
     width: "100%",
     display: "block",
   },
@@ -103,22 +103,23 @@ export const EXERCISE_BOARD_STYLES = {
 
 export const MUSCLES_BACKGROUND = {
   backgroundImage: `url(${MALE_BODY_IMAGE})`,
-  backgroundSize: "25vw 25vh",
+  backgroundSize: "50vw 50vh",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   position: "fixed",
-  width: "25%",
-  height: "25%",
+  width: "50%",
+  height: "50%",
 };
 
 export const MUSCLES_IMAGES: React.CSSProperties = {
   position: "fixed",
-  width: "25%",
-  height: "25%",
+  width: "50%",
+  height: "50%",
   // display: "flex",
   alignItems: "center",
   justifyContent: "center",
   WebkitAlignItems: "center",
+  
 };
 
 export const WHITEBOARD_BACKGROUND = {

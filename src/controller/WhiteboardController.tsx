@@ -19,6 +19,8 @@ import {
   ExerciseMediaView,
   MusclesImagesView,
 } from "../view/whiteboard/ModalWindowComponents";
+import '../view/styles/Stylesheet.css'
+
 
 const name = "WhiteboardController";
 
@@ -89,14 +91,25 @@ export class WhiteboardController {
     let execution = exercise.execution;
     let comments = exercise.comments;
     return (
-      <div>
-        <ExerciseDetailsView
-          preparation={preparation}
-          execution={execution}
-          comments={comments}
-        />
-        <ExerciseMediaView uri={uri} mediaType={mediaType} />
-        <MusclesImagesView muscles={muscles} />
+      <div className="modal-container">
+        <div className="modal-content">
+          <div className="image-container">
+            <MusclesImagesView muscles={muscles} />
+          </div>
+          <div className="video-container">
+            <ExerciseMediaView uri={uri} mediaType={mediaType} />
+          </div>
+          <div className="text-container">
+            <ExerciseDetailsView
+              preparation={preparation}
+              execution={execution}
+              comments={comments}
+            />{" "}
+          </div>
+          <button className="close-button" onClick={onclose}>
+            Close
+          </button>
+        </div>
       </div>
     );
   }
