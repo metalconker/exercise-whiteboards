@@ -19,7 +19,7 @@ import {
   ExerciseMediaView,
   MusclesImagesView,
 } from "../view/whiteboard/ModalWindowComponents";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { EXERCISE_DETAILS_WINDOW, MEDIA_VIEW } from "../view/styles/Stylesheet";
 import { ModalText } from "../view/whiteboard/TypographyElements";
 
@@ -66,48 +66,150 @@ export class WhiteboardController {
                 reps={this.getRepsOrTime(routine)}
                 modalWindowContents={
                   <Box sx={{ width: "100%" }}>
-                    <Box sx={{ height: "50%", width: "100%" }}>
-                      <Box sx={MEDIA_VIEW}>
-                        {exercise.mediaType == "video" ? (
-                          <video
-                            autoPlay
-                            src={exercise.uri}
-                            style={{ maxWidth: "50%" }}
-                          />
-                        ) : (
-                          <img
-                            src={exercise.uri}
-                            alt="popup"
-                            style={{ maxWidth: "50%" }}
-                          />
-                        )}
-                      </Box>
+                    <Box
+                      sx={{
+                        height: "50%",
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundImage:
+                          "radial-gradient(circle, rgba(188,217,247,1) 0%, rgba(225,239,253,1) 100%);",
+                        //  backgroundColor: "#c7f9f0",
+                        boxShadow: "0 0 6px rgba(0, 0, 0, 0.2)",
+                      }}
+                    >
+                      {exercise.mediaType == "video" ? (
+                        <video
+                          autoPlay
+                          src={exercise.uri}
+                          style={{
+                            width: "90%",
+                            maxHeight: "90%",
+                            borderRadius: "2rem",
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={exercise.uri}
+                          alt="popup"
+                          style={{
+                            width: "90%",
+                            maxHeight: "90%",
+                            borderRadius: "2rem",
+                          }}
+                        />
+                      )}
                     </Box>
                     <Box sx={{ height: "50%", width: "100%" }}>
                       <Box
                         key="ExerciseDetailsView"
-                        sx={EXERCISE_DETAILS_WINDOW}
+                        sx={{
+                          backgroundColor: "#B6D3EE",
+                          height: "100%",
+                          width: "50%",
+                          alignItems: "flex-start",
+                          justifyContent: "flex-start",
+                          display: "flex",
+                          flexDirection: "column" /* or 'column' */,
+                          flexWrap: "nowrap" /* or 'wrap' */,
+                          float: "right",
+                        }}
                       >
                         <Box key={"preparation"}>
-                          <ModalText color={"black"}>Preparation:</ModalText>
-                          <ModalText color={"black"}>
+                          <Typography
+                            sx={{
+                              fontWeight: "bold",
+                              textAlign: "left",
+                              marginBottom: 2,
+                              fontFamily: "Roboto, sans-serif",
+                              fontSize: "24px",
+                              color: "#4a90e2",
+                            }}
+                          >
+                            Preparation:
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontWeight: "normal",
+                              textAlign: "left",
+                              marginBottom: 2,
+                              fontFamily: "Roboto, sans-serif",
+                              fontSize: "20px",
+                              color: "#4a90e2",
+                            }}
+                          >
                             {exercise.preparation}
-                          </ModalText>
+                          </Typography>
                         </Box>
                         <Box key={"execution"}>
-                          <ModalText color={"black"}>Execution:</ModalText>
-                          <ModalText color={"black"}>
+                          <Typography
+                            sx={{
+                              fontWeight: "bold",
+                              textAlign: "left",
+                              marginBottom: 2,
+                              fontFamily: "Roboto, sans-serif",
+                              fontSize: "24px",
+                              color: "#4a90e2",
+                            }}
+                          >
+                            Execution:
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontWeight: "normal",
+                              textAlign: "left",
+                              marginBottom: 2,
+                              fontFamily: "Roboto, sans-serif",
+                              fontSize: "20px",
+                              color: "#4a90e2",
+                            }}
+                          >
                             {exercise.execution}
-                          </ModalText>
+                          </Typography>
                         </Box>
                         <Box key={"comments"}>
-                          <ModalText color={"black"}>Comments:</ModalText>
-                          <ModalText color={"black"}>
+                          <Typography
+                            sx={{
+                              fontWeight: "bold",
+                              textAlign: "left",
+                              marginBottom: 2,
+                              fontFamily: "Roboto, sans-serif",
+                              fontSize: "24px",
+                              color: "#4a90e2",
+                            }}
+                          >
+                            Comments:
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontWeight: "normal",
+                              textAlign: "left",
+                              marginBottom: 2,
+                              fontFamily: "Roboto, sans-serif",
+                              fontSize: "20px",
+                              color: "#4a90e2",
+                            }}
+                          >
                             {exercise.comments}
-                          </ModalText>
+                          </Typography>
                         </Box>
                       </Box>
-                      <MusclesImagesView muscles={exercise.muscles.colorMap} />
+                      <Box
+                        sx={{
+                          height: "100%",
+                          width: "50%",
+                          float: "left",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backgroundColor: "#c7f9f0",
+                        }}
+                      >
+                        <MusclesImagesView
+                          muscles={exercise.muscles.colorMap}
+                        />
+                      </Box>
                     </Box>
                   </Box>
                 }
@@ -150,3 +252,94 @@ export class WhiteboardController {
 //     </Box>
 //   </Box>
 // }
+
+// <Box sx={{ width: "100%" }}>
+//   <Box
+//     sx={{
+//       padding: "3rem",
+//       height: "50%",
+//       width: "100%",
+//       display: "flex",
+//       justifyContent: "center",
+//       backgroundImage: "radial-gradient(circle, rgba(188,217,247,1) 0%, rgba(225,239,253,1) 100%);"
+//     }}
+//   >
+//      {exercise.mediaType == "video" ? (
+//        <video
+//          autoPlay
+//          src={exercise.uri}
+//          style={{
+//            width: "80%",
+//            maxHeight: "70%",
+//            borderRadius: "10%",
+//            boxShadow: "0 0 6px rgba(0, 0, 0, 0.2)"
+//            }}
+//        />
+//      ) : (
+//        <img
+//          src={exercise.uri}
+//          alt="popup"
+//          style={{
+//            width: "80%",
+//            maxHeight: "70%",
+//            borderRadius: "10%",
+//            boxShadow: "0 0 6px rgba(0, 0, 0, 0.2)"
+//            }}
+//        />
+//      )}
+//     </Box>
+//    <Box
+//      sx={{
+//      padding: "3rem",
+//      height: "50%",
+//      width: "100%",
+//      display: "flex",
+//      justifyContent: "space-evenly",
+//      backgroundColor: "white"
+//    }}>
+//      <Box
+//        key="ExerciseDetailsView"
+//        sx={{
+//          padding: "1rem",
+//          backgroundColor: "white",
+//          height: "100%",
+//          width: "90%",
+//          display: "flex",
+//          flexDirection: "column" /* or 'column' */,
+//          flexWrap: "nowrap" /* or 'wrap' */,
+//        }}>
+//        <Box key={"preparation"}>
+//          <ModalText color={"#0050ff"}>Preparation:</ModalText>
+//          <ModalText color={"#066dd7"} size={1.3}>
+//            {exercise.preparation}
+//          </ModalText>
+//        </Box>
+//        <Box key={"execution"}>
+//          <ModalText color={"#0050ff"}>Execution:</ModalText>
+//          <ModalText color={"#066dd7"} size={1.3}>
+//            {exercise.execution}
+//          </ModalText>
+//        </Box>
+//        <Box key={"comments"}>
+//          <ModalText color={"#0050ff"}>Comments:</ModalText>
+//          <ModalText color={"#066dd7"} size={1.3}>
+//            {exercise.comments}
+//          </ModalText>
+//        </Box>
+//      </Box>
+//      <Box
+//        sx={{
+//          padding: "1rem",
+//          backgroundColor: "white",
+//          height: "100%",
+//          width: "20%:",
+//          display: "flex",
+//          alignItems: "center",
+//          justifyContent: "center",
+//        }}
+//      >
+//        <MusclesImagesView
+//          muscles={exercise.muscles.colorMap} />
+//      </Box>
+//    </Box>
+// </Box>

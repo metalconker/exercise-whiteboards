@@ -138,7 +138,7 @@ export const MUSCLES_BACKGROUND = {
   // position: "absolute",
   minWidth: "100%",
   minHeight: "100%",
-  backgroundColor: 'white',
+  backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,1) 100%)",
   // // display: "block",
   // display: 'flex',
   // flexDirection: 'row', /* or 'column' */
@@ -198,24 +198,26 @@ export const MODAL_WINDOW = {
 };
 
 export const EXERCISE_DETAILS_WINDOW = {
-  height: "33%",
-  width: "100%",
+  height: "50%",
+  width: "50%",
   alignItems: "flex-start",
   justifyContent: "flex-start",
   display: "absolute",
   flexDirection: "row" /* or 'column' */,
   flexWrap: "nowrap" /* or 'wrap' */,
+  float: "right",
+
 };
 
 export const MEDIA_VIEW = {
   // height: "33%",
   // width: "100%",
-  position: "absolute",
-  display: "absolute",
-  flexDirection: "row" /* or 'column' */,
-  flexWrap: "nowrap" /* or 'wrap' */,
-  alignItems: "right",
-  justifyContent: "flex-start",
+  // position: "absolute",
+  // display: "absolute",
+  // flexDirection: "row" /* or 'column' */,
+  // flexWrap: "nowrap" /* or 'wrap' */,
+  // alignItems: "right",
+  // justifyContent: "flex-start",
   
 };
 
