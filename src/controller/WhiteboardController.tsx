@@ -19,10 +19,21 @@ import {
   ExerciseMediaView,
   MusclesImagesView,
 } from "../view/whiteboard/ModalWindowComponents";
-import "../view/styles/Stylesheet.css";
+import { Box } from "@mui/material";
+import { EXERCISE_DETAILS_WINDOW, MEDIA_VIEW } from "../view/styles/Stylesheet";
+import { ModalText } from "../view/whiteboard/TypographyElements";
 
 const name = "WhiteboardController";
 
+/**
+ * This is the WhiteboardController class to provide necessary components
+ * for Whiteboard view. Constructor takes Day, Week, and ScheduleType enum
+ * values to initialize the required components for the Whiteboard view.
+ * init means this class will render the Whiteboard view with given props.
+ * It also defines two getters and setters for Schedule. Moreover,
+ * getRepsOrTime function is also called to decide whether the routine
+ * requires reps or time.
+ */
 export class WhiteboardController {
   private _routines: Routines;
   private _schedule: Schedule;
@@ -37,31 +48,69 @@ export class WhiteboardController {
   }
 
   init() {
-    let scheduleName = this._scheduleName;
-    let maxSets = this._maxSets;
-    let height = this._routines.numRoutines;
     return (
       <WhiteboardBackground>
-        <WhiteboardTitle>{scheduleName}</WhiteboardTitle>
+        <WhiteboardTitle>{this._scheduleName}</WhiteboardTitle>
         <WhiteboardBody>
-          <HeaderContainer sets={maxSets} />
+          <HeaderContainer maxSets={this._maxSets} />
           {this._routines.map((routine) => {
-            let exercise = routine.exercise;
-            let exerciseName = routine.name;
-            let alternating = routine.alternating;
-            let sets = routine.sets;
-            let reps = this.getRepsOrTime(routine);
-            let modalWindowContents = this.getModalWindowContents(exercise);
+            let exercise: Exercise = routine.exercise;
             return (
               <IndividualRow
-                key={exerciseName}
-                maxSets={maxSets}
-                sets={sets}
-                height={height}
-                name={exerciseName}
-                alternating={alternating}
-                reps={reps}
-                modalWindowContents={modalWindowContents}
+                key={routine.name}
+                maxSets={this._maxSets}
+                sets={routine.sets}
+                height={this._routines.numRoutines}
+                name={routine.name}
+                alternating={routine.alternating}
+                reps={this.getRepsOrTime(routine)}
+                modalWindowContents={
+                  <Box sx={{ width: "100%" }}>
+                    <Box sx={{ height: "50%", width: "100%" }}>
+                      <Box sx={MEDIA_VIEW}>
+                        {exercise.mediaType == "video" ? (
+                          <video
+                            autoPlay
+                            src={exercise.uri}
+                            style={{ maxWidth: "50%" }}
+                          />
+                        ) : (
+                          <img
+                            src={exercise.uri}
+                            alt="popup"
+                            style={{ maxWidth: "50%" }}
+                          />
+                        )}
+                      </Box>
+                    </Box>
+                    <Box sx={{ height: "50%", width: "100%" }}>
+                      <Box
+                        key="ExerciseDetailsView"
+                        sx={EXERCISE_DETAILS_WINDOW}
+                      >
+                        <Box key={"preparation"}>
+                          <ModalText color={"black"}>Preparation:</ModalText>
+                          <ModalText color={"black"}>
+                            {exercise.preparation}
+                          </ModalText>
+                        </Box>
+                        <Box key={"execution"}>
+                          <ModalText color={"black"}>Execution:</ModalText>
+                          <ModalText color={"black"}>
+                            {exercise.execution}
+                          </ModalText>
+                        </Box>
+                        <Box key={"comments"}>
+                          <ModalText color={"black"}>Comments:</ModalText>
+                          <ModalText color={"black"}>
+                            {exercise.comments}
+                          </ModalText>
+                        </Box>
+                      </Box>
+                      <MusclesImagesView muscles={exercise.muscles.colorMap} />
+                    </Box>
+                  </Box>
+                }
               />
             );
           })}
@@ -81,39 +130,23 @@ export class WhiteboardController {
     if (routine.reps > 0) return routine.reps + " reps";
     return routine.time + " secs";
   }
-
-  getModalWindowContents(exercise: Exercise) {
-    let muscles = exercise.muscles.colorMap;
-    let uri = exercise.uri;
-    let mediaType = exercise.mediaType;
-    let preparation = exercise.preparation;
-    let execution = exercise.execution;
-    let comments = exercise.comments;
-    return (
-      // <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      //   <MusclesImagesView muscles={muscles} />
-      //   <ExerciseMediaView uri={uri} mediaType={mediaType} />
-      //   <ExerciseDetailsView
-      //     preparation={preparation}
-      //     execution={execution}
-      //     comments={comments}
-      //   />
-      // </div>
-      <div className="parentDiv" style={{width: "100%" }}>
-        <div className="topDiv" style={{ height: "33.33%", width: "100%" }}>
-          <MusclesImagesView muscles={muscles} />
-        </div>
-        <div className="middleDiv" style={{ height: "33.33%", width: "100%" }}>
-          <ExerciseMediaView uri={uri} mediaType={mediaType} />
-        </div>
-        <div className="bottomDiv" style={{ height: "33.33%", width: "100%" }}>
-          <ExerciseDetailsView
-            preparation={preparation}
-            execution={execution}
-            comments={comments}
-          />
-        </div>
-      </div>
-    );
-  }
 }
+
+// modalWindowContents={
+//   <Box sx={{ width: "100%" }}>
+//     <Box sx={{ height: "50%", width: "100%" }}>
+//       <ExerciseMediaView
+//         uri={exercise.uri}
+//         mediaType={exercise.mediaType}
+//       />
+//     </Box>
+//     <Box sx={{ height: "50%", width: "100%" }}>
+//       <ExerciseDetailsView
+//         preparation={exercise.preparation}
+//         execution={exercise.execution}
+//         comments={exercise.comments}
+//       />
+//       <MusclesImagesView muscles={exercise.muscles.colorMap} />
+//     </Box>
+//   </Box>
+// }

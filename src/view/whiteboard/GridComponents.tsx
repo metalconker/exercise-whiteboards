@@ -8,7 +8,7 @@ import {
 import { COLORS } from "../styles/Stylesheet";
 
 interface HeaderContainerProps {
-  sets: number;
+  maxSets: number;
 }
 
 export class HeaderContainer extends React.Component<HeaderContainerProps> {
@@ -17,11 +17,11 @@ export class HeaderContainer extends React.Component<HeaderContainerProps> {
       <Grid
         container
         spacing={0}
-        columns={this.props.sets * 2}
+        columns={this.props.maxSets * 2}
         sx={{ height: "15%", width: "100%" }}
       >
-        <Grid key={"setDivider"} item xs={this.props.sets}></Grid>
-        {[...Array(this.props.sets + 1)].map((_, index) => {
+        <Grid key={"setDivider"} item xs={this.props.maxSets}></Grid>
+        {[...Array(this.props.maxSets + 1)].map((_, index) => {
           if (index !== 0) {
             return (
               <Grid key={index} item xs={1}>

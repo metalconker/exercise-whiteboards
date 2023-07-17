@@ -138,22 +138,23 @@ export const MUSCLES_BACKGROUND = {
   // position: "absolute",
   minWidth: "100%",
   minHeight: "100%",
-  backgroundColor: 'white'
+  backgroundColor: 'white',
   // // display: "block",
   // display: 'flex',
   // flexDirection: 'row', /* or 'column' */
   // flexWrap: 'nowrap' /* or 'wrap' */
   // objectFit : "contain"
+  alignItems: "left",
 };
 
 export const MUSCLES_IMAGES_BOX: React.CSSProperties = {
   position: "absolute",
-  width: "100%",
+  width: "50%",
   height: "100%",
   alignItems: "center",
   justifyContent: "center",
   WebkitAlignItems: "center",
-  maxHeight: "33%",
+  maxHeight: "50%",
   display: "block",
 
 };
@@ -213,8 +214,9 @@ export const MEDIA_VIEW = {
   display: "absolute",
   flexDirection: "row" /* or 'column' */,
   flexWrap: "nowrap" /* or 'wrap' */,
-  alignItems: "flex-start",
+  alignItems: "right",
   justifyContent: "flex-start",
+  
 };
 
 // export const styles = {
