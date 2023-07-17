@@ -80,6 +80,26 @@ export const COLORS = {
   BOARD_COLORS: { DEFAULT: "black", LEFT: "purple", RIGHT: "blue" },
 };
 
+/** 
+_    _ _     _ _       _                         _ 
+| |  | | |   (_) |     | |                       | |
+| |  | | |__  _| |_ ___| |__   ___   __ _ _ __ __| |
+| |/\| | '_ \| | __/ _ \ '_ \ / _ \ / _` | '__/ _` |
+\  /\  / | | | | ||  __/ |_) | (_) | (_| | | | (_| |
+ \/  \/|_| |_|_|\__\___|_.__/ \___/ \__,_|_|  \__,_|
+  */
+
+export const WHITEBOARD_BACKGROUND = {
+  backgroundImage: `url(${BackgroundImage})`,
+  position: "fixed",
+  height: "100vh",
+  minWidth: "100%",
+  minHeight: "100%",
+  backgroundSize: "100vw 100vh",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+};
+
 export const EXERCISE_BOARD_STYLES = {
   root: {
     height: "96%",
@@ -101,46 +121,62 @@ export const EXERCISE_BOARD_STYLES = {
   },
 };
 
+/**
+___  ___               _           
+|  \/  |              | |          
+| .  . |_   _ ___  ___| | ___  ___ 
+| |\/| | | | / __|/ __| |/ _ \/ __|
+| |  | | |_| \__ \ (__| |  __/\__ \
+\_|  |_/\__,_|___/\___|_|\___||___/
+                     
+ */
 export const MUSCLES_BACKGROUND = {
-  backgroundImage: `url(${MALE_BODY_IMAGE})`,
-  backgroundSize: "50vw 50vh",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  position: "fixed",
-  width: "50%",
-  height: "50%",
+  // backgroundImage: `url(${MALE_BODY_IMAGE})`,
+  // backgroundSize: "25vw 25vh",
+  // backgroundPosition: "center",
+  // backgroundRepeat: "no-repeat",
+  // position: "absolute",
+  minWidth: "100%",
+  minHeight: "100%",
+  backgroundColor: 'white'
+  // // display: "block",
+  // display: 'flex',
+  // flexDirection: 'row', /* or 'column' */
+  // flexWrap: 'nowrap' /* or 'wrap' */
+  // objectFit : "contain"
+};
+
+export const MUSCLES_IMAGES_BOX: React.CSSProperties = {
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  alignItems: "center",
+  justifyContent: "center",
+  WebkitAlignItems: "center",
+  maxHeight: "33%",
+  display: "block",
+
 };
 
 export const MUSCLES_IMAGES: React.CSSProperties = {
-  position: "fixed",
-  width: "50%",
-  height: "50%",
-  // display: "flex",
+  position: "absolute",
+  width: "100%",
+  height: "100%",
   alignItems: "center",
   justifyContent: "center",
   WebkitAlignItems: "center",
-  
-};
-
-export const WHITEBOARD_BACKGROUND = {
-  backgroundImage: `url(${BackgroundImage})`,
-  position: "fixed",
-  height: "100vh",
-  minWidth: "100%",
-  minHeight: "100%",
-  backgroundSize: "100vw 100vh",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-};
-
-export const MODAL_WINDOW = {
-  left: "25%",
+  // maxHeight: "33%",
   display: "block",
-  alignItems: "center",
-  justifyContent: "center",
-  WebkitAlignItems: "center",
-  width: "50%",
 };
+
+/** 
+___  ___          _       _ 
+|  \/  |         | |     | |
+| .  . | ___   __| | __ _| |
+| |\/| |/ _ \ / _` |/ _` | |
+| |  | | (_) | (_| | (_| | |
+\_|  |_/\___/ \__,_|\__,_|_|                      
+*/
 
 export const MODAL_TEXT = {
   fontWeight: "bold",
@@ -149,10 +185,34 @@ export const MODAL_TEXT = {
   fontFamily: "Arial",
 };
 
+export const MODAL_WINDOW = {
+  left: "25%",
+  width: "50%",
+  top: 0,
+  height: "100%",
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "nowrap",
+  alignItems: "stretch",
+};
+
 export const EXERCISE_DETAILS_WINDOW = {
-  height: "45%",
+  height: "33%",
   width: "100%",
-  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+  display: "absolute",
+  flexDirection: "row" /* or 'column' */,
+  flexWrap: "nowrap" /* or 'wrap' */,
+};
+
+export const MEDIA_VIEW = {
+  // height: "33%",
+  // width: "100%",
+  position: "absolute",
+  display: "absolute",
+  flexDirection: "row" /* or 'column' */,
+  flexWrap: "nowrap" /* or 'wrap' */,
   alignItems: "flex-start",
   justifyContent: "flex-start",
 };

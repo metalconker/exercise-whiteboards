@@ -19,8 +19,7 @@ import {
   ExerciseMediaView,
   MusclesImagesView,
 } from "../view/whiteboard/ModalWindowComponents";
-import '../view/styles/Stylesheet.css'
-
+import "../view/styles/Stylesheet.css";
 
 const name = "WhiteboardController";
 
@@ -91,24 +90,28 @@ export class WhiteboardController {
     let execution = exercise.execution;
     let comments = exercise.comments;
     return (
-      <div className="modal-container">
-        <div className="modal-content">
-          <div className="image-container">
-            <MusclesImagesView muscles={muscles} />
-          </div>
-          <div className="video-container">
-            <ExerciseMediaView uri={uri} mediaType={mediaType} />
-          </div>
-          <div className="text-container">
-            <ExerciseDetailsView
-              preparation={preparation}
-              execution={execution}
-              comments={comments}
-            />{" "}
-          </div>
-          <button className="close-button" onClick={onclose}>
-            Close
-          </button>
+      // <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+      //   <MusclesImagesView muscles={muscles} />
+      //   <ExerciseMediaView uri={uri} mediaType={mediaType} />
+      //   <ExerciseDetailsView
+      //     preparation={preparation}
+      //     execution={execution}
+      //     comments={comments}
+      //   />
+      // </div>
+      <div className="parentDiv" style={{width: "100%" }}>
+        <div className="topDiv" style={{ height: "33.33%", width: "100%" }}>
+          <MusclesImagesView muscles={muscles} />
+        </div>
+        <div className="middleDiv" style={{ height: "33.33%", width: "100%" }}>
+          <ExerciseMediaView uri={uri} mediaType={mediaType} />
+        </div>
+        <div className="bottomDiv" style={{ height: "33.33%", width: "100%" }}>
+          <ExerciseDetailsView
+            preparation={preparation}
+            execution={execution}
+            comments={comments}
+          />
         </div>
       </div>
     );

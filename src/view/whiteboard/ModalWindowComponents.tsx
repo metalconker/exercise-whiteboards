@@ -2,8 +2,10 @@ import * as React from "react";
 import { Box, Paper } from "@mui/material";
 import {
   EXERCISE_DETAILS_WINDOW,
+  MEDIA_VIEW,
   MUSCLES_BACKGROUND,
   MUSCLES_IMAGES,
+  MUSCLES_IMAGES_BOX,
 } from "../styles/Stylesheet";
 import { ModalText } from "./TypographyElements";
 
@@ -29,13 +31,13 @@ export class ExerciseMediaView extends React.Component<
 > {
   render() {
     return (
-      <>
+      <Box sx={MEDIA_VIEW}>
         {this.props.mediaType == "video" ? (
           <video autoPlay src={this.props.uri} style={{ maxWidth: "50%" }} />
         ) : (
           <img src={this.props.uri} alt="popup" style={{ maxWidth: "50%" }} />
         )}
-      </>
+      </Box>
     );
   }
 }
@@ -81,13 +83,13 @@ export class MusclesImagesView extends React.Component<
 
   render() {
     return (
-      <Paper elevation={0} square sx={MUSCLES_BACKGROUND}>
+      <Box sx={MUSCLES_BACKGROUND}>
         {this.state.imagesLoaded &&
           this.props.muscles
             .filter((src) => src.length > 0)
             .map((src) =>
               src.map((src2) => (
-                <Box key={src2.toString()}>
+                <Box key={src2.toString()} sx={MUSCLES_IMAGES_BOX}>
                   <img
                     src={src2.toString()}
                     alt="popup"
@@ -96,7 +98,7 @@ export class MusclesImagesView extends React.Component<
                 </Box>
               ))
             )}
-      </Paper>
+      </Box>
     );
   }
 }
