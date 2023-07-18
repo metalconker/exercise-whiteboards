@@ -29,7 +29,7 @@
     "src/index.tsx": true,
     "src/model": false,
     "src/view/containers": false,
-    "src/_database": true,
+    "src/_database": false,
     "src/view/styles": false,
     "src/Helpers.tsx": false,
     "src/Constants.tsx": false,

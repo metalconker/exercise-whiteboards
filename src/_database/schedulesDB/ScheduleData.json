@@ -2,71 +2,71 @@
   "Sunday": {
     "Week 1": {
       "Warmups": "",
-      "Exercises": ""
+      "Workouts": ""
     },
     "Week 2": {
       "Warmups": "",
-      "Exercises": ""
+      "Workouts": ""
     }
   },
   "Monday": {
     "Week 1": {
       "Warmups": "Lower Body Warmups",
-      "Exercises": "Core Week 1"
+      "Workouts": "Core Week 1"
     },
     "Week 2": {
       "Warmups": "Lower Body Warmups",
-      "Exercises": "Core Week 2"
+      "Workouts": "Core Week 2"
     }
   },
   "Tuesday": {
     "Week 1": {
       "Warmups": "Upper Body Warmups",
-      "Exercises": "Upper Body Week 1 Day 1"
+      "Workouts": "Upper Body Week 1 Day 1"
     },
     "Week 2": {
       "Warmups": "Upper Body Warmups",
-      "Exercises": "Upper Body Week 2 Day 1"
+      "Workouts": "Upper Body Week 2 Day 1"
     }
   },
   "Wednesday": {
     "Week 1": {
       "Warmups": "",
-      "Exercises": ""
+      "Workouts": ""
     },
     "Week 2": {
       "Warmups": "",
-      "Exercises": ""
+      "Workouts": ""
     }
   },
   "Thursday": {
     "Week 1": {
       "Warmups": "Lower Body Warmups",
-      "Exercises": "Lower Body Week 1"
+      "Workouts": "Lower Body Week 1"
     },
     "Week 2": {
       "Warmups": "Lower Body Warmups",
-      "Exercises": "Lower Body Week 2"
+      "Workouts": "Lower Body Week 2"
     }
   },
   "Friday": {
     "Week 1": {
       "Warmups": "Upper Body Warmups",
-      "Exercises": "Upper Body Week 1 Day 2"
+      "Workouts": "Upper Body Week 1 Day 2"
     },
     "Week 2": {
       "Warmups": "Upper Body Warmups",
-      "Exercises": "Upper Body Week 2 Day 2"
+      "Workouts": "Upper Body Week 2 Day 2"
     }
   },
   "Saturday": {
     "Week 1": {
       "Warmups": "",
-      "Exercises": ""
+      "Workouts": ""
     },
     "Week 2": {
       "Warmups": "",
-      "Exercises": ""
+      "Workouts": ""
     }
   }
 }

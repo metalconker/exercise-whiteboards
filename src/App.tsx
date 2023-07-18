@@ -3,8 +3,8 @@ import { getWeek } from "./Helpers";
 import { WhiteboardController } from "./controller/WhiteboardController";
 
 const date = new Date();
-const test = true;
-// const test : boolean= false;
+// const test = true;
+const test : boolean= false;
 
 export default function App() {
   const dayIndex = test ? 5 : date.getDay() % 7;
@@ -13,6 +13,12 @@ export default function App() {
   const week: Week = Week[Object.keys(Week)[weekIndex]];
   const day: Day = Day[Object.keys(Day)[dayIndex]];
 
-  const warmups = new WhiteboardController(day, week, ScheduleType.WARMUPS);
-  return warmups.init();
+  console.log(day);
+  console.log(week);
+
+  // const warmups = new WhiteboardController(day, week, ScheduleType.WARMUPS);
+  // return warmups.init();
+
+  const workouts = new WhiteboardController(day, week, ScheduleType.WORKOUTS);
+  return workouts.init();
 }
