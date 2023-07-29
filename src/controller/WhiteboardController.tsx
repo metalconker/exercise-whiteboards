@@ -232,6 +232,11 @@ export class WhiteboardController {
     if (routine.reps > 0) return routine.reps + " reps";
     return routine.time + " secs";
   }
+
+  public getOptions(day: Day, week:Week)
+  {
+
+  }
 }
 
 // modalWindowContents={

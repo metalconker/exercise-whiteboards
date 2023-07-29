@@ -41,3 +41,8 @@ function scheduleExists(day: Day, week: Week, type: ScheduleType) {
   if (getScheduleNameDWT(day, week, type) == "") return false;
   return true;
 }
+
+function getAllSchedules()
+{
+  
+}

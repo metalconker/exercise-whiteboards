@@ -1,9 +1,9 @@
+import React from "react";
 import { Day, ScheduleType, Week } from "./Enums";
 import { getWeek } from "./Helpers";
 import { WhiteboardController } from "./controller/WhiteboardController";
 
 const date = new Date();
-// const test = true;
 const test : boolean= false;
 
 export default function App() {
@@ -13,12 +13,13 @@ export default function App() {
   const week: Week = Week[Object.keys(Week)[weekIndex]];
   const day: Day = Day[Object.keys(Day)[dayIndex]];
 
-  console.log(day);
-  console.log(week);
-
-  // const warmups = new WhiteboardController(day, week, ScheduleType.WARMUPS);
-  // return warmups.init();
+  const warmups = new WhiteboardController(day, week, ScheduleType.WARMUPS);
+  return warmups.init();
 
   const workouts = new WhiteboardController(day, week, ScheduleType.WORKOUTS);
   return workouts.init();
 }
+
+
+
+
